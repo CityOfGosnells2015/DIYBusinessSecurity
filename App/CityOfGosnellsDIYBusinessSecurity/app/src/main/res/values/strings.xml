@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CityOfGosnellsDIYBusinessSecurity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_mayor_letter">MayorLetter</string>
+    <string name="letter_from_mayor">        Dear Business Proprietor
+
+        Do It Yourself (DIY) Business Pack
+
+        The City of Gosnells is committed to working toward a safer and more secure future for all residents and businesses
+
+        We recognise that business security is essential to the well being and economy of our community.  With this in mind, the City of Gosnells is pleased to provide you with a DIY Business Security Pack, developed by the City in partnership with the WA Police.
+
+        This pack includes important crime prevention information to assist and protect your business.  The recommendations and information contained in this pack are provided as a guide for you to implement.  Many of the suggestions in the pack are reaffirming common-sense ideas that can make a real difference.  By securing your business and property, you can save yourself the distress and expense of acts of crime and assist to make our community a safer and better place to live.
+
+        If you have any enquiries about the contents of the DIY Business Security Pack or you would like more information about crime prevention please contact Safe City on 9391 6022 or email safecity@gosnells.wa.gov.au .
+
+        I trust you find this information useful to your business.
+
+        Yours sincerely</string>
+    <string name="letter_from_mayor_foot">        Cr Dave Griffiths
+        Mayor</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+</resources>
