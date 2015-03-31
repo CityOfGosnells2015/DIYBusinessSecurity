@@ -24,5 +24,7 @@
         Mayor</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_help_">Help_Activity</string>
+    <string name="title_activity_about_">About_Activity</string>
 
 </resources>
