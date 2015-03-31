@@ -23,5 +23,6 @@
     <string name="letter_from_mayor_foot">        Cr Dave Griffiths
         Mayor</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_splash">Splash</string>
 
 </resources>
