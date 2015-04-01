@@ -20,8 +20,16 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
+/**
+ * James McNeil ---
+ *
+ * Splash Screen
+ */
 public class Splash extends ActionBarActivity {
 
+    /*
+        URL Of Checklist Data to be retrieved.
+     */
     private final String CHECKLIST_URL = "http://www.gosnells.wa.gov.au/feed.rss?listname=Security%20Audit%20Checklist";
 
     @Override
@@ -90,23 +98,37 @@ public class Splash extends ActionBarActivity {
                     }
 
                 } catch (ClientProtocolException e) {
-                    Log.d("ClientProtocolException", e.getMessage());
+                    Log.e("ClientProtocolException", e.getMessage());
                 } catch (IOException e) {
-                    Log.d("IOException", e.getMessage());
+                    Log.e("IOException", e.getMessage());
                 }
 
 
             }
+            Log.i("Response", "\n\n" + response);
             return response;
         }
 
+        /*
+         After JSON String is retrived Wait and then move to Welcome Activity
+
+         !!! Data handling needs to be added here
+         */
         @Override
         protected void onPostExecute(String result) {
 
-            //Wait for a bit
+            try {
+                /*
+                    Splash Screen will always be visible for at least 3 seconds
+                    sleep( time in milliseconds)
+                 */
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                Log.e("Interrupted", "" + e.getMessage());
+            }
 
             // Start intent and move to welcome Activity
-            Intent intent = new Intent(Splash.this, MayorLetter.class);
+            Intent intent = new Intent(Splash.this, WelcomeActivity.class);
             startActivity(intent);
 
         }
