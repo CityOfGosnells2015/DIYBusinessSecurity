@@ -76,7 +76,11 @@ public class Splash extends ActionBarActivity {
      */
     private class DownloadJSONTask extends AsyncTask<String, Void, String> {
 
-
+        /**
+         *
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";

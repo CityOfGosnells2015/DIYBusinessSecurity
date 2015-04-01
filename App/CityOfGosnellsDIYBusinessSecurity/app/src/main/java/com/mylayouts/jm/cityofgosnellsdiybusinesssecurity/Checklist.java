@@ -56,56 +56,7 @@ public class Checklist {
         return userAnswer.get(element);
     }
 
-    /*
-        Populates Checklist from JSON Array
-     */
 
-    public boolean populateChecklist(JSONArray checklistJSON){
-
-        JSONObject element;
-
-
-        try {
-        /*
-            Loop for each JSON Object in JSON Array
-         */
-            for (int index = 0; index < checklistJSON.length(); index++) {
-
-            /*
-                Get object at index
-             */
-                element = checklistJSON.getJSONObject(index);
-
-            /*
-                Create new Question
-             */
-                Question addQuestion = new Question();
-
-            /*
-                Populate Question
-             */
-
-                addQuestion.setCategory(element.getString("question"));
-                addQuestion.setQuestion(element.getString("category"));
-                //addQuestion.setId(element.getInt("What ever the id is called, probably id I imagine??"));
-
-            /*
-                Add to List
-             */
-                questList.add(addQuestion);
-
-            }
-
-        }catch(JSONException ex){
-
-            return false;
-
-        }
-
-        return true;
-
-
-    }
 }
 
 
