@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +44,7 @@ public class JSONParser {
 
         Checklist parsedList = new Checklist();
         JSONObject element;
-        List<Question> questList = null;
+        List<Question> questList = new ArrayList<>();
 
         /*
             Get Array from the json fle

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,10 @@ public class Checklist {
     private List<Answer> userAnswer;
 
     public Checklist(){
+
+        questList = new ArrayList<>();
+        userAnswer = new ArrayList<>();
+
     }
 
     /*
