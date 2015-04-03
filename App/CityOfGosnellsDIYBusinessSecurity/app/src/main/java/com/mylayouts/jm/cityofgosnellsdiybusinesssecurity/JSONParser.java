@@ -15,13 +15,30 @@ public class JSONParser {
 
     private JSONObject jsonFile;
 
-    /*
-        Constructor
+    /**
+     *
+     * @param jsonFile
      */
     public JSONParser(JSONObject jsonFile){
         this.jsonFile=jsonFile;
     }
 
+    public JSONParser(){}
+
+
+    public void setJsonFile(JSONObject jsonFile) {
+        this.jsonFile = jsonFile;
+    }
+
+    public JSONObject getJsonFile() {
+        return jsonFile;
+    }
+
+    /**
+     *
+     * @return
+     * @throws JSONException
+     */
     public Checklist getChecklist() throws JSONException {
 
         Checklist parsedList = new Checklist();
@@ -84,7 +101,7 @@ public class JSONParser {
         /*
             Variables
          */
-        HashMap<String,String> contactHash = null;
+        HashMap<String,String> contactHash = new HashMap<String,String>();
         JSONObject importNumbers = jsonFile.getJSONObject("ImportantPhoneNumbers");
         String keyValue;
         Iterator iterator = importNumbers.keys(); // Loads all the keys (Strings) from the JsonObject
@@ -106,6 +123,21 @@ public class JSONParser {
 
 
     }
+
+    /**
+     *
+     * Converts the string from the URL to a JSONObject
+     *
+     * @param JSONString
+     * @return JSONObject
+     */
+    public JSONObject parseJSONString(String JSONString) throws JSONException {
+
+        return new JSONObject(JSONString);
+
+    }
+
+
 
 
 

@@ -92,14 +92,25 @@ public class Splash extends ActionBarActivity {
                 DefaultHttpClient client = new DefaultHttpClient();
                 HttpGet httpGet = new HttpGet(url);
                 try {
+
+
                     HttpResponse execute = client.execute(httpGet);
                     InputStream content = execute.getEntity().getContent();
 
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                    String s = "";
-                    while ((s = buffer.readLine()) != null) {
-                        response += s;
+                    StringBuilder sBuilder = new StringBuilder();
+
+                    String line = null;
+                    while ((line = buffer.readLine()) != null) {
+                        sBuilder.append(line + "\n");
                     }
+
+                    /*
+                        Close Stream + Get String
+                     */
+                    content.close();
+                    response = sBuilder.toString();
+
 
                 } catch (ClientProtocolException e) {
                     Log.e("ClientProtocolException", e.getMessage());
