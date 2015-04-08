@@ -9,7 +9,8 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 /**
- * Class which is responsible for manage the notification.
+ * Gustavo Dias
+ * Class for create the notification event weekly
  */
 public class NotificationReceiver extends BroadcastReceiver{
 
