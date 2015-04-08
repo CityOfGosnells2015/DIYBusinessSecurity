@@ -50,8 +50,6 @@ public class Checklist {
 
     /*
         Returns A element directly
-
-        (Add error handling for outofbounds exception)
      */
     public Question getQuestionByID(int element){
         return questList.get(element);
@@ -60,6 +58,24 @@ public class Checklist {
     public Answer getAnswerByID(int element){
         return userAnswer.get(element);
     }
+
+    /*
+        Sets Answer by ID
+
+        (Element Number for now)
+     */
+
+    /**
+     * Sets an answer by its element
+     *
+     * @param element
+     * @param answer
+     */
+    public void setAnswerByID(int element, Answer answer)
+    {
+        userAnswer.set(element,answer);
+    }
+
 
 
 }
