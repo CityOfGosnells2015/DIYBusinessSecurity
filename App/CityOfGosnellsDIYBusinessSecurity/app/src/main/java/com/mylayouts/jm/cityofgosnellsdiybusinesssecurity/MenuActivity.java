@@ -1,17 +1,38 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
-public class MenuActivity extends ActionBarActivity {
+public class MenuActivity extends ActionBarActivity implements View.OnClickListener{
+
+    SharedPreferences prefs;
+    int themeValue;
+    Button preferenceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Loading preferences
+        prefs = getSharedPreferences("Preferences",MODE_PRIVATE);
+        themeValue = prefs.getInt("textSize",0);
+
+        //Loading the correct theme application
+        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
+
+        //Set layout for activity
         setContentView(R.layout.activity_menu);
+
+        preferenceButton = (Button) findViewById(R.id.btnPreferenceActivity);
+        preferenceButton.setOnClickListener(this);
+
     }
 
 
@@ -37,7 +58,14 @@ public class MenuActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void
+    @Override
+    public void onClick(View v) {
 
-
+        //Move to Preference Activity
+        if (v.getId() == R.id.btnPreferenceActivity){
+            Intent intent = new Intent(this, PreferenceActivity.class);
+            intent.putExtra("textValue",themeValue);
+            startActivity(intent);
+        }
+    }
 }

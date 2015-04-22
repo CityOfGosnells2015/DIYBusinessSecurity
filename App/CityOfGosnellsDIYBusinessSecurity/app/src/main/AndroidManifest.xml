@@ -22,6 +22,10 @@
             android:label="@string/title_activity_menu" >
         </activity>
         <activity
+            android:name=".PreferenceActivity"
+            android:label="@string/title_activity_preference" >
+        </activity>
+        <activity
             android:name=".Splash"
             android:label="@string/title_activity_splash" >
             <intent-filter>
