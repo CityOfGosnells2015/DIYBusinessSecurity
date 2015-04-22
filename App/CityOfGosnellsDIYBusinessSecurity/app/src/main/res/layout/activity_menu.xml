@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/button4"
+        android:id="@+id/btnPreferenceActivity"
         android:layout_below="@+id/button3"
         android:layout_centerHorizontal="true" />
 
