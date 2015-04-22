@@ -38,6 +38,11 @@
             android:name=".About_Activity"
             android:label="@string/title_activity_about_" >
         </activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:label="@string/title_activity_notification">
+        </activity>
+        <receiver android:name=".NotificationReceiver"></receiver>
     </application>
 
 </manifest>
