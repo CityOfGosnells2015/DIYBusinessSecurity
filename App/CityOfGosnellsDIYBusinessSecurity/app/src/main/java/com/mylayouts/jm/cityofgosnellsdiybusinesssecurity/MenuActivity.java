@@ -14,7 +14,7 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
     SharedPreferences prefs;
     int themeValue;
-    Button preferenceButton;
+    Button preferenceButton, helpButton, aboutButton, notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,17 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         //Set layout for activity
         setContentView(R.layout.activity_menu);
 
-        preferenceButton = (Button) findViewById(R.id.btnPreferenceActivity);
+        preferenceButton = (Button) findViewById(R.id.btnPreference);
         preferenceButton.setOnClickListener(this);
+
+        helpButton = (Button) findViewById(R.id.btnHelp);
+        helpButton.setOnClickListener(this);
+
+        aboutButton = (Button) findViewById(R.id.btnAbout);
+        aboutButton.setOnClickListener(this);
+
+        notificationButton = (Button) findViewById(R.id.btnNotification);
+        notificationButton.setOnClickListener(this);
 
     }
 
@@ -62,8 +71,29 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
 
         //Move to Preference Activity
-        if (v.getId() == R.id.btnPreferenceActivity){
+        if (v.getId() == R.id.btnPreference){
             Intent intent = new Intent(this, PreferenceActivity.class);
+            intent.putExtra("textValue",themeValue);
+            startActivity(intent);
+        }
+
+        //Move to Notification Activity
+        else if (v.getId() == R.id.btnNotification){
+            Intent intent = new Intent(this, NotificationActivity.class);
+            intent.putExtra("textValue",themeValue);
+            startActivity(intent);
+        }
+
+        //Move to About Activity
+        else if (v.getId() == R.id.btnAbout){
+            Intent intent = new Intent(this, About_Activity.class);
+            intent.putExtra("textValue",themeValue);
+            startActivity(intent);
+        }
+
+        //Move to Help Activity
+        else if (v.getId() == R.id.btnHelp){
+            Intent intent = new Intent(this, Help_Activity.class);
             intent.putExtra("textValue",themeValue);
             startActivity(intent);
         }

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="About"
-        android:id="@+id/btnAboutNav"
+        android:id="@+id/btnAbout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="106dp" />
 
@@ -18,25 +18,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Help"
-        android:id="@+id/button2"
-        android:layout_below="@+id/btnAboutNav"
+        android:id="@+id/btnHelp"
+        android:layout_below="@+id/btnAbout"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Notification"
-        android:id="@+id/button3"
+        android:id="@+id/btnNotification"
         android:onClick=""
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/btnHelp"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/btnPreferenceActivity"
-        android:layout_below="@+id/button3"
+        android:text="Preference"
+        android:id="@+id/btnPreference"
+        android:layout_below="@+id/btnNotification"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
