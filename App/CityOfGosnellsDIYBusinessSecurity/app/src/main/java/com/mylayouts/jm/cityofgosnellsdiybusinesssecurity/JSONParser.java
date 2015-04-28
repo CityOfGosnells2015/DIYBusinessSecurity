@@ -44,7 +44,7 @@ public class JSONParser {
 
         Checklist parsedList = new Checklist();
         JSONObject element;
-        List<Question> questList = new ArrayList<>();
+        ArrayList<Question> questList = new ArrayList<Question>();
 
         /*
             Get Array from the json fle

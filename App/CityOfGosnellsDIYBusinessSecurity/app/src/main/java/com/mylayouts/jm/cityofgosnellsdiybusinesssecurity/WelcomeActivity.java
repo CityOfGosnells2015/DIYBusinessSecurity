@@ -1,7 +1,10 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,11 +18,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 /**
@@ -38,11 +46,13 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
     Button firstTimeClick;
     SharedPreferences prefs;
+    ArrayList<Answer> userAnswers;
+    Checklist theOneChecklist;
     /*
     URL Of Checklist Data to be retrieved.
     */
-    private final String CHECKLIST_URL = "http://www.gosnells.wa.gov.au/feed.rss?listname=Security%20Audit%20Checklist";
-
+    private final static String CHECKLIST_URL = "http://www.gosnells.wa.gov.au/feed.rss?listname=Security%20Audit%20Checklist";
+    private final static String FILE_NAME = "answers.dat";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +66,48 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         firstTimeClick.setOnClickListener(this);
         firstTimeClick.setEnabled(false);
 
+        //Initialise The Checklist
+        theOneChecklist = new Checklist();
+
+        //Load Questions
         //Execute Async Task
-        DownloadJSONTask task = new DownloadJSONTask();
-        task.execute(new String[]{CHECKLIST_URL});
+        if (isOnline()) {
+            DownloadJSONTask task = new DownloadJSONTask();
+            task.execute(new String[]{CHECKLIST_URL});
+        }else{
+            Log.d("Not Onlie","NO CONNECTED TO THE INTERNET");
+        }
+        //Initialise File
+        FileStore fileStore = new FileStore();
+
+        //Create File
+        File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
+
+        /*
+            Load Users Answers from file
+         */
+        try{
+
+            ArrayList<Answer> userAnswers;
+
+            //Check if Exists
+            if(!answerFile.exists()){
+                //Create list, save to file
+                userAnswers = createNewAnswerList(theOneChecklist.getQuestList().size());
+                theOneChecklist.setUserAnswer(userAnswers);
+                fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
+            }else{
+                //Load User file
+                userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
+                theOneChecklist.setUserAnswer(userAnswers);
+            }
+
+
+        } catch(IOException ex){
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -121,10 +170,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
 
     /**
-     *  James McNeil
-     *
-     *  DownloadJSONTask uses the AsyncTask class
-     *  Gets the JSON String from the url
+     * @author James McNeil
      */
     private class DownloadJSONTask extends AsyncTask<String, Void, String> {
 
@@ -135,7 +181,9 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
          */
         @Override
         protected String doInBackground(String... urls) {
+
             String response = "";
+
             for (String url : urls) {
 
                 /*
@@ -174,21 +222,23 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
             }
             Log.i("Response", "\n\n" + response);
 
-            /*
 
-             */
             return response;
         }
 
         /*
          After JSON String is retrived Wait and then move to Welcome Activity
-
-         !!! Data handling needs to be added here
          */
         @Override
         protected void onPostExecute(String result) {
 
             try {
+                //Create Json Parses
+                JSONObject jsonObject = new JSONObject(result);
+                JSONParser jsonParser = new JSONParser(jsonObject);
+
+                //Get Checklist questions from parser
+                theOneChecklist.setQuestList(jsonParser.getChecklist().getQuestList());
                 /*
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)
@@ -196,6 +246,8 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 Log.e("Interrupted", "" + e.getMessage());
+            } catch (JSONException e) {
+                Log.e("JSON Exception",e.getMessage());
             }
 
             /*
@@ -205,4 +257,46 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
         }
     }
+
+    /**
+     *
+     * Returns Array Of "Unanswerd" answers
+     *
+     * @param size
+     * @return
+     * @author James McNeil
+     */
+    private ArrayList<Answer> createNewAnswerList(int size){
+
+        ArrayList<Answer> userAnswers = new ArrayList<Answer>();
+
+        for(int index=0;index<size;index++){
+
+            userAnswers.add(Answer.U);
+
+        }
+
+        return userAnswers;
+
+    }
+
+    /**
+     * Checks for an internet Connection
+     *
+     * (From Tutorials)
+     *
+     * @return Boolean
+     */
+    protected boolean isOnline(){
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        if(netInfo != null && netInfo.isConnectedOrConnecting()){
+            return true;
+        }else return false;
+
+
+    }
+
 }

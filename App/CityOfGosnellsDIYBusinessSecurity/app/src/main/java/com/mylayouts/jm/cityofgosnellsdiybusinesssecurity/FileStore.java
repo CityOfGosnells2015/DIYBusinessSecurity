@@ -63,7 +63,7 @@ public class FileStore {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public ArrayList<Answer> loadUserFile(String fileName, Context appContext) throws IOException, ClassNotFoundException {
+    public ArrayList<Answer> loadUserFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
 
         ArrayList<Answer> answerArray;
         File file = new File(appContext.getFilesDir().getPath().toString() + "/" + fileName);
