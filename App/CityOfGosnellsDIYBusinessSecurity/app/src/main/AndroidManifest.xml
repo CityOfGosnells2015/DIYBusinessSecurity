@@ -3,6 +3,7 @@
     package="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -47,6 +48,18 @@
             android:label="@string/title_activity_notification">
         </activity>
         <receiver android:name=".NotificationReceiver"></receiver>
+        <activity
+            android:name=".LinksActivity"
+            android:label="@string/title_activity_my_links" >
+        </activity>
+        <activity
+            android:name=".AddLinkActivity"
+            android:label="@string/title_activity_add_link" >
+        </activity>
+        <activity
+            android:name=".EditLinkActivity"
+            android:label="@string/title_activity_edit_link" >
+        </activity>
     </application>
 
 </manifest>

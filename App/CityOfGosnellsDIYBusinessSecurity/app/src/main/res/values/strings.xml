@@ -28,5 +28,9 @@
     <string name="title_activity_help_">Help_Activity</string>
     <string name="title_activity_about_">About_Activity</string>
     <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_my_links">myLinksActivity</string>
+    <string name="title_activity_new_my_links">newMyLinksActivity</string>
+    <string name="title_activity_add_link">AddLinkActivity</string>
+    <string name="title_activity_edit_link">EditLinkActivity</string>
 
 </resources>
