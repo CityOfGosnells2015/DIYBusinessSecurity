@@ -108,6 +108,12 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        /*
+            Save to Global Checklist
+         */
+        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+        globalChecklist.setTheOneChecklist(theOneChecklist);
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,33 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         notificationButton = (Button) findViewById(R.id.btnNotification);
         notificationButton.setOnClickListener(this);
+
+        /*
+            THIS IS TEST CODE --- PLS DELETE IF STILL HERE
+         */
+
+        GlobalChecklist globalChecklist = (GlobalChecklist)getApplication();
+        Checklist theOneChecklist = globalChecklist.getTheOneChecklist();
+
+
+
+        for(Question q:theOneChecklist.getQuestList()){
+
+            Log.d("Global Quest TEST","\nQuestion: " + q.getQuestion() + "\nCatagory: " + q.getCategory());
+
+        }
+
+        Log.d("TEST","" + theOneChecklist.getUserAnswer().size());
+
+        for(Answer a:theOneChecklist.getUserAnswer()){
+
+            Log.d("Global Answer TEST","\nAnswer: " + a.toText());
+
+        }
+
+        /*
+           ----------------------------------------------
+         */
 
     }
 
