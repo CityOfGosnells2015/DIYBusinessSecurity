@@ -60,9 +60,9 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         Log.d("TEST","" + theOneChecklist.getUserAnswer().size());
 
-        for(Answer a:theOneChecklist.getUserAnswer()){
+        for(UserAnswer a:theOneChecklist.getUserAnswer()){
 
-            Log.d("Global Answer TEST","\nAnswer: " + a.toText());
+            Log.d("Global Answer TEST","\nAnswer: " + a.getAnswer().toText());
 
         }
 

@@ -69,31 +69,39 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         //Initialise The Checklist
         theOneChecklist = new Checklist();
 
-        //Load Questions
+
+
+
+        /*
+            Get Questions from JSON File
+         */
         //Execute Async Task
         if (isOnline()) {
             DownloadJSONTask task = new DownloadJSONTask();
             task.execute(new String[]{CHECKLIST_URL});
         }else{
-            Log.d("Not Onlie","NO CONNECTED TO THE INTERNET");
+            Log.d("Not Online","NO CONNECTED TO THE INTERNET");
         }
+
+
+
+
+        /*
+            Load Users Answers from file
+         */
         //Initialise File
         FileStore fileStore = new FileStore();
 
         //Create File
         File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
-
-        /*
-            Load Users Answers from file
-         */
         try{
 
-            ArrayList<Answer> userAnswers;
+            ArrayList<UserAnswer> userAnswers;
 
             //Check if Exists
             if(!answerFile.exists()){
                 //Create list, save to file
-                userAnswers = createNewAnswerList(theOneChecklist.getQuestList().size());
+                userAnswers = createNewAnswerList();
                 theOneChecklist.setUserAnswer(userAnswers);
                 fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
             }else{
@@ -102,18 +110,22 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
                 theOneChecklist.setUserAnswer(userAnswers);
             }
 
-
         } catch(IOException ex){
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
+
+
+
         /*
             Save to Global Checklist
          */
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         globalChecklist.setTheOneChecklist(theOneChecklist);
+
+
     }
 
 
@@ -226,7 +238,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
 
             }
-            Log.i("Response", "\n\n" + response);
+            //Log.i("Response", "\n\n" + response);
 
 
             return response;
@@ -268,17 +280,18 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
      *
      * Returns Array Of "Unanswerd" answers
      *
-     * @param size
      * @return
      * @author James McNeil
      */
-    private ArrayList<Answer> createNewAnswerList(int size){
+    private ArrayList<UserAnswer> createNewAnswerList(){
 
-        ArrayList<Answer> userAnswers = new ArrayList<Answer>();
+        ArrayList<UserAnswer> userAnswers = new ArrayList<UserAnswer>();
+        UserAnswer addedAnswer;
 
-        for(int index=0;index<size;index++){
+        for(int index=0;index<theOneChecklist.getQuestList().size();index++){
 
-            userAnswers.add(Answer.U);
+            addedAnswer = new UserAnswer(theOneChecklist.getQuestionByIndex(index).getUid(),Answer.U);
+            userAnswers.add(addedAnswer);
 
         }
 

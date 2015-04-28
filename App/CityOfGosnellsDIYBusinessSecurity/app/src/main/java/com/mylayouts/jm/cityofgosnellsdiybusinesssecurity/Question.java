@@ -9,31 +9,18 @@ public class Question {
 
     private String category;
     private String question;
-    /*
-        private int id;
-     */
+    private String uid;
+
 
     public Question(){}
 
-    public Question(String category,String question){
+    public Question(String uid,String category,String question){
 
         this.category=category;
         this.question=question;
+        this.uid=uid;
 
     }
-
-
-    /*
-
-    Used later hopefully
-
-    public Question(String catagory,String question,int id)
-    {
-        this.question=question;
-        this.catagory=catagory;
-        this.id = id;
-    }
-    */
 
     public String getCategory() {
         return category;
@@ -43,6 +30,10 @@ public class Question {
         return question;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -50,6 +41,11 @@ public class Question {
     public void setQuestion(String question) {
         this.question = question;
     }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
 
 
 }

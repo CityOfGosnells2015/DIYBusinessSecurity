@@ -16,8 +16,9 @@ public class Checklist {
     /*
         Users answers will correspond to element in the question list
      */
-    private List<Question> questList;
-    private List<Answer> userAnswer;
+    private ArrayList<Question> questList;
+    private ArrayList<UserAnswer> userAnswer;
+    private int versionNumber;
 
     public Checklist(){
 
@@ -29,35 +30,45 @@ public class Checklist {
     /*
         Get and set
      */
-    public void setQuestList(List<Question> questList) {
+    public void setQuestList(ArrayList<Question> questList) {
         this.questList = questList;
     }
 
-    public void setUserAnswer(List<Answer> userAnswer) {
+    public void setUserAnswer(ArrayList<UserAnswer> userAnswer) {
         this.userAnswer = userAnswer;
     }
 
+    public void setVersionNumber(int versionNumber) {
+        this.versionNumber = versionNumber;
+    }
+
     /*
-        Get
-     */
-    public List<Answer> getUserAnswer() {
+            Get
+         */
+    public ArrayList<UserAnswer> getUserAnswer() {
         return userAnswer;
     }
 
-    public List<Question> getQuestList() {
+    public ArrayList<Question> getQuestList() {
         return questList;
     }
 
+    public int getVersionNumber() {
+        return versionNumber;
+    }
+
     /*
-        Returns A element directly
-     */
-    public Question getQuestionByID(int element){
+            Returns A element directly
+    */
+    public Question getQuestionByIndex(int element){
         return questList.get(element);
     }
 
-    public Answer getAnswerByID(int element){
+    public UserAnswer getAnswerByIndex(int element){
         return userAnswer.get(element);
     }
+
+
 
     /*
         Sets Answer by ID
@@ -71,7 +82,7 @@ public class Checklist {
      * @param element
      * @param answer
      */
-    public void setAnswerByID(int element, Answer answer)
+    public void setAnswerByID(int element, UserAnswer answer)
     {
         userAnswer.set(element,answer);
     }

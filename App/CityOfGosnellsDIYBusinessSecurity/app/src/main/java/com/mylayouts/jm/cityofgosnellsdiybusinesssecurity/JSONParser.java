@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by 041401076 on 1/04/2015.
+ *
+ * @author James McNeil
  */
 public class JSONParser {
 
@@ -36,7 +38,9 @@ public class JSONParser {
     }
 
     /**
-     *
+     * Returns a checklist
+     * -- Updated 29/4 Includes UID from json File
+     * -- Updated 29/4 Include Version Number
      * @return
      * @throws JSONException
      */
@@ -45,6 +49,12 @@ public class JSONParser {
         Checklist parsedList = new Checklist();
         JSONObject element;
         ArrayList<Question> questList = new ArrayList<Question>();
+
+        /*
+            Get The Version Number
+         */
+        parsedList.setVersionNumber(Integer.parseInt(jsonFile.getString("id")));
+
 
         /*
             Get Array from the json fle
@@ -67,10 +77,12 @@ public class JSONParser {
             Question addQuestion = new Question();
 
             /*
-                Populate Question
+                Populate Question ---
              */
             addQuestion.setCategory(element.getString("question"));
             addQuestion.setQuestion(element.getString("category"));
+            addQuestion.setUid(element.getString("id"));
+
             //addQuestion.setId(element.getInt("What ever the id is called, probably id I imagine??"));
 
             /*

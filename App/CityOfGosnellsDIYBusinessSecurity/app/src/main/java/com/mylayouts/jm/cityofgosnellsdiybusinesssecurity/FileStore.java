@@ -29,7 +29,7 @@ public class FileStore {
      * @param userAnswers
      * @param fileName
      */
-    public void saveUserFile(ArrayList<Answer> userAnswers, String fileName, Context appContext) throws IOException {
+    public void saveUserFile(ArrayList<UserAnswer> userAnswers, String fileName, Context appContext) throws IOException {
 
 
 
@@ -54,7 +54,7 @@ public class FileStore {
 
     /**
      *
-     * Returns a ArrayList of save answers
+     * Returns a ArrayList of saved answers
      *
      *
      * @param fileName
@@ -63,9 +63,9 @@ public class FileStore {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public ArrayList<Answer> loadUserFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
+    public ArrayList<UserAnswer> loadUserFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
 
-        ArrayList<Answer> answerArray;
+        ArrayList<UserAnswer> answerArray;
         File file = new File(appContext.getFilesDir().getPath().toString() + "/" + fileName);
 
         if (file.exists()) {
