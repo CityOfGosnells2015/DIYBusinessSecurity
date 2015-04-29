@@ -28,7 +28,7 @@ public class ChecklistActivity extends ActionBarActivity {
 
         ListView listview = (ListView)findViewById(R.id.list);
         adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestList());
-        //Toast.makeText(getApplicationContext(),theOneChecklist.getQuestList().get(0).getQuestion(),Toast.LENGTH_LONG).show();
+        listview.setAdapter(adapter);
     }
 
 

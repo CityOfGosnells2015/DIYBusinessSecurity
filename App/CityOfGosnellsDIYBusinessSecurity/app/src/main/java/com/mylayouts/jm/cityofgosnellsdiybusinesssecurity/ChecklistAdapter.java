@@ -6,9 +6,10 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
     import android.view.ViewGroup;
     import android.widget.ArrayAdapter;
     import android.widget.CheckBox;
-    import android.widget.CompoundButton;
     import android.widget.ImageView;
+    import android.widget.RadioGroup;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
     private final Context context;
 
     LayoutInflater vi;
-    int Resource;
+    int resource;
     ViewHolder holder;
     ArrayList<Question> objQuestion;
     ArrayList<UserAnswer> objUserAnswers;
@@ -29,7 +30,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         super(context, resource, objects);
         this.context = context;
         vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Resource = resource;
+        this.resource = resource;
         objQuestion = objects;
         //objUserAnswers = objAnswers;
     }
@@ -39,28 +40,46 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // convert view = design
-        View v = convertView;
+        View view = convertView;
 
         //Creates holders for the views that are used on the activity
-        if (v == null) {
+        if (view == null) {
             holder = new ViewHolder();
-            v = vi.inflate(Resource, null);
-            holder.imageview = (ImageView) v.findViewById(R.id.ivImage);
-            holder.Question = (TextView) v.findViewById(R.id.TxtQuestion);
-            holder.Category = (TextView) v.findViewById(R.id.TxtCategory);
-            holder.Anwser = (CheckBox) v.findViewById(R.id.CboxAnwser);
-            v.setTag(holder);
+            view = vi.inflate(resource, null);
+            //holder.imageview = (ImageView) v.findViewById(R.id.ivImage);
+            holder.txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
+            holder.txtCategory = (TextView) view.findViewById(R.id.TxtCategory);
+            holder.radioGroup  = (RadioGroup) view.findViewById(R.id.myRadioGroup);
+            view.setTag(holder);
         } else {
-            holder = (ViewHolder) v.getTag();
+            holder = (ViewHolder) view.getTag();
         }
-        holder.imageview.setImageResource(R.drawable.ic_launcher);
+        //holder.imageview.setImageResource(R.drawable.ic_launcher);
 
             /*
                 Populate Question
              */
         //Sets the text and checkbox for the holders from the information from the object.
-        holder.Question.setText(objQuestion.get(position).getQuestion());
-        holder.Category.setText(objQuestion.get(position).getCategory());
+        holder.txtQuestion.setText(objQuestion.get(position).getQuestion());
+        holder.txtCategory.setText(objQuestion.get(position).getCategory());
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if(checkedId == R.id.rbYes){
+                    Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
+
+                } else if(checkedId == R.id.rbNo){
+                    Toast.makeText(context, "No", Toast.LENGTH_SHORT).show();
+
+                } else if(checkedId == R.id.rbNA){
+                    Toast.makeText(context, "N/A", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
 
 
         /*holder.Anwser.setChecked(objUserAnswers.getAnswer());
@@ -71,17 +90,14 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
             }
 
         });*/
-        return v;
+        return view;
     }
 
-
-
-
     static class ViewHolder {
-        public ImageView imageview;
-        public TextView Question;
-        public TextView Category;
-        public CheckBox Anwser;
+        //public ImageView imageview;
+        public TextView txtQuestion;
+        public TextView txtCategory;
+        public RadioGroup radioGroup ;
 
 
     }

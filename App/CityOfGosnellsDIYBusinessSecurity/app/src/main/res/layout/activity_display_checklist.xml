@@ -1,37 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/TxtQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textColor="#166CED"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
-        android:layout_marginTop="39dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/TxtQuestion"
+        android:id="@+id/TxtCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question none?"
-        android:textColor="#166CED"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignTop="@+id/ivImage"
-        android:layout_toRightOf="@+id/ivImage"
-        android:layout_toEndOf="@+id/ivImage" />
+        android:textColor="#009A57"
+        android:text="Question" />
 
-    <CheckBox
-        android:id="@+id/CboxAnwser"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="304dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivImage"
-        android:layout_toRightOf="@+id/ivImage"
-        android:layout_toEndOf="@+id/ivImage" />
+        android:id="@+id/myRadioGroup"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/rbYes"
+            android:textColor="#009A57"
+            android:checked="false"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/rbNo"
+            android:textColor="#009A57"
+            android:checked="false"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="N/A"
+            android:id="@+id/rbNA"
+            android:textColor="#009A57"
+            android:checked="false"
+            android:layout_weight="1" />
+    </RadioGroup>
 
 
-
-</RelativeLayout>
+</LinearLayout>
