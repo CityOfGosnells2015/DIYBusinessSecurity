@@ -81,8 +81,8 @@ public class JSONParser {
             /*
                 Populate Question ---
              */
-            addQuestion.setCategory(element.getString("question"));
-            addQuestion.setQuestion(element.getString("category"));
+            addQuestion.setCategory(element.getString("category"));
+            addQuestion.setQuestion(element.getString("question"));
             addQuestion.setUid(element.getString("id"));
 
             ///LOG CAT

@@ -253,8 +253,8 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
             /*
                 Finishes Processing Checklist
+                (See createChecklist for more details!!)
              */
-
             createChecklist();
 
             /*
@@ -267,7 +267,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
     /**
      *
-     * Returns Array Of "Unanswerd" answers
+     * Returns Array Of "Unanswered" answers
      *
      * @return
      * @author James McNeil
