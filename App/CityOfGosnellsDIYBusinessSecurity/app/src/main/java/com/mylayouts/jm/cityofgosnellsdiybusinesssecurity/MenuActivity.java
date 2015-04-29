@@ -15,7 +15,7 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
     SharedPreferences prefs;
     int themeValue;
-    Button preferenceButton, helpButton, aboutButton, notificationButton;
+    Button preferenceButton, helpButton, aboutButton, notificationButton, checklistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,9 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         notificationButton = (Button) findViewById(R.id.btnNotification);
         notificationButton.setOnClickListener(this);
+
+        checklistButton = (Button) findViewById(R.id.btnChecklist);
+        checklistButton.setOnClickListener(this);
 
         /*
             THIS IS TEST CODE --- PLS DELETE IF STILL HERE
@@ -122,6 +125,13 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         //Move to Help Activity
         else if (v.getId() == R.id.btnHelp){
             Intent intent = new Intent(this, Help_Activity.class);
+            intent.putExtra("textValue",themeValue);
+            startActivity(intent);
+        }
+
+        //Move to Checklist Activity
+        else if (v.getId() == R.id.btnChecklist){
+            Intent intent = new Intent(this, ChecklistActivity.class);
             intent.putExtra("textValue",themeValue);
             startActivity(intent);
         }

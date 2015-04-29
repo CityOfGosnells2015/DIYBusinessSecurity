@@ -39,4 +39,12 @@
         android:layout_below="@+id/btnNotification"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checklist"
+        android:id="@+id/btnChecklist"
+        android:layout_below="@+id/btnPreference"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
