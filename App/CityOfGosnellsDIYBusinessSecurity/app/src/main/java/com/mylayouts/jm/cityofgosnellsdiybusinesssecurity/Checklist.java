@@ -24,6 +24,7 @@ public class Checklist {
 
         questList = new ArrayList<>();
         userAnswer = new ArrayList<>();
+        versionNumber = 0;
 
     }
 
@@ -43,8 +44,8 @@ public class Checklist {
     }
 
     /*
-            Get
-         */
+        Get
+    */
     public ArrayList<UserAnswer> getUserAnswer() {
         return userAnswer;
     }
@@ -58,7 +59,7 @@ public class Checklist {
     }
 
     /*
-            Returns A element directly
+        Returns A element directly
     */
     public Question getQuestionByIndex(int element){
         return questList.get(element);
@@ -72,20 +73,95 @@ public class Checklist {
 
     /*
         Sets Answer by ID
-
-        (Element Number for now)
      */
 
     /**
      * Sets an answer by its element
      *
-     * @param element
+     * @param id
      * @param answer
      */
-    public void setAnswerByID(int element, UserAnswer answer)
+    public boolean setAnswerByID(String id, Answer answer)
     {
-        userAnswer.set(element,answer);
+
+        boolean isFound = false;
+
+        for(int index = 0;index<userAnswer.size();index++){
+
+            if (userAnswer.get(index).getUid().equalsIgnoreCase(id)){
+
+                isFound = true;
+                userAnswer.get(index).setAnswer(answer);
+                break;
+
+            }
+
+        }
+
+        return isFound;
+
+
     }
+
+    /**
+     *
+     * Returns a list of all the Questions in a paticular catagory
+     *
+     * @param category
+     * @return
+     * @author James McNeil
+     */
+    public ArrayList<Question> getQuestionsByCategory(String category){
+
+        ArrayList<Question> questions = new ArrayList<Question>();
+
+        for(Question quest: questList){
+
+            if(quest.getCategory().equalsIgnoreCase(category)){
+
+                questions.add(quest);
+            }
+
+        }
+
+        return questions;
+
+
+    }
+
+    public String[] listCategory(){
+
+        ArrayList<String> strings = new ArrayList<String>();
+        String addCat = questList.get(0).getCategory();
+        boolean catFound = false;
+
+        //Add initial cat
+        strings.add(addCat);
+
+        //Loop t- each question
+        for(Question quest: questList){
+
+            for(String catTest: strings){
+
+                if(quest.getCategory().equalsIgnoreCase(catTest))catFound=true;
+
+            }
+
+            if(!catFound) strings.add(quest.getCategory());
+
+            catFound = false;
+
+        }
+
+        return (String[]) strings.toArray();
+
+    }
+
+
+
+
+
+
 
 
 
