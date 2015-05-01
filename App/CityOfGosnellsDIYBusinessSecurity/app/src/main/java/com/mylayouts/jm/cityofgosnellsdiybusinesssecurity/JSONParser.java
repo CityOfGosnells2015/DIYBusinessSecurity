@@ -1,5 +1,7 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +55,7 @@ public class JSONParser {
         /*
             Get The Version Number
          */
-        parsedList.setVersionNumber(Integer.parseInt(jsonFile.getString("id")));
+        parsedList.setVersionNumber(Integer.parseInt(jsonFile.getString("VersionNumber")));
 
 
         /*
@@ -79,9 +81,15 @@ public class JSONParser {
             /*
                 Populate Question ---
              */
-            addQuestion.setCategory(element.getString("question"));
-            addQuestion.setQuestion(element.getString("category"));
+            addQuestion.setCategory(element.getString("category"));
+            addQuestion.setQuestion(element.getString("question"));
             addQuestion.setUid(element.getString("id"));
+
+            ///LOG CAT
+            Log.d("getChecklist TEST", "Got Here createChecklist");
+
+            ///LOG CAT
+            Log.d("getChecklist TEST", "" + addQuestion.getUid());
 
             //addQuestion.setId(element.getInt("What ever the id is called, probably id I imagine??"));
 

@@ -57,6 +57,9 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        //Create Checklist
+        theOneChecklist = new Checklist();
+
         prefs =getSharedPreferences("AppInfo",MODE_PRIVATE);
         prefs.edit().putBoolean("VersionChanged",false).commit();
 
@@ -65,13 +68,17 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         firstTimeClick.setOnClickListener(this);
         firstTimeClick.setEnabled(false);
 
-        //Initialise The Checklist
-        theOneChecklist = new Checklist();
+        if (isOnline()) {
+            DownloadJSONTask task = new DownloadJSONTask();
+            task.execute(new String[]{CHECKLIST_URL});
+        }else{
 
-        /*
-            Create the checklist
-         */
-        createChecklist();
+            /*
+                Promt user to connect to network or exit application
+             */
+            noNetworkErrorDialog();
+            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
+        }
 
 
     }
@@ -94,11 +101,17 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
     public void onRestart(){
         super.onRestart();
 
-        /*
-            Creates the checklist after application is resumed from settings
-            
-         */
-        createChecklist();
+        if (isOnline()) {
+            DownloadJSONTask task = new DownloadJSONTask();
+            task.execute(new String[]{CHECKLIST_URL});
+        }else{
+
+            /*
+                Promt user to connect to network or exit application
+             */
+            noNetworkErrorDialog();
+            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
+        }
     }
 
     @Override
@@ -203,14 +216,14 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
 
             }
-            //Log.i("Response", "\n\n" + response);
+            Log.i("Response", "\n\n" + response);
 
 
             return response;
         }
 
         /*
-         After JSON String is retrived Wait and then move to Welcome Activity
+         After JSON String is retrieved Wait and then move to Welcome Activity
          */
         @Override
         protected void onPostExecute(String result) {
@@ -222,16 +235,27 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
                 //Get Checklist questions from parser
                 theOneChecklist.setQuestList(jsonParser.getChecklist().getQuestList());
+
+
+                ///LOG CAT
+                Log.d("onPostExecute TEST", "" + theOneChecklist.getQuestList().size());
+
                 /*
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)
                  */
-                Thread.sleep(1500);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 Log.e("Interrupted", "" + e.getMessage());
             } catch (JSONException e) {
                 Log.e("JSON Exception",e.getMessage());
             }
+
+            /*
+                Finishes Processing Checklist
+                (See createChecklist for more details!!)
+             */
+            createChecklist();
 
             /*
                 Set Button to Enabled
@@ -243,7 +267,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
 
     /**
      *
-     * Returns Array Of "Unanswerd" answers
+     * Returns Array Of "Unanswered" answers
      *
      * @return
      * @author James McNeil
@@ -322,25 +346,6 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
     private void createChecklist(){
 
         /*
-            Get Questions from JSON File
-         */
-        //Execute Async Task
-        if (isOnline()) {
-            DownloadJSONTask task = new DownloadJSONTask();
-            task.execute(new String[]{CHECKLIST_URL});
-        }else{
-
-            /*
-                Promt user to connect to network or exit application
-             */
-            noNetworkErrorDialog();
-            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
-        }
-
-
-
-
-        /*
             Load Users Answers from file
          */
         //Initialise File
@@ -350,6 +355,8 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
         try{
 
+            ///LOG CAT
+            Log.d("createChecklist TEST","Got Here try");
             ArrayList<UserAnswer> userAnswers;
 
             //Check if Exists
@@ -358,10 +365,25 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
                 userAnswers = createNewAnswerList();
                 theOneChecklist.setUserAnswer(userAnswers);
                 fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
+
+                ///LOG CAT
+                Log.d("TEST","New File Created");
+
+                ///LOG CAT
+                Log.d("createChecklist TEST",theOneChecklist.getQuestList().size() + "");
+
             }else{
+
                 //Load User file
                 userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
                 theOneChecklist.setUserAnswer(userAnswers);
+
+                ///LOG CAT
+                Log.d("createChecklist TEST","Loaded From File");
+
+                ///LOG CAT
+                Log.d("createChecklist TEST",theOneChecklist.getQuestList().size() + "");
+
             }
 
         } catch(IOException ex){
