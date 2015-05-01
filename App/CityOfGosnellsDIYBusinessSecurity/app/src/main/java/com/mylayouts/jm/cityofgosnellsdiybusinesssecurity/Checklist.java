@@ -1,11 +1,6 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by James on 3/04/2015.
@@ -20,6 +15,9 @@ public class Checklist {
     private ArrayList<UserAnswer> userAnswer;
     private int versionNumber;
 
+    /**
+     *
+     */
     public Checklist(){
 
         questList = new ArrayList<>();
@@ -129,6 +127,11 @@ public class Checklist {
 
     }
 
+    /**
+     * Give a list of a all category's within the JSON file
+     *
+     * @return
+     */
     public String[] listCategory(){
 
         ArrayList<String> strings = new ArrayList<String>();
@@ -156,6 +159,8 @@ public class Checklist {
         return (String[]) strings.toArray();
 
     }
+
+
 
 
 

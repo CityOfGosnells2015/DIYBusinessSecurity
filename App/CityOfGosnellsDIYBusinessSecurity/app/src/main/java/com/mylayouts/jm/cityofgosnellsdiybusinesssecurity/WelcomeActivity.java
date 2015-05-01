@@ -1,11 +1,14 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,12 +34,7 @@ import java.util.ArrayList;
 
 
 /**
- * Welcome Screen
- *
- * Contains 1 Button, If is it users first time using the app
- * The button will navigate user to Letter
- *
- * else will user to main menu
+ * Welcome/Splash Screen
  *
  * James McNeil 30/03/2015
  */
@@ -59,7 +57,8 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        prefs =getSharedPreferences("FirstTimePreferences",MODE_PRIVATE);
+        prefs =getSharedPreferences("AppInfo",MODE_PRIVATE);
+        prefs.edit().putBoolean("VersionChanged",false).commit();
 
         //Initialise Button and add listener
         firstTimeClick = (Button) findViewById(R.id.btnFirstClick);
@@ -69,61 +68,10 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         //Initialise The Checklist
         theOneChecklist = new Checklist();
 
-
-
-
         /*
-            Get Questions from JSON File
+            Create the checklist
          */
-        //Execute Async Task
-        if (isOnline()) {
-            DownloadJSONTask task = new DownloadJSONTask();
-            task.execute(new String[]{CHECKLIST_URL});
-        }else{
-            Log.d("Not Online","NO CONNECTED TO THE INTERNET");
-        }
-
-
-
-
-        /*
-            Load Users Answers from file
-         */
-        //Initialise File
-        FileStore fileStore = new FileStore();
-
-        //Create File
-        File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
-        try{
-
-            ArrayList<UserAnswer> userAnswers;
-
-            //Check if Exists
-            if(!answerFile.exists()){
-                //Create list, save to file
-                userAnswers = createNewAnswerList();
-                theOneChecklist.setUserAnswer(userAnswers);
-                fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
-            }else{
-                //Load User file
-                userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
-                theOneChecklist.setUserAnswer(userAnswers);
-            }
-
-        } catch(IOException ex){
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-        /*
-            Save to Global Checklist
-         */
-        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
-        globalChecklist.setTheOneChecklist(theOneChecklist);
+        createChecklist();
 
 
     }
@@ -134,6 +82,23 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
         return true;
+    }
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+
+        /*
+            Creates the checklist after application is resumed from settings
+            
+         */
+        createChecklist();
     }
 
     @Override
@@ -261,7 +226,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)
                  */
-                Thread.sleep(3000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 Log.e("Interrupted", "" + e.getMessage());
             } catch (JSONException e) {
@@ -315,6 +280,114 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
             return true;
         }else return false;
 
+
+    }
+
+    /**
+     *
+     */
+    protected void noNetworkErrorDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Please Check Internet Connection is on")
+                .setTitle("No Network")
+                .setCancelable(false)
+                /*
+                    Go to network settings
+                 */
+                .setPositiveButton("Network Setting",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                                startActivity(i);
+                            }
+                        }
+                )
+
+                /*
+                    Exits app if user
+                 */
+                .setNegativeButton("Exit",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                WelcomeActivity.this.finish();
+                            }
+                        }
+                );
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
+    private void createChecklist(){
+
+        /*
+            Get Questions from JSON File
+         */
+        //Execute Async Task
+        if (isOnline()) {
+            DownloadJSONTask task = new DownloadJSONTask();
+            task.execute(new String[]{CHECKLIST_URL});
+        }else{
+
+            /*
+                Promt user to connect to network or exit application
+             */
+            noNetworkErrorDialog();
+            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
+        }
+
+
+
+
+        /*
+            Load Users Answers from file
+         */
+        //Initialise File
+        FileStore fileStore = new FileStore();
+
+        //Create File
+        File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
+        try{
+
+            ArrayList<UserAnswer> userAnswers;
+
+            //Check if Exists
+            if(!answerFile.exists()){
+                //Create list, save to file
+                userAnswers = createNewAnswerList();
+                theOneChecklist.setUserAnswer(userAnswers);
+                fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
+            }else{
+                //Load User file
+                userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
+                theOneChecklist.setUserAnswer(userAnswers);
+            }
+
+        } catch(IOException ex){
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        /*
+            Store Checklists version number in shared preferences
+
+            VersionChanged will toggle to true if a checklist has changed since last downloaded
+         */
+        if(prefs.getInt("VersionNumber",0) != theOneChecklist.getVersionNumber()){
+
+            prefs.edit().putBoolean("VersionChanged",true).commit();
+
+        }
+        prefs.edit().putInt("VersionNumber",theOneChecklist.getVersionNumber()).commit();
+
+
+        /*
+            Save to Global Checklist
+         */
+        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+        globalChecklist.setTheOneChecklist(theOneChecklist);
 
     }
 
