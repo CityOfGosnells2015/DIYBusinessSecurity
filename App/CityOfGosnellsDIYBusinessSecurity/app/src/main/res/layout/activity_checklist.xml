@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/activity_display_checklist"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_above="@+id/btnSave">
 
 
     </ListView>
@@ -21,10 +22,10 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/btnSave"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
 
         android:visibility="visible"
-        android:onClick="saveAnswers" />
+        android:onClick="saveAnswers"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

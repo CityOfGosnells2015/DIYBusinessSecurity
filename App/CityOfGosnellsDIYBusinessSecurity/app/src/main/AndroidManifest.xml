@@ -51,6 +51,10 @@
             android:name=".ChecklistActivity"
             android:label="@string/title_activity_checklist" >
         </activity>
+        <activity
+            android:name=".FeedbackActivity"
+            android:label="@string/title_activity_feedback" >
+        </activity>
     </application>
 
 </manifest>

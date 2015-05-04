@@ -29,5 +29,6 @@
     <string name="title_activity_about_">About_Activity</string>
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="title_activity_checklist">ChecklistActivity</string>
+    <string name="title_activity_feedback">FeedbackActivity</string>
 
 </resources>

@@ -1,22 +1,24 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ChecklistActivity extends ActionBarActivity {
 
     Checklist theOneChecklist;
-    ArrayList<UserAnswer> arrayAnswers;
     ChecklistAdapter adapter;
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,16 @@ public class ChecklistActivity extends ActionBarActivity {
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
 
-        ListView listview = (ListView)findViewById(R.id.list);
-        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestList());
+        /*Deletar antes de commit*/
+        for(int x = 0; x < 43; x++) {
+
+                theOneChecklist.getQuestList().remove(46-x);
+                theOneChecklist.getUserAnswer().remove(46-x);
+        }
+        //Magica do padeta!!!
+
+        listview = (ListView)findViewById(R.id.list);
+        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestList(), theOneChecklist.getUserAnswer());
         listview.setAdapter(adapter);
     }
 
@@ -54,21 +64,68 @@ public class ChecklistActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void saveAnswers(View v) {
-        float correctAns = 0;
+    public void saveAnswers(View v) {
 
-        for(Question quest : theOneChecklist){
-            if(quest.getAnwser()){
-                correctAns++;
+        try{
+            /*
+            * Compare if questions and answers is the same size
+            * if true its mean all the questions was answered
+            */
+            if(ValidationAnswers()) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+                String currentDateTime = sdf.format(new Date());
+
+                FileStore fileStore = new FileStore();
+
+                //Saving user answers on file
+                fileStore.saveUserFile(theOneChecklist.getUserAnswer(), currentDateTime + "_Checklist.dat", this.getApplicationContext());
+
+                //Saving the name file in another file
+                fileStore.saveLogFile(currentDateTime + "_Checklist","Log_Checklist.dat", this.getApplicationContext());
+
+                //Calculating score
+                int totalYes = 0, totalNo = 0, totalNA = 0;
+
+                for(UserAnswer userAnswer : theOneChecklist.getUserAnswer()){
+                    Answer answer = userAnswer.getAnswer();
+
+                    //Checking and counting the user answer
+                    if(answer.toText().equals("Yes")){
+                        totalYes++;
+                    } else if(answer.toText().equals("No")){
+                        totalNo++;
+                    } else if(answer.toText().equals("Not Applicable")){
+                        totalNA++;
+                    }
+                }
+
+                int score = Math.round((totalYes / (theOneChecklist.getUserAnswer().size() - totalNA)) * 100);
+
+                //Sending score to another activity
+                Intent intent = new Intent(ChecklistActivity.this, FeedbackActivity.class);
+                intent.putExtra("score",score);
+                startActivity(intent);
+
+            } else {
+                Toast.makeText(getApplicationContext(),"Please, You must answer all questions.",Toast.LENGTH_LONG).show();
+                listview = (ListView)findViewById(R.id.list);
+                listview.setSelection(0);
+            }
+
+        } catch(IOException e){
+             e.printStackTrace();
+        }
+    }
+
+    public boolean ValidationAnswers(){
+        boolean isValid = true;
+        for(UserAnswer userAnswer : theOneChecklist.getUserAnswer()) {
+            Answer answer = userAnswer.getAnswer();
+            if (answer.toText().equals("Unanswered")) {
+                isValid = false;
             }
         }
-        int score = Math.round(correctAns/CheckList.size()*100);
-
-        Intent intent = new Intent(ListActivity.this, ScoreActivity.class);
-        intent.putExtra("Score",score);
-        startActivity(intent);
-
-
-
-    }*/
+        return isValid;
+    }
 }

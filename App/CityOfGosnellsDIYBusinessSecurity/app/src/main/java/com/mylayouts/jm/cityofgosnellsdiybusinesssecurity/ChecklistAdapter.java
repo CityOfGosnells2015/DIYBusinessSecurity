@@ -5,8 +5,6 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.ArrayAdapter;
-    import android.widget.CheckBox;
-    import android.widget.ImageView;
     import android.widget.RadioGroup;
     import android.widget.TextView;
     import android.widget.Toast;
@@ -14,95 +12,59 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
     import java.util.ArrayList;
 
 public class ChecklistAdapter extends ArrayAdapter<Question> {
-    private final Context context;
 
+    Context context;
     LayoutInflater vi;
     int resource;
-    ViewHolder holder;
-    ArrayList<Question> objQuestion;
-    ArrayList<UserAnswer> objUserAnswers;
+    ArrayList<Question> listQuestion;
+    ArrayList<UserAnswer> listUserAnswers;
 
-
-
-
-
-    public ChecklistAdapter(Context context, int resource, ArrayList<Question> objects) {
+    public ChecklistAdapter(Context context, int resource, ArrayList<Question> objects, ArrayList<UserAnswer> objAnswers) {
         super(context, resource, objects);
         this.context = context;
-        vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         this.resource = resource;
-        objQuestion = objects;
-        //objUserAnswers = objAnswers;
+        listQuestion = objects;
+        listUserAnswers = objAnswers;
     }
 
 
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // convert view = design
+
         View view = convertView;
 
-        //Creates holders for the views that are used on the activity
         if (view == null) {
-            holder = new ViewHolder();
+            vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(resource, null);
-            //holder.imageview = (ImageView) v.findViewById(R.id.ivImage);
-            holder.txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
-            holder.txtCategory = (TextView) view.findViewById(R.id.TxtCategory);
-            holder.radioGroup  = (RadioGroup) view.findViewById(R.id.myRadioGroup);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
         }
-        //holder.imageview.setImageResource(R.drawable.ic_launcher);
 
-            /*
-                Populate Question
-             */
-        //Sets the text and checkbox for the holders from the information from the object.
-        holder.txtQuestion.setText(objQuestion.get(position).getQuestion());
-        holder.txtCategory.setText(objQuestion.get(position).getCategory());
-        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        TextView txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
+        TextView txtCategory = (TextView) view.findViewById(R.id.TxtCategory);
+        RadioGroup radioGroup  = (RadioGroup) view.findViewById(R.id.myRadioGroup);
+
+        //Sets the text and radio group for the holders from the information from the object.
+        txtQuestion.setText(listQuestion.get(position).getQuestion());
+        txtCategory.setText(listQuestion.get(position).getCategory());
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                UserAnswer answer;
                 // find which radio button is selected
                 if(checkedId == R.id.rbYes){
-                    Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
+                    listUserAnswers.get(position).setAnswer(Answer.Y);
 
                 } else if(checkedId == R.id.rbNo){
-                    Toast.makeText(context, "No", Toast.LENGTH_SHORT).show();
+                    listUserAnswers.get(position).setAnswer(Answer.N);
 
                 } else if(checkedId == R.id.rbNA){
-                    Toast.makeText(context, "N/A", Toast.LENGTH_SHORT).show();
+                    listUserAnswers.get(position).setAnswer(Answer.NA);
 
                 }
             }
         });
 
-
-
-
-        /*holder.Anwser.setChecked(objUserAnswers.getAnswer());
-        holder.Anwser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                objQuestion.get(position).setanwser(true);
-            }
-
-        });*/
         return view;
     }
-
-    static class ViewHolder {
-        //public ImageView imageview;
-        public TextView txtQuestion;
-        public TextView txtCategory;
-        public RadioGroup radioGroup ;
-
-
-    }
-
-
-
-
 }

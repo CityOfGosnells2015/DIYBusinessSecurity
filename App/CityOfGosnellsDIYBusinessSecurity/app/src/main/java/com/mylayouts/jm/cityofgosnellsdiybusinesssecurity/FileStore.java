@@ -85,6 +85,61 @@ public class FileStore {
         }
     }
 
+    /**
+     * Saves Log checklist to Internal File
+     *
+     * @param logChecklist
+     * @param fileName
+     */
+    public void saveLogFile(String logChecklist, String fileName, Context appContext) throws IOException {
 
+        File file = new File(appContext.getFilesDir().getPath().toString() + "/" +fileName);
+
+        /*
+            Create file if it doesn't exist
+         */
+        if (!file.exists()){
+            file.createNewFile();
+        }
+
+        FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+        oos.writeObject(logChecklist);
+
+        fos.close();
+        oos.close();
+
+    }
+
+    /**
+     * Returns a ArrayList of saved log checklist
+     * @param fileName
+     * @param appContext
+     * @return arrayLogChecklist
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public String[] loadLogFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
+
+        String[] arrayLogChecklist;
+        File file = new File(appContext.getFilesDir().getPath().toString() + "/" + fileName);
+
+        if (file.exists()) {
+
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            arrayLogChecklist = (String[]) (ois.readObject());
+
+            fis.close();
+            ois.close();
+
+            return arrayLogChecklist;
+
+        } else {
+            throw new FileNotFoundException();
+        }
+    }
 
 }
