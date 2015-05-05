@@ -1,12 +1,17 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,43 +20,66 @@ import java.util.ArrayList;
 public class FeedbackActivity extends ActionBarActivity {
 
     TextView txtScore;
+    Checklist theOneChecklist;
     ListView list;
-    ArrayList<String> logChecklist;
+    ArrayList logChecklist = new ArrayList();
+    FileStore fileStore = new FileStore();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
+        //Set global object
+        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+        theOneChecklist = globalChecklist.getTheOneChecklist();
+
         //Get extras
-        int score = getIntent().getIntExtra("score", 0);
+        int score = getIntent().getIntExtra("score",0);
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         list = (ListView) findViewById(R.id.listView);
 
-        txtScore.setText(String.valueOf(score));
+        txtScore.setText(String.valueOf(score)+"%");
 
-
-        /*FileStore fileStore = new FileStore();
+        /*Load previous checklist from file  */
+        fileStore = new FileStore();
         try {
             logChecklist = fileStore.loadLogFile("Log_Checklist.dat", FeedbackActivity.this);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
 
-        logChecklist.add("Log 1");
-        logChecklist.add("Log 2");
-        logChecklist.add("Log 3");
-        logChecklist.add("Log 4");
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_list_item_1, logChecklist);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_list_item_1, logChecklist);
         list.setAdapter(adapter);
 
+        // ListView Item Click Listener
+        list.setOnItemClickListener(new OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
 
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                String  itemValue    = (String) list.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                        .show();
+
+                updateUserAnswerObject(itemValue+".dat");
+
+                Intent intent = new Intent(FeedbackActivity.this,ChecklistActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 
@@ -75,5 +103,21 @@ public class FeedbackActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateUserAnswerObject(String nameFile){
+
+        try {
+            theOneChecklist.setUserAnswer(fileStore.loadUserFile(nameFile,FeedbackActivity.this));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToMenuActivity(View v){
+        Intent intent = new Intent(FeedbackActivity.this, MenuActivity.class);
+        startActivity(intent);
     }
 }

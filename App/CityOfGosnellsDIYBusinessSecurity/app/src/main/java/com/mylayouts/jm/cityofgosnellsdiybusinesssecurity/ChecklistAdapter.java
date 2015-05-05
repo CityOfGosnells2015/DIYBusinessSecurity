@@ -5,9 +5,9 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.ArrayAdapter;
+    import android.widget.RadioButton;
     import android.widget.RadioGroup;
     import android.widget.TextView;
-    import android.widget.Toast;
 
     import java.util.ArrayList;
 
@@ -41,16 +41,30 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         }
 
         TextView txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
-        TextView txtCategory = (TextView) view.findViewById(R.id.TxtCategory);
         RadioGroup radioGroup  = (RadioGroup) view.findViewById(R.id.myRadioGroup);
+        RadioButton btnRadio;
 
         //Sets the text and radio group for the holders from the information from the object.
         txtQuestion.setText(listQuestion.get(position).getQuestion());
-        txtCategory.setText(listQuestion.get(position).getCategory());
+
+        //Set correct option on the radio button
+        if(listUserAnswers.get(position).getAnswer().equals(Answer.Y)){
+            btnRadio = (RadioButton) view.findViewById(R.id.rbYes);
+            btnRadio.setChecked(true);
+
+        }else if(listUserAnswers.get(position).getAnswer().equals(Answer.N)){
+            btnRadio = (RadioButton) view.findViewById(R.id.rbNo);
+            btnRadio.setChecked(true);
+
+        }else if(listUserAnswers.get(position).getAnswer().equals(Answer.NA)){
+            btnRadio = (RadioButton) view.findViewById(R.id.rbNA);
+            btnRadio.setChecked(true);
+        }
+
+        // RadioGroup Item Click Listener
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                UserAnswer answer;
                 // find which radio button is selected
                 if(checkedId == R.id.rbYes){
                     listUserAnswers.get(position).setAnswer(Answer.Y);

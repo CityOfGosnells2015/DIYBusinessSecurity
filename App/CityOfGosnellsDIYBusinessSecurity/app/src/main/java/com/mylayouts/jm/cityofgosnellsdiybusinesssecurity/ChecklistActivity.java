@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class ChecklistActivity extends ActionBarActivity {
     Checklist theOneChecklist;
     ChecklistAdapter adapter;
     ListView listview;
+    TextView txtCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +31,20 @@ public class ChecklistActivity extends ActionBarActivity {
         theOneChecklist = globalChecklist.getTheOneChecklist();
 
         /*Deletar antes de commit*/
-        for(int x = 0; x < 43; x++) {
+        int sizeArray = theOneChecklist.getQuestList().size()-1;
+        for(int x = 0; x < sizeArray - 2; x++) {
 
-                theOneChecklist.getQuestList().remove(46-x);
-                theOneChecklist.getUserAnswer().remove(46-x);
+                theOneChecklist.getQuestList().remove(sizeArray - x);
+                theOneChecklist.getUserAnswer().remove(sizeArray - x);
         }
-        //Magica do padeta!!!
 
         listview = (ListView)findViewById(R.id.list);
-        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestList(), theOneChecklist.getUserAnswer());
+        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"), theOneChecklist.getUserAnswer());
         listview.setAdapter(adapter);
+
+        txtCategory = (TextView)findViewById(R.id.TxtCategory);
+        txtCategory.setText("Building Security");
+
     }
 
 
@@ -85,7 +91,7 @@ public class ChecklistActivity extends ActionBarActivity {
                 fileStore.saveLogFile(currentDateTime + "_Checklist","Log_Checklist.dat", this.getApplicationContext());
 
                 //Calculating score
-                int totalYes = 0, totalNo = 0, totalNA = 0;
+                float totalYes = 0, totalNo = 0, totalNA = 0;
 
                 for(UserAnswer userAnswer : theOneChecklist.getUserAnswer()){
                     Answer answer = userAnswer.getAnswer();
@@ -127,5 +133,41 @@ public class ChecklistActivity extends ActionBarActivity {
             }
         }
         return isValid;
+    }
+
+    public void changeAdapter(View v) {
+        final ListView listview = (ListView) findViewById(R.id.list);
+        TextView txtCategory = (TextView)findViewById(R.id.TxtCategory);
+        String Selection = new String("");
+        switch (v.getId()) {
+
+            case R.id.btnBuildingSecurity:
+                Selection = "Building Security";
+
+                break;
+            case R.id.btnInternalEnvironment:
+                Selection = "Internal Environment";
+                break;
+            case R.id.btnOfficeEquipmentandIT:
+                Selection = "Office Equipment and IT";
+                break;
+            case R.id.btnExternalEnvironment:
+                Selection = "External Environment";
+                break;
+            case R.id.btnPropertyMarking:
+                Selection = "Property Marking";
+                break;
+            case R.id.btnCashProcessing:
+                Selection = "Cash Processing";
+                break;
+            case R.id.btnGeneralQuestions:
+                Selection = "General Questions";
+                break;
+
+
+        }
+        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(Selection), theOneChecklist.getUserAnswer());
+        listview.setAdapter(adapter);
+        txtCategory.setText(Selection);
     }
 }

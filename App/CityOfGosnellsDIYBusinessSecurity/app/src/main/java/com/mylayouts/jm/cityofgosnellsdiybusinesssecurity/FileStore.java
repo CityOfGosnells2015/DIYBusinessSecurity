@@ -93,7 +93,7 @@ public class FileStore {
      */
     public void saveLogFile(String logChecklist, String fileName, Context appContext) throws IOException {
 
-        File file = new File(appContext.getFilesDir().getPath().toString() + "/" +fileName);
+        File file = new File(appContext.getFilesDir().getPath() + "/" +fileName);
 
         /*
             Create file if it doesn't exist
@@ -120,17 +120,18 @@ public class FileStore {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public String[] loadLogFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
+    public ArrayList<String> loadLogFile(String fileName, Context appContext) throws IOException, ClassNotFoundException{
 
-        String[] arrayLogChecklist;
-        File file = new File(appContext.getFilesDir().getPath().toString() + "/" + fileName);
+        ArrayList arrayLogChecklist = new ArrayList();
+        File file = new File(appContext.getFilesDir().getPath() + "/" + fileName);
 
         if (file.exists()) {
 
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            arrayLogChecklist = (String[]) (ois.readObject());
+            Object object = ois.readObject();
+            arrayLogChecklist.add((String)object);
 
             fis.close();
             ois.close();
