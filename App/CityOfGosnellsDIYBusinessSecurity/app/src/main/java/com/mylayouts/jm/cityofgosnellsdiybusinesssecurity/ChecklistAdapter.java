@@ -17,15 +17,15 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
     LayoutInflater vi;
     int resource;
     ArrayList<Question> listQuestion;
-    ArrayList<UserAnswer> listUserAnswers;
+    UserAnswer userAnswer;
+    Checklist theOneChecklist;
 
-    public ChecklistAdapter(Context context, int resource, ArrayList<Question> objects, ArrayList<UserAnswer> objAnswers) {
+    public ChecklistAdapter(Context context, int resource, ArrayList<Question> objects) {
         super(context, resource, objects);
         this.context = context;
 
         this.resource = resource;
         listQuestion = objects;
-        listUserAnswers = objAnswers;
     }
 
 
@@ -34,6 +34,9 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
+
+        GlobalChecklist globalChecklist= (GlobalChecklist) getContext();
+        theOneChecklist = globalChecklist.getTheOneChecklist();
 
         if (view == null) {
             vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -48,15 +51,19 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         txtQuestion.setText(listQuestion.get(position).getQuestion());
 
         //Set correct option on the radio button
-        if(listUserAnswers.get(position).getAnswer().equals(Answer.Y)){
+
+        //Get UserAnswer by Id Question
+        userAnswer = theOneChecklist.getAnswerById(listQuestion.get(position).getUid());
+
+        if(userAnswer.getAnswer().equals(Answer.Y)){
             btnRadio = (RadioButton) view.findViewById(R.id.rbYes);
             btnRadio.setChecked(true);
 
-        }else if(listUserAnswers.get(position).getAnswer().equals(Answer.N)){
+        }else if(userAnswer.getAnswer().equals(Answer.N)){
             btnRadio = (RadioButton) view.findViewById(R.id.rbNo);
             btnRadio.setChecked(true);
 
-        }else if(listUserAnswers.get(position).getAnswer().equals(Answer.NA)){
+        }else if(userAnswer.getAnswer().equals(Answer.NA)){
             btnRadio = (RadioButton) view.findViewById(R.id.rbNA);
             btnRadio.setChecked(true);
         }
@@ -67,13 +74,13 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // find which radio button is selected
                 if(checkedId == R.id.rbYes){
-                    listUserAnswers.get(position).setAnswer(Answer.Y);
+                    theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.Y);
 
                 } else if(checkedId == R.id.rbNo){
-                    listUserAnswers.get(position).setAnswer(Answer.N);
+                    theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.N);
 
                 } else if(checkedId == R.id.rbNA){
-                    listUserAnswers.get(position).setAnswer(Answer.NA);
+                    theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.NA);
 
                 }
             }

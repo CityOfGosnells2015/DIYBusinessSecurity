@@ -67,12 +67,6 @@ public class Checklist {
         return userAnswer.get(element);
     }
 
-
-
-    /*
-        Sets Answer by ID
-     */
-
     /**
      * Sets an answer by its element
      *
@@ -160,16 +154,22 @@ public class Checklist {
 
     }
 
+    /**
+     * Return a UserAnswer object by Id
+     *
+     * @param Id
+     * @return UserAnswer
+     */
 
+    public UserAnswer getAnswerById(String Id){
 
-
-
-
-
-
-
-
-
+        for(UserAnswer userAnswer1 : userAnswer){
+            if(Id.equals(userAnswer1.getUid())){
+                return userAnswer1;
+            }
+        }
+        return null;
+    }
 }
 
 

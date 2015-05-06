@@ -30,16 +30,16 @@ public class ChecklistActivity extends ActionBarActivity {
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
 
-        /*Deletar antes de commit*/
+        /*Deletar antes de commit
         int sizeArray = theOneChecklist.getQuestList().size()-1;
         for(int x = 0; x < sizeArray - 2; x++) {
 
                 theOneChecklist.getQuestList().remove(sizeArray - x);
                 theOneChecklist.getUserAnswer().remove(sizeArray - x);
-        }
+        }*/
 
         listview = (ListView)findViewById(R.id.list);
-        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"), theOneChecklist.getUserAnswer());
+        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"));
         listview.setAdapter(adapter);
 
         txtCategory = (TextView)findViewById(R.id.TxtCategory);
@@ -163,10 +163,9 @@ public class ChecklistActivity extends ActionBarActivity {
             case R.id.btnGeneralQuestions:
                 Selection = "General Questions";
                 break;
-
-
         }
-        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(Selection), theOneChecklist.getUserAnswer());
+
+        adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(Selection));
         listview.setAdapter(adapter);
         txtCategory.setText(Selection);
     }

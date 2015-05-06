@@ -40,9 +40,10 @@ public class FeedbackActivity extends ActionBarActivity {
         txtScore = (TextView) findViewById(R.id.txtScore);
         list = (ListView) findViewById(R.id.listView);
 
+        //Display Score
         txtScore.setText(String.valueOf(score)+"%");
 
-        /*Load previous checklist from file  */
+        // Load previous checklist from file
         fileStore = new FileStore();
         try {
             logChecklist = fileStore.loadLogFile("Log_Checklist.dat", FeedbackActivity.this);
@@ -67,12 +68,6 @@ public class FeedbackActivity extends ActionBarActivity {
 
                 // ListView Clicked item value
                 String  itemValue    = (String) list.getItemAtPosition(position);
-
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-                        .show();
-
                 updateUserAnswerObject(itemValue+".dat");
 
                 Intent intent = new Intent(FeedbackActivity.this,ChecklistActivity.class);
