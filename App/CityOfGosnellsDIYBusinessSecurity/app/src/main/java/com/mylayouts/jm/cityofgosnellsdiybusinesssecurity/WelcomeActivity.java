@@ -1,5 +1,6 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,9 +39,7 @@ import java.util.ArrayList;
  *
  * James McNeil 30/03/2015
  */
-public class WelcomeActivity extends ActionBarActivity implements View.OnClickListener{
-
-
+public class WelcomeActivity extends Activity implements View.OnClickListener{
 
     Button firstTimeClick;
     SharedPreferences prefs;
@@ -260,6 +259,7 @@ public class WelcomeActivity extends ActionBarActivity implements View.OnClickLi
             /*
                 Set Button to Enabled
              */
+            firstTimeClick.setBackgroundResource(R.drawable.btn_start);
             firstTimeClick.setEnabled(true);
 
         }
