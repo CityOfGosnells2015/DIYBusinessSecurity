@@ -45,6 +45,8 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     SharedPreferences prefs;
     ArrayList<Answer> userAnswers;
     Checklist theOneChecklist;
+
+
     /*
     URL Of Checklist Data to be retrieved.
     */
@@ -141,7 +143,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             if (prefs.getBoolean("firstrun",true)){
 
                 //First Time Run Code Goes Here
-                prefs.edit().putBoolean("firstrun",false).commit(); // Sets firstrun to false
+
+                // Sets firstrun to false
+                prefs.edit().putBoolean("firstrun",false).commit();
 
 
                 //Go to Letter
