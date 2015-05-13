@@ -1,5 +1,6 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
@@ -30,6 +31,10 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         //Set layout for activity
         setContentView(R.layout.activity_menu);
+
+        //Set the back button at ActionBar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         preferenceButton = (Button) findViewById(R.id.btnPreference);
         preferenceButton.setOnClickListener(this);
@@ -87,11 +92,15 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                intent.putExtra("textValue",themeValue);
+                startActivity(intent);
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
         }
 
         return super.onOptionsItemSelected(item);

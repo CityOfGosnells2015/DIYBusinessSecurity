@@ -1,12 +1,21 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base application theme.-->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
+
     <style name="AppThemeLargeText">
         <!-- Customize your theme here. -->
         <item name="android:textSize">22sp</item>
     </style>
 
+    <!-- Action bar theme -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/orange</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/orange</item>
+    </style>
 </resources>
