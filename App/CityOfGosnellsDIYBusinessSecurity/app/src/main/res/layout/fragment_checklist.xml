@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.ChecklistFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="@+id/TxtCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:textColor="#166CED"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/horizontalScrollView"/>
+
+    <ListView
+        android:id="@+id/fraglist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/activity_display_checklist"
+        android:layout_weight="1"
+        android:layout_below="@+id/TxtCategory"
+        android:layout_above="@+id/btnSave"/>
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/btnSave"
+
+        android:visibility="visible"
+        android:onClick="saveAnswers"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</FrameLayout>
