@@ -9,9 +9,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -215,9 +213,6 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
 
             }
-            Log.i("Response", "\n\n" + response);
-
-
             return response;
         }
 
@@ -234,10 +229,6 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
                 //Get Checklist questions from parser
                 theOneChecklist.setQuestList(jsonParser.getChecklist().getQuestList());
-
-
-                ///LOG CAT
-                Log.d("onPostExecute TEST", "" + theOneChecklist.getQuestList().size());
 
                 /*
                     Splash Screen will always be visible for at least 3 seconds
@@ -304,7 +295,6 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             return true;
         }else return false;
 
-
     }
 
     /**
@@ -352,11 +342,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         FileStore fileStore = new FileStore();
 
         //Create File
-        File answerFile = new File(this.getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
+        File answerFile = new File(getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
         try{
 
-            ///LOG CAT
-            Log.d("createChecklist TEST","Got Here try");
             ArrayList<UserAnswer> userAnswers;
 
             //Check if Exists
@@ -366,23 +354,10 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 theOneChecklist.setUserAnswer(userAnswers);
                 fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
 
-                ///LOG CAT
-                Log.d("TEST","New File Created");
-
-                ///LOG CAT
-                Log.d("createChecklist TEST",theOneChecklist.getQuestList().size() + "");
-
             }else{
-
                 //Load User file
                 userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
                 theOneChecklist.setUserAnswer(userAnswers);
-
-                ///LOG CAT
-                Log.d("createChecklist TEST","Loaded From File");
-
-                ///LOG CAT
-                Log.d("createChecklist TEST",theOneChecklist.getQuestList().size() + "");
 
             }
 

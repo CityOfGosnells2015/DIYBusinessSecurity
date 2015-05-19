@@ -1,11 +1,9 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +14,7 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
     SharedPreferences prefs;
     int themeValue;
-    Button preferenceButton, helpButton, aboutButton, notificationButton, linkButton, checklistButton;
+    Button preferenceButton, helpButton, notificationButton, linkButton, checklistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +40,6 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         helpButton = (Button) findViewById(R.id.btnHelp);
         helpButton.setOnClickListener(this);
 
-        aboutButton = (Button) findViewById(R.id.btnAbout);
-        aboutButton.setOnClickListener(this);
-
         notificationButton = (Button) findViewById(R.id.btnNotification);
         notificationButton.setOnClickListener(this);
 
@@ -53,29 +48,6 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         checklistButton = (Button) findViewById(R.id.btnChecklist);
         checklistButton.setOnClickListener(this);
-
-        /*
-            THIS IS TEST CODE --- PLS DELETE IF STILL HERE
-         */
-
-        GlobalChecklist globalChecklist = (GlobalChecklist)getApplication();
-        Checklist theOneChecklist = globalChecklist.getTheOneChecklist();
-
-
-
-        for(Question q:theOneChecklist.getQuestList()){
-
-            Log.d("Global Quest TEST","\nQuestion: " + q.getQuestion() + "\nCatagory: " + q.getCategory());
-
-        }
-
-        Log.d("TEST","" + theOneChecklist.getUserAnswer().size());
-
-        for(UserAnswer a:theOneChecklist.getUserAnswer()){
-
-            Log.d("Global Answer TEST","\nAnswer: " + a.getAnswer().toText());
-
-        }
 
     }
 
@@ -90,12 +62,17 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                Intent intent = new Intent(this, WelcomeActivity.class);
+                intent = new Intent(this, MenuActivity.class);
+                intent.putExtra("textValue",themeValue);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_about:
+                intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
@@ -119,13 +96,6 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         //Move to Notification Activity
         else if (v.getId() == R.id.btnNotification){
             Intent intent = new Intent(this, NotificationActivity.class);
-            intent.putExtra("textValue",themeValue);
-            startActivity(intent);
-        }
-
-        //Move to About Activity
-        else if (v.getId() == R.id.btnAbout){
-            Intent intent = new Intent(this, About_Activity.class);
             intent.putExtra("textValue",themeValue);
             startActivity(intent);
         }

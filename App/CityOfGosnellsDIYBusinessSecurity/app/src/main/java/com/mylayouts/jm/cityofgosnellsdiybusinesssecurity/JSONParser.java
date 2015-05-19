@@ -1,7 +1,5 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,7 +7,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by 041401076 on 1/04/2015.
@@ -84,14 +81,6 @@ public class JSONParser {
             addQuestion.setCategory(element.getString("category"));
             addQuestion.setQuestion(element.getString("question"));
             addQuestion.setUid(element.getString("id"));
-
-            ///LOG CAT
-            Log.d("getChecklist TEST", "Got Here createChecklist");
-
-            ///LOG CAT
-            Log.d("getChecklist TEST", "" + addQuestion.getUid());
-
-            //addQuestion.setId(element.getInt("What ever the id is called, probably id I imagine??"));
 
             /*
                 Add to List
