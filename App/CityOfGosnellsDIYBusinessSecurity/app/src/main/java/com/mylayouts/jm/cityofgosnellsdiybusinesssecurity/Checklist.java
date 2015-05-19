@@ -131,6 +131,7 @@ public class Checklist {
         ArrayList<String> strings = new ArrayList<String>();
         String addCat = questList.get(0).getCategory();
         boolean catFound = false;
+        String[] returnString;
 
         //Add initial cat
         strings.add(addCat);
@@ -150,7 +151,15 @@ public class Checklist {
 
         }
 
-        return (String[]) strings.toArray();
+        returnString = new String[strings.size()];
+
+        for (int index = 0;index < returnString.length;index++){
+
+            returnString[index] = strings.get(index);
+
+        }
+
+        return returnString;
 
     }
 

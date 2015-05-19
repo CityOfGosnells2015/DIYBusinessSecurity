@@ -35,5 +35,7 @@
     <string name="title_activity_edit_link">EditLinkActivity</string>
     <string name="title_activity_checklist">ChecklistActivity</string>
     <string name="title_activity_feedback">FeedbackActivity</string>
+    <string name="title_activity_checklist_fragment">CHECKLIST</string>
+
 
 </resources>

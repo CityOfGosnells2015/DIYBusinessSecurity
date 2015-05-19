@@ -68,6 +68,11 @@
             android:name=".EditLinkActivity"
             android:label="@string/title_activity_edit_link" >
         </activity>
+        <activity
+            android:theme="@style/checklistTheme"
+            android:name=".ChecklistFragmentActivity"
+            android:label="@string/title_activity_checklist_fragment" >
+        </activity>
     </application>
 
 </manifest>
