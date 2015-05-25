@@ -1,6 +1,7 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -21,22 +22,28 @@ public class ChecklistActivity extends ActionBarActivity {
     ChecklistAdapter adapter;
     ListView listview;
     TextView txtCategory;
+    SharedPreferences prefs;
+    int themeValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Loading preferences
+        prefs = getSharedPreferences("Preferences",MODE_PRIVATE);
+        themeValue = prefs.getInt("textSize",0);
+
+        //Loading the correct theme application
+        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
+
+        //Set the back button at ActionBar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Set layout for activity
         setContentView(R.layout.activity_checklist);
 
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
-
-        /*Deletar antes de commit
-        int sizeArray = theOneChecklist.getQuestList().size()-1;
-        for(int x = 0; x < sizeArray - 2; x++) {
-
-                theOneChecklist.getQuestList().remove(sizeArray - x);
-                theOneChecklist.getUserAnswer().remove(sizeArray - x);
-        }*/
 
         listview = (ListView)findViewById(R.id.list);
         adapter = new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"));
@@ -51,20 +58,29 @@ public class ChecklistActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_checklist, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        Intent intent;
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                intent = new Intent(this, MenuActivity.class);
+                intent.putExtra("textValue",themeValue);
+                startActivity(intent);
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_about:
+                intent = new Intent(this, About_Activity.class);
+                intent.putExtra("textValue",themeValue);
+                startActivity(intent);
+                return true;
+
+
         }
 
         return super.onOptionsItemSelected(item);
