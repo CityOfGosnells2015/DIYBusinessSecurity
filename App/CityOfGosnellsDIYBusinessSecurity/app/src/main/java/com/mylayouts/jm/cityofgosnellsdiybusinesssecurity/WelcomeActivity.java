@@ -234,7 +234,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)
                  */
-                Thread.sleep(30);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 Log.e("Interrupted", "" + e.getMessage());
             } catch (JSONException e) {
