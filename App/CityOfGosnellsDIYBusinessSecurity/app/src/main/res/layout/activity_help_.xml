@@ -16,18 +16,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/main_table"
+                android:layout_centerHorizontal="true"></TableLayout>
 
     </ScrollView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="About Text"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="234dp" />
-
-
 </RelativeLayout>
