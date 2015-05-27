@@ -43,6 +43,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     SharedPreferences prefs;
     ArrayList<Answer> userAnswers;
     Checklist theOneChecklist;
+    GlobalChecklist globalChecklist;
     /*
     URL Of Checklist Data to be retrieved.
     */
@@ -53,6 +54,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        //Create checklist
+        globalChecklist= (GlobalChecklist) getApplication();
 
         //Create Checklist
         theOneChecklist = new Checklist();
@@ -227,8 +231,12 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 JSONObject jsonObject = new JSONObject(result);
                 JSONParser jsonParser = new JSONParser(jsonObject);
 
+
                 //Get Checklist questions from parser
                 theOneChecklist.setQuestList(jsonParser.getChecklist().getQuestList());
+
+                //Set Emergency contact
+                globalChecklist.setEmergencyContacts(jsonParser.getEmergencyContacts());
 
                 /*
                     Splash Screen will always be visible for at least 3 seconds
@@ -383,7 +391,6 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         /*
             Save to Global Checklist
          */
-        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         globalChecklist.setTheOneChecklist(theOneChecklist);
 
     }

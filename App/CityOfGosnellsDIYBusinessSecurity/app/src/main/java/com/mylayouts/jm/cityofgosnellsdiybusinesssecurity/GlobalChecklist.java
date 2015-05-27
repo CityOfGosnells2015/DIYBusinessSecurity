@@ -2,6 +2,8 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.app.Application;
 
+import java.util.HashMap;
+
 /**
  * Global Checklist
  *
@@ -13,6 +15,7 @@ import android.app.Application;
 public class GlobalChecklist extends Application {
 
     private Checklist theOneChecklist;
+    private HashMap<String,String> emergencyContacts;
 
     public Checklist getTheOneChecklist(){
         return theOneChecklist;
@@ -23,4 +26,9 @@ public class GlobalChecklist extends Application {
         this.theOneChecklist=theOneChecklist;
     }
 
+    public HashMap<String,String> getEmergencyContacts(){return emergencyContacts;}
+
+    public void setEmergencyContacts(HashMap<String, String> emergencyContacts) {
+        this.emergencyContacts = emergencyContacts;
+    }
 }
