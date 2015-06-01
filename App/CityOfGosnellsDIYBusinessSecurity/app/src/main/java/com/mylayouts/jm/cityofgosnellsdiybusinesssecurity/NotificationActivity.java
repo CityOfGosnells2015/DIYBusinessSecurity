@@ -20,8 +20,8 @@ import android.widget.Switch;
 public class NotificationActivity extends ActionBarActivity {
 
     SharedPreferences prefs;
-    boolean allowNotification;
-    Switch switchButton;
+    boolean weeklyNotification, dailyNotification, monthlyNotification;
+    Switch switchWeeklyButton,switchDailyButton, switchMonthlyButton;
     int themeValue;
 
     @Override
@@ -43,14 +43,31 @@ public class NotificationActivity extends ActionBarActivity {
 
         //Preference file
         prefs = getSharedPreferences("Preferences",MODE_PRIVATE);
-        allowNotification = prefs.getBoolean("allowNotification", false);
 
-        switchButton = (Switch) findViewById(R.id.switchButton);
+        dailyNotification = prefs.getBoolean("dailyNotification", false);
+        weeklyNotification = prefs.getBoolean("weeklyNotification", false);
+        monthlyNotification = prefs.getBoolean("monthlyNotification", false);
 
-        if(allowNotification){
-            switchButton.setChecked(true);
+        switchDailyButton = (Switch) findViewById(R.id.switchDailyButton);
+        switchWeeklyButton = (Switch) findViewById(R.id.switchWeeklyButton);
+        switchMonthlyButton = (Switch) findViewById(R.id.switchMonthlyButton);
+
+        if(dailyNotification){
+            switchDailyButton.setChecked(true);
         }else{
-            switchButton.setChecked(false);
+            switchDailyButton.setChecked(false);
+        }
+
+        if(weeklyNotification){
+            switchWeeklyButton.setChecked(true);
+        }else{
+            switchWeeklyButton.setChecked(false);
+        }
+
+        if(monthlyNotification){
+            switchMonthlyButton.setChecked(true);
+        }else{
+            switchMonthlyButton.setChecked(false);
         }
     }
 
@@ -85,22 +102,62 @@ public class NotificationActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onSwitchChange(View view) {
+    public void onDailyNotification(View view) {
         boolean on = ((Switch) view).isChecked();
 
         if (on) {
-            prefs.edit().putBoolean("allowNotification", true).commit();
+            prefs.edit().putBoolean("dailyNotification", true).commit();
             Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 1, intent, 0);
+            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
+
+        } else {
+            if (Context.NOTIFICATION_SERVICE!=null) {
+                prefs.edit().putBoolean("dailyNotification", false).commit();
+                String ns = Context.NOTIFICATION_SERVICE;
+                NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
+                nMgr.cancel(1);
+            }
+        }
+    }
+
+    public void onWeeklyNotification(View view) {
+        boolean on = ((Switch) view).isChecked();
+
+        if (on) {
+            prefs.edit().putBoolean("weeklyNotification", true).commit();
+            Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 2, intent, 0);
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
             am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 7, pendingIntent);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
-                prefs.edit().putBoolean("allowNotification", false).commit();
+                prefs.edit().putBoolean("weeklyNotification", false).commit();
                 String ns = Context.NOTIFICATION_SERVICE;
                 NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
-                nMgr.cancel(1);
+                nMgr.cancel(2);
+            }
+        }
+    }
+
+    public void onMonthlyNotification(View view) {
+        boolean on = ((Switch) view).isChecked();
+
+        if (on) {
+            prefs.edit().putBoolean("switchMonthlyButton", true).commit();
+            Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 3, intent, 0);
+            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 30, pendingIntent);
+
+        } else {
+            if (Context.NOTIFICATION_SERVICE!=null) {
+                prefs.edit().putBoolean("switchMonthlyButton", false).commit();
+                String ns = Context.NOTIFICATION_SERVICE;
+                NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
+                nMgr.cancel(3);
             }
         }
     }

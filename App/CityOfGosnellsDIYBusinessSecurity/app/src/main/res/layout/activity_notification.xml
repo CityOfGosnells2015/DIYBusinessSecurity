@@ -9,11 +9,31 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Allow Notifications"
+        android:text="Daily Notifications"
         android:textOn="On"
         android:textOff="Off"
-        android:id="@+id/switchButton"
+        android:id="@+id/switchDailyButton"
         android:layout_marginTop="43dp"
-        android:onClick="onSwitchChange"/>
+        android:onClick="onDailyNotification"/>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weekly Notifications"
+        android:textOn="On"
+        android:textOff="Off"
+        android:id="@+id/switchWeeklyButton"
+        android:layout_marginTop="43dp"
+        android:onClick="onWeeklyNotification"/>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monthly Notifications"
+        android:textOn="On"
+        android:textOff="Off"
+        android:id="@+id/switchMonthlyButton"
+        android:layout_marginTop="43dp"
+        android:onClick="onMonthlyNotification"/>
 
 </RelativeLayout>
