@@ -8,7 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ public class ChecklistFragment extends Fragment {
     ChecklistAdapter adapter;
     ListView listview;
     String category;
+    private View myFragmentView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,12 +37,17 @@ public class ChecklistFragment extends Fragment {
         listview = (ListView) rootView.findViewById(R.id.fraglist);
         adapter = new ChecklistAdapter(getActivity().getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(category));
         listview.setAdapter(adapter);
+    RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.activity_checklist_fragment, container, false);
 
         return rootView;
 
+
     }
 
-    public void saveAnswers(View v) {
+
+   // R.id.btnSaveCheckList.addClickListener()
+
+    public void saveAnswers() {
 
         try{
             /*
@@ -100,6 +109,17 @@ public class ChecklistFragment extends Fragment {
             }
         }
         return true;
+    }
+
+public void button(){
+
+        Button myButton = new Button(getActivity());
+
+
+
+        myButton.setText("Push Me");
+     //   LinearLayout layout = (LinearLayout) ll.findViewById(R.id.btnSaveCheckList);
+        //layout.addView(myButton);
     }
 
     public void setCategory(String category)

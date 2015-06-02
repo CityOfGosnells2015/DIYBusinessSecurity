@@ -13,39 +13,33 @@
         android:textColor="#009A57"
         android:text="Question" />
 
-    <RadioGroup
-        android:layout_width="304dp"
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/myRadioGroup"
-        android:orientation="horizontal">
+        android:background="@drawable/button_na_effect"
+        android:thumb="@drawable/button_na_effect"
+        android:onClick="btnNAClick"
+        android:switchMinWidth="0dp"
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Yes"
-            android:id="@+id/rbYes"
-            android:textColor="#009A57"
-            android:checked="false"
-            android:layout_weight="1" />
+        />
+    <Switch
+        android:id="@+id/mySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:thumb="@drawable/button_effect"
+        android:switchMinWidth="0dp"
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="No"
-            android:id="@+id/rbNo"
-            android:textColor="#009A57"
-            android:checked="false"
-            android:layout_weight="1" />
+        />
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="N/A"
-            android:id="@+id/rbNA"
-            android:textColor="#009A57"
-            android:checked="false"
-            android:layout_weight="1" />
-    </RadioGroup>
+    <ImageView
+        android:id="@+id/dottedLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_dottedline"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

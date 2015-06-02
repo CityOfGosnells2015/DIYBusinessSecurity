@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class ChecklistActivity extends ActionBarActivity {
     TextView txtCategory;
     SharedPreferences prefs;
     int themeValue;
-
+    UserAnswer userAnswer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,59 +87,7 @@ public class ChecklistActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void saveAnswers(View v) {
 
-        try{
-            /*
-            * Compare if questions and answers is the same size
-            * if true its mean all the questions was answered
-            */
-            if(ValidationAnswers()) {
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-                String currentDateTime = sdf.format(new Date());
-
-                FileStore fileStore = new FileStore();
-
-                //Saving user answers on file
-                fileStore.saveUserFile(theOneChecklist.getUserAnswer(), currentDateTime + "_Checklist.dat", this.getApplicationContext());
-
-                //Saving the name file in another file
-                fileStore.saveLogFile(currentDateTime + "_Checklist","Log_Checklist.dat", this.getApplicationContext());
-
-                //Calculating score
-                float totalYes = 0, totalNo = 0, totalNA = 0;
-
-                for(UserAnswer userAnswer : theOneChecklist.getUserAnswer()){
-                    Answer answer = userAnswer.getAnswer();
-
-                    //Checking and counting the user answer
-                    if(answer.toText().equals("Yes")){
-                        totalYes++;
-                    } else if(answer.toText().equals("No")){
-                        totalNo++;
-                    } else if(answer.toText().equals("Not Applicable")){
-                        totalNA++;
-                    }
-                }
-
-                int score = Math.round((totalYes / (theOneChecklist.getUserAnswer().size() - totalNA)) * 100);
-
-                //Sending score to another activity
-                Intent intent = new Intent(ChecklistActivity.this, FeedbackActivity.class);
-                intent.putExtra("score",score);
-                startActivity(intent);
-
-            } else {
-                Toast.makeText(getApplicationContext(),"Please, You must answer all questions.",Toast.LENGTH_LONG).show();
-                listview = (ListView)findViewById(R.id.list);
-                listview.setSelection(0);
-            }
-
-        } catch(IOException e){
-             e.printStackTrace();
-        }
-    }
 
     public boolean ValidationAnswers(){
         boolean isValid = true;
@@ -185,4 +134,7 @@ public class ChecklistActivity extends ActionBarActivity {
         listview.setAdapter(adapter);
         txtCategory.setText(Selection);
     }
+
+
+
 }
