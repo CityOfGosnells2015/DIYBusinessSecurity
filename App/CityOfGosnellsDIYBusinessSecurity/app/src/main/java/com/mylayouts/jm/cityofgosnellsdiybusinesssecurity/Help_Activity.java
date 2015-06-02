@@ -2,18 +2,16 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -21,9 +19,8 @@ public class Help_Activity extends ActionBarActivity {
 
     SharedPreferences prefs;
     int themeValue;
-    TableLayout table;
-    TableRow tr;
-    HashMap emergencyList;
+    ListView listview;
+    EmergencyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,11 @@ public class Help_Activity extends ActionBarActivity {
         //Set layout for activity
         setContentView(R.layout.activity_help_);
 
-        populateTable();
+        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+
+        listview = (ListView)findViewById(R.id.list);
+        adapter = new EmergencyAdapter(getApplicationContext(), R.layout.activity_display_emergency, globalChecklist.getEmergencyContacts());
+        listview.setAdapter(adapter);
     }
 
 
@@ -75,13 +76,11 @@ public class Help_Activity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void populateTable(){
+    /*public void populateList(){
+
+
 
         table = (TableLayout) findViewById(R.id.main_table);
-        table.setColumnStretchable(0,true);
-        table.setColumnStretchable(1,true);
-
-        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
 
         emergencyList = globalChecklist.getEmergencyContacts();
 
@@ -112,11 +111,12 @@ public class Help_Activity extends ActionBarActivity {
                 //Set the dotted line
                 tr = new TableRow(this);
                 ImageView colLine = new ImageView(this);
+                //tr.setL
                 colLine.setImageResource(R.drawable.dotted_line);
                 tr.addView(colLine);
 
                 table.addView(tr);
             }
         }
-    }
+    }*/
 }

@@ -23,8 +23,11 @@
         android:textOn="On"
         android:textOff="Off"
         android:id="@+id/switchWeeklyButton"
-        android:layout_marginTop="43dp"
-        android:onClick="onWeeklyNotification"/>
+        android:onClick="onWeeklyNotification"
+        android:layout_below="@+id/switchDailyButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="134dp" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -33,7 +36,10 @@
         android:textOn="On"
         android:textOff="Off"
         android:id="@+id/switchMonthlyButton"
-        android:layout_marginTop="43dp"
-        android:onClick="onMonthlyNotification"/>
+        android:onClick="onMonthlyNotification"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/switchWeeklyButton"
+        android:layout_alignEnd="@+id/switchWeeklyButton"
+        android:layout_marginBottom="184dp" />
 
 </RelativeLayout>

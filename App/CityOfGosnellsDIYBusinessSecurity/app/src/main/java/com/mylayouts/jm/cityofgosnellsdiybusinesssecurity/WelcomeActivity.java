@@ -365,6 +365,19 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             }else{
                 //Load User file
                 userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
+
+                //If version number has been changed
+                if(prefs.getBoolean("VersionChanged",false)) {
+
+                    //Remove Non-existent answers from ArrayList
+                    for(int index = 0;index<userAnswers.size();index++){}
+
+
+                    //Add unanswered new questions
+                    for(int index = 0;index<userAnswers.size();index++){}
+
+                }
+                //Set
                 theOneChecklist.setUserAnswer(userAnswers);
 
             }

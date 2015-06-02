@@ -174,8 +174,15 @@ public class LinksActivity extends ActionBarActivity {
                     }
                 });
                 row.addView(colEdit);
-
                 table.addView(row);
+
+                //Set the dotted line
+                tr = new TableRow(this);
+                ImageView colLine = new ImageView(this);
+                colLine.setImageResource(R.drawable.dotted_line);
+                tr.addView(colLine);
+
+                table.addView(tr);
             }
         }
     }
