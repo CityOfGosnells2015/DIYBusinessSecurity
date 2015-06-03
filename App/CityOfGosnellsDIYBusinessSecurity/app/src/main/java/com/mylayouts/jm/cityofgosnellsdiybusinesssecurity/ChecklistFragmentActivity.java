@@ -2,6 +2,7 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         ActionBar.TabListener {
 
     private ViewPager viewPager;
+  // final Button save = (Button) viewPager.findViewById(R.id.btnSave);
     //private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     ListView listview;
@@ -112,20 +115,25 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
             LinearLayout LL = new LinearLayout(this);
 
+
+          //  save.setVisibility(View.VISIBLE);
            // LL.setId(R.id.btnSaveCheckList);
           //  myButton.setOnClickListener(ChecklistFragment);
-            RelativeLayout layout = (RelativeLayout) findViewById(R.id.poop);
-            Button myButton = new Button(this);
-            myButton.setText("Push Me");
-            myButton.setId(R.id.btnSaveCheckList);
 
 
-            layout.addView(myButton);
+
+         //   layout.addView(myButton);
 
          //   ChecklistFragment hello = new ChecklistFragment();
          //   hello.button();
 
         }
+        else{
+           // save.setVisibility(View.INVISIBLE);
+
+        }
+
+
     }
 
     public void saveAnswers(View v) {
@@ -166,10 +174,11 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
                 int score = Math.round((totalYes / (theOneChecklist.getUserAnswer().size() - totalNA)) * 100);
 
-                //Sending score to another activity
-                //Intent intent = new Intent(ChecklistFragment.this, FeedbackActivity.class);
-                //intent.putExtra("score",score);
-                //startActivity(intent);
+         //     //Sending score to another activity
+         //Intent/
+        // Intent intent = get, FeedbackActivity.class);
+      //intent.putExtra("score",score);
+        //startActivity(intent);
 
             } else {
                 Toast.makeText(getApplicationContext(), "Please, You must answer all questions.", Toast.LENGTH_LONG).show();
@@ -191,6 +200,8 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         }
         return true;
     }
+
+
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }

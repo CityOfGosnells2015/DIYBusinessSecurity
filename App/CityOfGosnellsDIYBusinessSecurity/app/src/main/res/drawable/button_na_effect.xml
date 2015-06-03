@@ -7,12 +7,19 @@
 
     <item android:state_focused="true"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_na" />
+        android:drawable="@drawable/ic_na"
+        android:layout_width="20px"
+        android:layout_height="40px"/>
     <item android:state_focused="true"
         android:state_pressed="true"
-        android:drawable="@drawable/ic_na_green" />
+        android:drawable="@drawable/ic_na_green"
+        android:layout_width="20px"
+        android:layout_height="40px"/>
     <item android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/ic_na_green" />
-    <item android:drawable="@drawable/ic_na" />
+        android:drawable="@drawable/ic_na_green"
+        android:layout_width="20px"
+        android:layout_height="40px"/>
+    <item android:drawable="@drawable/ic_na"
+     />
 </selector>

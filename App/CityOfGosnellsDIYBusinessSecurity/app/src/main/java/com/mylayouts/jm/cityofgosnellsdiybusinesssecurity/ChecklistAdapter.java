@@ -46,7 +46,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        View view = convertView;
+        View view = null;
 
         GlobalChecklist globalChecklist= (GlobalChecklist) getContext();
         theOneChecklist = globalChecklist.getTheOneChecklist();
@@ -56,15 +56,15 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
             view = vi.inflate(resource, null);
         }
 
+
         TextView txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
        // RadioGroup radioGroup  = (RadioGroup) view.findViewById(R.id.myRadioGroup);
 
 
             final Button naButton = (Button) view.findViewById(R.id.myButton);
         final Switch selction = (Switch) view.findViewById(R.id.mySwitch);
-        final Button Save = (Button) view.findViewById(R.id.btnSaveCheckList);
-
-
+        final Button Save = (Button) view.findViewById(R.id.btnSave);
+      //   Save.setVisibility(View.INVISIBLE);
 
 
 
@@ -80,16 +80,18 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         userAnswer = theOneChecklist.getAnswerById(listQuestion.get(position).getUid());
 
         if(userAnswer.getAnswer().equals(Answer.Y)){
-            ansSwitch = (Switch) view.findViewById(R.id.mySwitch);
-            ansSwitch.setChecked(true);
 
+            selction.setChecked(true);
+            na = false;
+            naButton.setBackgroundResource((R.drawable.ic_na));
         }else if(userAnswer.getAnswer().equals(Answer.N)){
-            ansSwitch = (Switch) view.findViewById(R.id.mySwitch);
-            ansSwitch.setChecked(false);
+
+            selction.setChecked(false);
 
         }else if(userAnswer.getAnswer().equals(Answer.NA)){
             btnRadio = (Button) view.findViewById(R.id.myButton);
             na = true;
+            naButton.setBackgroundResource((R.drawable.ic_na_green));
         }
 
        /* if(userAnswer.getAnswer().equals(Answer.NA)) {
@@ -104,6 +106,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
 
                 if (na == false) {
                     naButton.setBackgroundResource((R.drawable.ic_na));
+                    theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.N);
 
 
 
@@ -113,6 +116,8 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                     naButton.setBackgroundResource((R.drawable.ic_na_green));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.NA);
 
+                    selction.setChecked(false);
+
                 }
             }
 
@@ -121,11 +126,20 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         selction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+   if (selction.isChecked()) {
+                    theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.Y);
+                    na = false;
+                    naButton.setBackgroundResource((R.drawable.ic_na));
+                }
 
-                theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.Y);
+                else if (selction.isChecked() == false){
+       theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.N);
 
+      // naButton.setBackgroundResource((R.drawable.ic_na_green));
 
+   }
             }
+
 
 
         });

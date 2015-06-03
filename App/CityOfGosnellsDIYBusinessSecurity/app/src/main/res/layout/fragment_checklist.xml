@@ -17,10 +17,10 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/btnSave"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:onClick="saveAnswers"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_gravity="center_horizontal|bottom" />
 
 </FrameLayout>

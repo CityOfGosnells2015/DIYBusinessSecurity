@@ -13,27 +13,44 @@
         android:textColor="#009A57"
         android:text="Question" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/myButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_na_effect"
-        android:thumb="@drawable/button_na_effect"
-        android:onClick="btnNAClick"
-        android:switchMinWidth="0dp"
-
-        />
     <Switch
         android:id="@+id/mySwitch"
+
+        android:paddingLeft="2px"
+        android:layout_marginRight="2px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:thumb="@drawable/button_effect"
-        android:switchMinWidth="0dp"
+        android:layout_weight="0.5"
+
+        android:layout_centerHorizontal="true"
+
 
         />
+    <Button
+        android:id="@+id/myButton"
 
+        android:layout_width="20px"
+        android:layout_height="40px"
+        android:paddingLeft="2px"
+        android:layout_marginRight="2px"
+        android:background="@drawable/button_na_effect"
+        android:thumb="@drawable/button_na_effect"
+        android:onClick="btnNAClick"
+        android:layout_weight="0.5"
+
+
+
+        android:layout_centerHorizontal="true"
+
+
+        />
+</LinearLayout>
     <ImageView
         android:id="@+id/dottedLine"
         android:layout_width="match_parent"
