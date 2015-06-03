@@ -20,7 +20,7 @@ public class Help_Activity extends ActionBarActivity {
     SharedPreferences prefs;
     int themeValue;
     ListView listview;
-    EmergencyAdapter adapter;
+    ChecklistAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,11 @@ public class Help_Activity extends ActionBarActivity {
         setContentView(R.layout.activity_help_);
 
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+        Checklist theOneChecklist = globalChecklist.getTheOneChecklist();
 
-        listview = (ListView)findViewById(R.id.list);
-        adapter = new EmergencyAdapter(getApplicationContext(), R.layout.activity_display_emergency, globalChecklist.getEmergencyContacts());
+        listview = (ListView)findViewById(R.id.list1);
+
+        adapter =  new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"));
         listview.setAdapter(adapter);
     }
 

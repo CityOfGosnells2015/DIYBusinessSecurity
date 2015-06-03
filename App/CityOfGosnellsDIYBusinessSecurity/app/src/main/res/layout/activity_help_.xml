@@ -12,18 +12,19 @@
         android:id="@+id/scrollView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_alignParentBottom="false"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="false"
         android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
 
 
         <ListView
-            android:id="@+id/list"
+            android:id="@+id/list1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/activity_display_emergency"/>
+            tools:listitem="@layout/activity_display_checklist"
+            android:layout_weight="1"/>
 
     </ScrollView>
 </RelativeLayout>

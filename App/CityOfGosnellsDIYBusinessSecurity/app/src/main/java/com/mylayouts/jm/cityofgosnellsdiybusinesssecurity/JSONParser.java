@@ -106,12 +106,12 @@ public class JSONParser {
     /*
             Reads Emergency contacts to a hash map
      */
-    public HashMap<String,String> getEmergencyContacts() throws JSONException {
+    public ArrayList<Link> getEmergencyContacts() throws JSONException {
 
         /*
             Variables
          */
-        HashMap<String,String> contactHash = new HashMap<String,String>();
+        ArrayList<Link> contactHash = new ArrayList<Link>();
         JSONObject importNumbers = jsonFile.getJSONObject("ImportantPhoneNumbers");
         String keyValue;
         Iterator iterator = importNumbers.keys(); // Loads all the keys (Strings) from the JsonObject
@@ -122,7 +122,8 @@ public class JSONParser {
               Get Key and Corresponding
              */
             keyValue = iterator.next().toString();
-            contactHash.put(keyValue,importNumbers.getString(keyValue));
+
+            contactHash.add(new Link(keyValue,importNumbers.getString(keyValue)));
 
         }
 

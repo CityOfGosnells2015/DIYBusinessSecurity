@@ -14,6 +14,11 @@ public class Link {
     public Link() {
     }
 
+    public Link(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public String getName() {
         return name;
     }
