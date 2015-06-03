@@ -2,6 +2,7 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -20,7 +21,7 @@ public class Help_Activity extends ActionBarActivity {
     SharedPreferences prefs;
     int themeValue;
     ListView listview;
-    ChecklistAdapter adapter;
+    EmergencyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,9 @@ public class Help_Activity extends ActionBarActivity {
         setContentView(R.layout.activity_help_);
 
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
-        Checklist theOneChecklist = globalChecklist.getTheOneChecklist();
 
         listview = (ListView)findViewById(R.id.list1);
-
-        adapter =  new ChecklistAdapter(getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory("Building Security"));
+        adapter = new EmergencyAdapter(getApplicationContext(), globalChecklist.getEmergencyContacts());
         listview.setAdapter(adapter);
     }
 
@@ -77,48 +76,4 @@ public class Help_Activity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*public void populateList(){
-
-
-
-        table = (TableLayout) findViewById(R.id.main_table);
-
-        emergencyList = globalChecklist.getEmergencyContacts();
-
-        if (!emergencyList.isEmpty()){
-            for (Object key : emergencyList.keySet()){
-                tr = new TableRow(this);
-
-                //Set column name
-                TextView colName = new TextView(this);
-                colName.setTextColor(Color.BLACK);
-                colName.setText(key.toString());
-                tr.addView(colName);
-
-                //Set column icon
-                ImageView colPhone = new ImageView(this);
-                colPhone.setImageResource(R.drawable.ic_call);
-                final String number = emergencyList.get(key.toString()).toString();
-                colPhone.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number));
-                        startActivity(intent);
-                    }
-                });
-                tr.addView(colPhone);
-                table.addView(tr);
-
-                //Set the dotted line
-                tr = new TableRow(this);
-                ImageView colLine = new ImageView(this);
-                //tr.setL
-                colLine.setImageResource(R.drawable.dotted_line);
-                tr.addView(colLine);
-
-                table.addView(tr);
-            }
-        }
-    }*/
 }

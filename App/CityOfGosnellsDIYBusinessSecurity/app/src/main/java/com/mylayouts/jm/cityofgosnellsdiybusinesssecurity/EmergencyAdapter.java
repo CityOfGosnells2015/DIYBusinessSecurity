@@ -8,37 +8,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class EmergencyAdapter extends ArrayAdapter<Link> {
 
-    Context context;
-    int resource;
-   ArrayList<Link> mData;
+    private Context context;
+    private ArrayList<Link> mData;
 
-    public EmergencyAdapter(Context context, int resource, ArrayList<Link> list) {
-        super(context,resource, list);
-        mData = new ArrayList();
+    public EmergencyAdapter(Context context, ArrayList<Link> list) {
+        super(context,R.layout.activity_display_emergency, list);
         mData = list;
         this.context = context;
-        this.resource = resource;
     }
 
-    /*@Override
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
 
         if (view == null) {
-            LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = vi.inflate(resource, null);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.activity_display_emergency, parent, false);
         }
-
 
         TextView txtTitle = (TextView) view.findViewById(R.id.nameEmergency);
         ImageView iconPhone = (ImageView) view.findViewById(R.id.phoneIcon);
@@ -51,33 +45,22 @@ public class EmergencyAdapter extends ArrayAdapter<Link> {
         final String number = mData.get(position).getPhone();
         iconPhone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number));
-                //startActivity(intent);
+            public void onClick(View mView) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                callIntent.setData(Uri.parse("tel:" + number));
+
+                try {
+                    context.startActivity(callIntent);
+                } catch (Exception ex) {
+                    Toast.makeText(getContext(),
+                            "Call failed, please try again later.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
 
 
         return view;
-    }*/
-
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View rowView = inflater.inflate(R.layout.activity_display_emergency, parent, false);
-
-        TextView textView = (TextView) rowView.findViewById(R.id.nameEmergency);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.phoneIcon);
-
-        textView.setText(mData.get(position).getName());
-
-
-        position++;
-        return rowView;
     }
 }
