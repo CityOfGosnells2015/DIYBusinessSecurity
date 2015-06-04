@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/nameLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text value"/>
+
+    <ImageView
+        android:id="@+id/phoneIcon"
+        android:background="@drawable/ic_call"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/nameLink"
+        android:layout_toLeftOf="@+id/linkIcon"
+        android:layout_toStartOf="@+id/linkIcon"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="31dp" />
+
+    <ImageView
+        android:id="@+id/linkIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_links"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="38dp"
+        android:layout_alignTop="@+id/editIcon"
+        android:layout_toLeftOf="@+id/editIcon"
+        android:layout_toStartOf="@+id/editIcon" />
+
+    <ImageView
+        android:id="@+id/editIcon"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_edit"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

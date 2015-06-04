@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -45,7 +46,12 @@ public class LinksActivity extends ActionBarActivity {
         setContentView(R.layout.activity_links);
 
         linksList = fileManager.readFile(LinksActivity.this);
-        populateTable();
+        //populateTable();
+
+        ListView listview = (ListView) findViewById(R.id.list1);
+        LinkAdapter adapter = new LinkAdapter(getApplicationContext(), linksList);
+        listview.setAdapter(adapter);
+
     }
 
 
@@ -87,7 +93,7 @@ public class LinksActivity extends ActionBarActivity {
 
 
 
-    public void populateTable(){
+    /*public void populateTable(){
 
         table = (TableLayout) findViewById(R.id.main_table);
         table.setColumnStretchable(0,true);
@@ -185,6 +191,6 @@ public class LinksActivity extends ActionBarActivity {
                 table.addView(tr);
             }
         }
-    }
+    }*/
 
 }
