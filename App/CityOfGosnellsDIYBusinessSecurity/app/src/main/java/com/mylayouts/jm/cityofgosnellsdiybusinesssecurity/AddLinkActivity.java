@@ -59,7 +59,7 @@ public class AddLinkActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
+                intent = new Intent(this, LinksActivity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
@@ -69,16 +69,8 @@ public class AddLinkActivity extends ActionBarActivity {
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
-
         return super.onOptionsItemSelected(item);
-    }
-
-    public void cancel(View v){
-        Intent intent = new Intent(AddLinkActivity.this, LinksActivity.class);
-        startActivity(intent);
     }
 
     public void saveMyLink(View v){
@@ -86,10 +78,7 @@ public class AddLinkActivity extends ActionBarActivity {
         myLink.setPhone(txtPhone.getText().toString());
         myLink.setWebPage(txtWebPage.getText().toString());
 
-        if(fileManager.writeOnFile(myLink,AddLinkActivity.this)){
-            Toast.makeText(getBaseContext(), "Saved...",
-                    Toast.LENGTH_SHORT).show();
-
+        if(fileManager.writeOnFile(myLink,AddLinkActivity.this,"MyImportantLinks.txt")){
             Intent intent = new Intent(AddLinkActivity.this, LinksActivity.class);
             startActivity(intent);
         }else{

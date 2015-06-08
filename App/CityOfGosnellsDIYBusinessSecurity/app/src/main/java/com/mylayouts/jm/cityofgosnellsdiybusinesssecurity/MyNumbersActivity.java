@@ -2,26 +2,21 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
-public class LinksActivity extends ActionBarActivity {
+public class MyNumbersActivity extends ActionBarActivity {
 
-    ArrayList<Link> linksList = new ArrayList<Link>();
+    ArrayList<Link> numbersList = new ArrayList();
     FileManager fileManager = new FileManager();
     SharedPreferences prefs;
     int themeValue;
@@ -41,14 +36,13 @@ public class LinksActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Set layout for activity
-        setContentView(R.layout.activity_links);
+        setContentView(R.layout.activity_my_numbers);
 
-        linksList = fileManager.readFile(LinksActivity.this, "MyImportantLinks.txt");
+        numbersList = fileManager.readFile(this, "MyNumbers.txt");
 
         ListView listview = (ListView) findViewById(R.id.list1);
-        LinkAdapter adapter = new LinkAdapter(getApplicationContext(), linksList);
+        NumberAdapter adapter = new NumberAdapter(getApplicationContext(), numbersList);
         listview.setAdapter(adapter);
-
     }
 
 
@@ -83,9 +77,8 @@ public class LinksActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addMyLinks(View v){
-        Intent intent = new Intent(LinksActivity.this, AddLinkActivity.class);
+    public void addMyNumber(View v){
+        Intent intent = new Intent(this, AddNumberActivity.class);
         startActivity(intent);
     }
-
 }

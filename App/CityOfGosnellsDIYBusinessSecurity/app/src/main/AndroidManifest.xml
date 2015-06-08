@@ -3,7 +3,7 @@
     package="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -69,9 +69,21 @@
             android:label="@string/title_activity_edit_link" >
         </activity>
         <activity
-            android:theme="@style/checklistTheme"
             android:name=".ChecklistFragmentActivity"
-            android:label="@string/title_activity_checklist_fragment" >
+            android:label="@string/title_activity_checklist_fragment"
+            android:theme="@style/checklistTheme" >
+        </activity>
+        <activity
+            android:name=".MyNumbersActivity"
+            android:label="@string/title_activity_my_numbers" >
+        </activity>
+        <activity
+            android:name=".AddNumberActivity"
+            android:label="@string/title_activity_add_number" >
+        </activity>
+        <activity
+            android:name=".EditNumberActivity"
+            android:label="@string/title_activity_edit_number" >
         </activity>
     </application>
 

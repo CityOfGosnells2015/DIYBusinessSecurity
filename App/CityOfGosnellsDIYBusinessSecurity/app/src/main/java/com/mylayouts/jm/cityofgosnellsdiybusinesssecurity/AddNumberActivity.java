@@ -2,27 +2,23 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+/**
+ * Created by Gustavo on 8/06/2015.
+ */
+public class AddNumberActivity extends ActionBarActivity {
 
-
-public class LinksActivity extends ActionBarActivity {
-
-    ArrayList<Link> linksList = new ArrayList<Link>();
-    FileManager fileManager = new FileManager();
+    private FileManager fileManager = new FileManager();
+    private Link myNumber = new Link();
+    private EditText txtName;
+    private EditText txtPhone;
     SharedPreferences prefs;
     int themeValue;
 
@@ -41,14 +37,10 @@ public class LinksActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Set layout for activity
-        setContentView(R.layout.activity_links);
+        setContentView(R.layout.activity_add_number);
 
-        linksList = fileManager.readFile(LinksActivity.this, "MyImportantLinks.txt");
-
-        ListView listview = (ListView) findViewById(R.id.list1);
-        LinkAdapter adapter = new LinkAdapter(getApplicationContext(), linksList);
-        listview.setAdapter(adapter);
-
+        txtName = (EditText)findViewById(R.id.txtName);
+        txtPhone = (EditText)findViewById(R.id.txtPhone);
     }
 
 
@@ -66,7 +58,7 @@ public class LinksActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
+                intent = new Intent(this, MyNumbersActivity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
@@ -76,16 +68,21 @@ public class LinksActivity extends ActionBarActivity {
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void addMyLinks(View v){
-        Intent intent = new Intent(LinksActivity.this, AddLinkActivity.class);
-        startActivity(intent);
-    }
+    public void saveMyNumber(View v){
+        myNumber.setName(txtName.getText().toString());
+        myNumber.setPhone(txtPhone.getText().toString());
 
+        if(fileManager.writeOnFile(myNumber,this, "MyNumbers.txt")){
+            Intent intent = new Intent(this, MyNumbersActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getBaseContext(), "Sorry, Try again!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
 }
+

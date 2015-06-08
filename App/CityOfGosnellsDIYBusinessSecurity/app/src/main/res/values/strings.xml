@@ -24,18 +24,20 @@
     <string name="letter_from_mayor_foot">        Cr Dave Griffiths
         Mayor</string>
     <string name="title_activity_menu">MENU</string>
-    <string name="title_activity_preference">Preference Activity</string>
+    <string name="title_activity_preference">PREFERENCES</string>
     <string name="title_activity_splash">Splash</string>
-    <string name="title_activity_help_">Help_Activity</string>
+    <string name="title_activity_help_">EMERGENCY HELP</string>
     <string name="title_activity_about_">ABOUT</string>
-    <string name="title_activity_notification">NotificationActivity</string>
-    <string name="title_activity_my_links">myLinksActivity</string>
-    <string name="title_activity_new_my_links">newMyLinksActivity</string>
-    <string name="title_activity_add_link">AddLinkActivity</string>
-    <string name="title_activity_edit_link">EditLinkActivity</string>
+    <string name="title_activity_notification">NOTIFICATIONS</string>
+    <string name="title_activity_my_links">LINKS</string>
+    <string name="title_activity_new_my_links">ADD LINKS</string>
+    <string name="title_activity_add_link">ADD LINKS</string>
+    <string name="title_activity_edit_link">EDIT LINKS</string>
     <string name="title_activity_checklist">ChecklistActivity</string>
     <string name="title_activity_feedback">FeedbackActivity</string>
     <string name="title_activity_checklist_fragment">CHECKLIST</string>
-
+    <string name="title_activity_my_numbers">MY NUMBERS</string>
+    <string name="title_activity_add_number">ADD NUMBER</string>
+    <string name="title_activity_edit_number">EDIT NUMBER</string>
 
 </resources>

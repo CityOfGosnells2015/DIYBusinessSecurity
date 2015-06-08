@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public class FileManager {
     //Variables
     private Context context;
-    private String fileName = "MyImportantLinks.txt";
+    private String fileName;
 
     public FileManager() {
     }
@@ -27,9 +27,10 @@ public class FileManager {
      * @param mContext - Which activity is calls this method
      * @return - ArrayList with all data from the file
      */
-    public ArrayList<Link> readFile(Context mContext){
+    public ArrayList<Link> readFile(Context mContext, String mFileName){
 
-        ArrayList<Link> linkList = new ArrayList<Link>();
+        ArrayList<Link> linkList = new ArrayList();
+        fileName = mFileName;
 
         try {
             context = mContext;
@@ -57,9 +58,10 @@ public class FileManager {
         return linkList;
     }
 
-    public boolean writeOnFile(Link objLink, Context mContext){
+    public boolean writeOnFile(Link objLink, Context mContext, String mFileName){
         boolean result = false;
         context = mContext;
+        fileName = mFileName;
 
         try {
             FileOutputStream fOut = context.openFileOutput(fileName, Context.MODE_APPEND);

@@ -13,24 +13,14 @@
 
     <ImageView
         android:id="@+id/phoneIcon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:background="@drawable/ic_call"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_above="@+id/dottedLine"
-        android:layout_toRightOf="@+id/nameEmergency"
-        android:layout_toEndOf="@+id/nameEmergency" />
-
-    <ImageView
-        android:id="@+id/dottedLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_dottedline"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/nameEmergency"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

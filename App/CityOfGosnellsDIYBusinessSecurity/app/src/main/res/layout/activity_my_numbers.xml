@@ -19,7 +19,7 @@
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:id="@+id/btnAddLink"
-            android:onClick="addMyLinks"
+            android:onClick="addMyNumber"
             android:background="@drawable/btn_addnumber"
             android:layout_gravity="center" />
 

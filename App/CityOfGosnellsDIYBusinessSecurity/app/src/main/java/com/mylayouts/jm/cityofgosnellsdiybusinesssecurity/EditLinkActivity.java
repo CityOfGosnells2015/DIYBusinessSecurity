@@ -17,7 +17,7 @@ public class EditLinkActivity extends ActionBarActivity {
 
     private int elemPosition = -1;
     private FileManager fm = new FileManager();
-    private ArrayList<Link> linksList = new ArrayList<Link>();
+    private ArrayList<Link> linksList = new ArrayList();
     private Link link = new Link();
     private EditText txtName;
     private EditText txtPhone;
@@ -50,7 +50,7 @@ public class EditLinkActivity extends ActionBarActivity {
         elemPosition = getIntent().getIntExtra("elemPosition",-1);
 
         if(elemPosition!= -1){
-            linksList = fm.readFile(EditLinkActivity.this);
+            linksList = fm.readFile(EditLinkActivity.this, "MyImportantLinks.txt");
 
             txtName.setText(linksList.get(elemPosition).getName());
             txtPhone.setText(linksList.get(elemPosition).getPhone());
@@ -74,7 +74,7 @@ public class EditLinkActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
+                intent = new Intent(this, LinksActivity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
@@ -85,9 +85,7 @@ public class EditLinkActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
 
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -102,9 +100,8 @@ public class EditLinkActivity extends ActionBarActivity {
         if(fm.deleteFile(EditLinkActivity.this)){//Delete the file
             //Create a new file and add each element again
             for(Link object : linksList){
-                fm.writeOnFile(object,EditLinkActivity.this);
+                fm.writeOnFile(object,EditLinkActivity.this,"MyImportantLinks.txt");
             }
-
             Intent intent = new Intent(EditLinkActivity.this, LinksActivity.class);
             startActivity(intent);
         }else{
@@ -121,9 +118,8 @@ public class EditLinkActivity extends ActionBarActivity {
         if(fm.deleteFile(EditLinkActivity.this)){//Delete the file
             //Create a new file and add each element again
             for(Link object : linksList){
-                fm.writeOnFile(object,EditLinkActivity.this);
+                fm.writeOnFile(object,EditLinkActivity.this,"MyImportantLinks.txt");
             }
-
             Intent intent = new Intent(EditLinkActivity.this, LinksActivity.class);
             startActivity(intent);
         }else{
