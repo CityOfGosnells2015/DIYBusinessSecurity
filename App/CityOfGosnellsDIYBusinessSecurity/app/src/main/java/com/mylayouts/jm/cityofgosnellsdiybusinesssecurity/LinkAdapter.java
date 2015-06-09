@@ -38,31 +38,15 @@ public class LinkAdapter extends ArrayAdapter<Link> {
         }
 
         TextView txtTitle = (TextView) view.findViewById(R.id.nameLink);
-        ImageView iconPhone = (ImageView) view.findViewById(R.id.phoneIcon);
+        TextView txtURL = (TextView) view.findViewById(R.id.urlLink);
         ImageView iconLink = (ImageView) view.findViewById(R.id.linkIcon);
         ImageView iconEdit = (ImageView) view.findViewById(R.id.editIcon);
 
         //Set TextView
-        txtTitle.setTextColor(Color.BLACK);
         txtTitle.setText(mData.get(position).getName());
 
-        //Set ImageView phone
-        final String number = mData.get(position).getPhone();
-        iconPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View mView) {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                callIntent.setData(Uri.parse("tel:" + number));
-
-                try {
-                    context.startActivity(callIntent);
-                } catch (Exception ex) {
-                    Toast.makeText(getContext(),
-                            "Call failed, please try again later.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        //Set URL text
+        txtURL.setText(mData.get(position).getWebPage());
 
         //Set ImageView website
         final String website = mData.get(position).getWebPage();

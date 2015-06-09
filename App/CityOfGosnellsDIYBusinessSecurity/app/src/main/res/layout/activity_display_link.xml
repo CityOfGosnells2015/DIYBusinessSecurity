@@ -12,20 +12,9 @@
         android:text="Text value"/>
 
     <ImageView
-        android:id="@+id/phoneIcon"
-        android:background="@drawable/ic_call"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignBottom="@+id/nameLink"
-        android:layout_toLeftOf="@+id/linkIcon"
-        android:layout_toStartOf="@+id/linkIcon"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="31dp" />
-
-    <ImageView
         android:id="@+id/linkIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/ic_links"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="38dp"
@@ -35,14 +24,26 @@
 
     <ImageView
         android:id="@+id/editIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/ic_edit"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/urlLink"
+        android:layout_below="@+id/nameLink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:textColor="#0095ff" />
 
 
 </RelativeLayout>
