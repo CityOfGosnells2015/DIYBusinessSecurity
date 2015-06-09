@@ -13,23 +13,32 @@ public class UserAnswer implements Serializable{
 
     /**
      * Defualt Constructor
+     *
+     * (Current defaults to true)
      */
-    public UserAnswer(){}
+    public UserAnswer(){
+        current = true;
+    }
 
     /**
      * Params Set
      *
      * @param uid
      * @param answer
+     *
+     * (Current defaults to true)
      */
     public UserAnswer(String uid,Answer answer){
         this.uid = uid;
         this.answer = answer;
+
+        current = true;
     }
 
 
     private Answer answer;
     private String uid;
+    private boolean current;
 
 
 
@@ -49,10 +58,17 @@ public class UserAnswer implements Serializable{
         this.answer = answer;
     }
 
+    public void setCurrent(boolean current) {
+        this.current = current;
+    }
+
+    public boolean isCurrent() {
+        return current;
+    }
 
     /*
-        For implementing Serializable
-     */
+                For implementing Serializable
+             */
     private static final long serialVersionUID = -3887830328245812248L;
 
     private void readObject(ObjectInputStream aInputStream)

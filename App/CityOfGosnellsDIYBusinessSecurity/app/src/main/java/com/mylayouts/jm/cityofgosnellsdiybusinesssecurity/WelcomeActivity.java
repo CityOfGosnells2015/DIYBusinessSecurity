@@ -355,29 +355,117 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
             ArrayList<UserAnswer> userAnswers;
 
-            //Check if Exists
+            //Version Change
+            if(prefs.getInt("VersionNumber",0) != theOneChecklist.getVersionNumber()){
+
+                prefs.edit().putBoolean("VersionChanged",true).commit();
+
+            }
+
+            prefs.edit().putInt("VersionNumber",theOneChecklist.getVersionNumber()).commit();
+
+            /*
+                If no current user file exists
+
+                Creates new file and writes to file answers
+                that are initialised to 'U'
+             */
             if(!answerFile.exists()){
-                //Create list, save to file
+
                 userAnswers = createNewAnswerList();
                 theOneChecklist.setUserAnswer(userAnswers);
                 fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
 
+
             }else{
-                //Load User file
+
+                //Load Users Answers file
                 userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
 
-                //If version number has been changed
-                if(prefs.getBoolean("VersionChanged",false)) {
+                if(prefs.getBoolean("VersionChanged",false)){
 
-                    //Remove Non-existent answers from ArrayList
-                    for(int index = 0;index<userAnswers.size();index++){}
+                    boolean isFound;
 
 
-                    //Add unanswered new questions
-                    for(int index = 0;index<userAnswers.size();index++){}
+					/*
+					    Finds all questions in The checklist loaded from the JSON and compares
+					    them to the users saved answers
+
+					    If there is a new question in the checklist a new answer will be added to
+					    the users answers and initialised to 'U' (Unanswered)
+					 */
+                    for(int index = 0;index<theOneChecklist.getQuestList().size();index++){
+
+                        isFound = true;
+
+                        for(int indexr = 0;indexr<userAnswers.size();indexr++){
+
+                            if(userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())){
+                                isFound = false;
+                                break;
+                            }
+
+                        }
+
+                        /*
+                            Add new user answer to users answers in the oneChecklist
+                         */
+                        if(isFound){
+
+                            theOneChecklist.getUserAnswer().add(new UserAnswer(theOneChecklist.getQuestList().get(index).getUid(),Answer.U));
+                        }
+
+                    }
+
+
+
+
+                    /*
+                        Finds all the previous UserAnswers that are no longer
+                        in the current checklist
+
+                        If a no longer used question is found the within the users
+                        answers the 'current' field is toggled to false so is no
+                        longer included within the users feedback
+                     */
+                    for(int indexr = 0;indexr<userAnswers.size();indexr++){ //Loop each of users answers
+
+                        isFound = false;
+
+                        for(int index = 0;index<theOneChecklist.getQuestList().size();index++){ //Loop for questions
+
+                            if (userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())){
+
+                                isFound= true;
+                                break;
+
+                            }
+
+                        }
+
+                        /*
+                            If the question id has not been found in the current questions
+                         */
+                        if(!isFound){
+
+                            userAnswers.get(indexr).setCurrent(false);
+
+                        }
+
+
+
+                    }
+
+
+
 
                 }
-                //Set
+
+
+
+                /*
+                    Saves to theOncChecklist
+                 */
                 theOneChecklist.setUserAnswer(userAnswers);
 
             }
@@ -389,20 +477,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         }
 
         /*
-            Store Checklists version number in shared preferences
-
-            VersionChanged will toggle to true if a checklist has changed since last downloaded
-         */
-        if(prefs.getInt("VersionNumber",0) != theOneChecklist.getVersionNumber()){
-
-            prefs.edit().putBoolean("VersionChanged",true).commit();
-
-        }
-        prefs.edit().putInt("VersionNumber",theOneChecklist.getVersionNumber()).commit();
-
-
-        /*
-            Save to Global Checklist
+            Save to Global Check-list
          */
         globalChecklist.setTheOneChecklist(theOneChecklist);
 
