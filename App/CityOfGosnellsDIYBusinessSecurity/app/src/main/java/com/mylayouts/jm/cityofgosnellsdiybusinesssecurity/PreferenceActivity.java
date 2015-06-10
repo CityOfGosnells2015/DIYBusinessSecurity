@@ -10,17 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Switch;
 import android.widget.Toast;
 
 /**
  * Created by 041402822 on 31/03/2015.
  */
-public class PreferenceActivity extends ActionBarActivity implements View.OnClickListener {
+public class PreferenceActivity extends ActionBarActivity {
 
 
     SharedPreferences prefs;
-    CheckBox largeText;
-    Button saveButton;
+    Switch textSizeSwitch;
     int themeValue;
 
     @Override
@@ -43,16 +43,14 @@ public class PreferenceActivity extends ActionBarActivity implements View.OnClic
         prefs = getSharedPreferences("Preferences",MODE_PRIVATE);
 
         //Getting the ID fields
-        largeText = (CheckBox) findViewById(R.id.cbLargeText);
-        saveButton = (Button) findViewById(R.id.btnSavePrefs);
+        textSizeSwitch = (Switch) findViewById(R.id.switchChangeSize);
 
         if(themeValue == 0){
-            largeText.setChecked(false);
+            textSizeSwitch.setChecked(false);
         }else{
-            largeText.setChecked(true);
+            textSizeSwitch.setChecked(true);
         }
 
-        saveButton.setOnClickListener(this);
     }
 
     @Override
@@ -86,40 +84,22 @@ public class PreferenceActivity extends ActionBarActivity implements View.OnClic
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
+    //Set preference for text size
+    public void changeTextSize(){
+        int largeInt = 0;
 
-        if (v.getId() == R.id.btnSavePrefs){
-
-
-            /*
-                Text Size
-             */
-            int largeInt = 0;
-            if (largeText.isChecked()){
-                largeInt = 1;
-            }
-            prefs.edit().putInt("textSize", largeInt).commit();
-
-
-
-            /*
-                Other Preferences changed Here
-             */
-
-
-            /*
-                Toast Notify of Save
-             */
-
-            Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
-
-            /*
-                Move to main
-             */
-            Intent intent = new Intent(this, MenuActivity.class);
-            startActivity(intent);
+        if(textSizeSwitch.isChecked()){
+            largeInt=1;
         }
+        //Save preference on the file
+        prefs.edit().putInt("textSize", largeInt).commit();
 
+
+    }
+
+    public void showLetter(){
+        Intent intent = new Intent(this, MayorLetter.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }

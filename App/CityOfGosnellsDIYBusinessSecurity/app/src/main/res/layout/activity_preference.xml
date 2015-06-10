@@ -35,29 +35,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text Size:"
-            android:id="@+id/accessibility"/>
+            android:text="Text Size"
+            android:layout_marginLeft="10dp" />
 
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text Size"
             android:textOn="On"
             android:textOff="Off"
             android:id="@+id/switchChangeSize"
-            android:onClick="changeTextSize"/>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:id="@+id/cbLargeText"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/btnSavePrefs"/>
+            android:onClick="changeTextSize"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="180dp" />
 
     </LinearLayout>
 
@@ -84,7 +73,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Letter from the mayor"
-            android:id="@+id/letterMayor"/>
+            android:id="@+id/letterMayor"
+            android:layout_marginLeft="10dp"
+            android:onClick="showLetter"/>
 
     </LinearLayout>
 
@@ -96,35 +87,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/line3"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
-
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/blockTest"
-        android:layout_below="@+id/line3">
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text Size"
-            android:textOn="On"
-            android:textOff="Off"
-            android:id="@+id/switchDailyButton"
-            android:onClick=""/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockTest"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line4"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
 
