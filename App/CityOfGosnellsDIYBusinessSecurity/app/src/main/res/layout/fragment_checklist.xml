@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.ChecklistFragment">
+    tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.ChecklistFragment"
+    android:theme="@style/checklistTheme">
 
     <ListView
         android:id="@+id/fraglist"

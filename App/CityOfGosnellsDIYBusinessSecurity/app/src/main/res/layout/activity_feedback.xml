@@ -4,8 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.FeedbackActivity"
-    >
+    tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.FeedbackActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,9 +35,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-
+        android:id="@+id/lock_image"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/lock_open"
+        android:src="@drawable/lock_open" />
 
 </RelativeLayout>

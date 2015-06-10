@@ -7,28 +7,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class FeedbackActivity extends ActionBarActivity {
 
     TextView txtScore;
     Checklist theOneChecklist;
-    ListView list;
-    ArrayList logChecklist = new ArrayList();
-    FileStore fileStore = new FileStore();
     SharedPreferences prefs;
     int themeValue;
+    ImageView lockImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +37,41 @@ public class FeedbackActivity extends ActionBarActivity {
         //Set layout for activity
         setContentView(R.layout.activity_feedback);
 
+        txtScore = (TextView) findViewById(R.id.txtScore);
+        lockImage = (ImageView) findViewById(R.id.lock_image);
+
+        /*
         //Set global object
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
+        */
+
 
         //Get Users last score
+        //Score[1] is the number of answers user has answered as Y
+        //Score si the total number of questions user has answered
         int[] score = getUserScore();
 
-        txtScore = (TextView) findViewById(R.id.txtScore);
+
+        /*
+            Set Lock closed image is users score is > 90
+            Set to unlocked otherwise
+         */
+
+        if ((double)(score[1])/(double)(score[0]) >= 0.9){
+
+            //Set to locked image
+            lockImage.setImageResource(R.drawable.lock_closed);
+
+        }else{
+
+            lockImage.setBackgroundResource(R.drawable.lock_closed);
+
+        }
+
+        /*
         list = (ListView) findViewById(R.id.listView);
+        */
 
         //Display Score
         txtScore.setText("Your Total Score: " +  score[1] + " out of " + score[0]);
@@ -69,6 +85,9 @@ public class FeedbackActivity extends ActionBarActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } */
+
+
+        /*
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_list_item_1, logChecklist);
         list.setAdapter(adapter);
@@ -91,7 +110,8 @@ public class FeedbackActivity extends ActionBarActivity {
                 startActivity(intent);
 
             }
-        });
+        }); */
+
     }
 
 
@@ -126,7 +146,7 @@ public class FeedbackActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateUserAnswerObject(String nameFile){
+   /* public void updateUserAnswerObject(String nameFile){
 
         try {
             theOneChecklist.setUserAnswer(fileStore.loadUserFile(nameFile,FeedbackActivity.this));
@@ -135,9 +155,10 @@ public class FeedbackActivity extends ActionBarActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
     public void goToMenuActivity(View v){
+
         Intent intent = new Intent(FeedbackActivity.this, MenuActivity.class);
         startActivity(intent);
     }
@@ -177,11 +198,10 @@ public class FeedbackActivity extends ActionBarActivity {
          */
         for(UserAnswer answer: answers){
 
-            if(answer.isCurrent() && (answer.getAnswer() != Answer.NA)){
+            if(answer.isCurrent() && answer.getAnswer() != Answer.NA && answer.getAnswer() != Answer.U){
 
                 //If use has answered yes
                 if(answer.getAnswer() == Answer.Y) score[1]++;
-
                 score[0]++;
 
             }
