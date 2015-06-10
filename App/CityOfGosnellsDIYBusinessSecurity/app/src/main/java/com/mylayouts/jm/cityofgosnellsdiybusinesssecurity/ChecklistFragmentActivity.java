@@ -207,6 +207,8 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             e.printStackTrace();
         }
 */
+        GlobalChecklist globalChecklist = (GlobalChecklist) getApplication();
+        globalChecklist.setTheOneChecklist(theOneChecklist);
         Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }

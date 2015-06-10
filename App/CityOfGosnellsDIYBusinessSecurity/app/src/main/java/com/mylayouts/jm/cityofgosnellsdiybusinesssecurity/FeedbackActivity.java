@@ -15,10 +15,12 @@ import java.util.ArrayList;
 public class FeedbackActivity extends ActionBarActivity {
 
     TextView txtScore;
+    TextView txtPercent;
     Checklist theOneChecklist;
     SharedPreferences prefs;
     int themeValue;
     ImageView lockImage;
+    double percentage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class FeedbackActivity extends ActionBarActivity {
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         lockImage = (ImageView) findViewById(R.id.lock_image);
-
+        txtPercent = (TextView) findViewById(R.id.percentage);
         /*
         //Set global object
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
@@ -52,29 +54,42 @@ public class FeedbackActivity extends ActionBarActivity {
         //Score si the total number of questions user has answered
         int[] score = getUserScore();
 
+        /*
+            For testing only
+
+        score[0] = 2;
+        score[1] = 1;
+        */
+
 
         /*
             Set Lock closed image is users score is > 90
             Set to unlocked otherwise
-         */
 
-        if ((double)(score[1])/(double)(score[0]) >= 0.9){
+            Set the Percentage in the image
+         */
+        percentage = (double)(score[1])/(double)(score[0]);
+
+        if (percentage >= 0.9){
 
             //Set to locked image
             lockImage.setImageResource(R.drawable.lock_closed);
 
         }else{
 
-            lockImage.setBackgroundResource(R.drawable.lock_closed);
+            lockImage.setBackgroundResource(R.drawable.lock_open);
 
         }
+
+        // Sets the text
+        txtPercent.setText(String.format("%%%2.0f",percentage * 100));
 
         /*
         list = (ListView) findViewById(R.id.listView);
         */
 
         //Display Score
-        txtScore.setText("Your Total Score: " +  score[1] + " out of " + score[0]);
+        txtScore.setText(score[1] + " out of " + score[0]);
 
        /* // Load previous checklist from file
         fileStore = new FileStore();
