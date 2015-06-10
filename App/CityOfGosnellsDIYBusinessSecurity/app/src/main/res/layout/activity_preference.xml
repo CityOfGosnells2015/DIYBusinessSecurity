@@ -75,7 +75,8 @@
             android:text="Letter from the mayor"
             android:id="@+id/letterMayor"
             android:layout_marginLeft="10dp"
-            android:onClick="showLetter"/>
+            android:onClick="showLetter"
+            android:clickable="true" />
 
     </LinearLayout>
 

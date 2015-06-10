@@ -85,7 +85,7 @@ public class PreferenceActivity extends ActionBarActivity {
     }
 
     //Set preference for text size
-    public void changeTextSize(){
+    public void changeTextSize(View v){
         int largeInt = 0;
 
         if(textSizeSwitch.isChecked()){
@@ -97,7 +97,7 @@ public class PreferenceActivity extends ActionBarActivity {
 
     }
 
-    public void showLetter(){
+    public void showLetter(View v){
         Intent intent = new Intent(this, MayorLetter.class);
         intent.putExtra("textValue",themeValue);
         startActivity(intent);
