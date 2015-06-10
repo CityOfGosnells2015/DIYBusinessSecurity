@@ -1,18 +1,13 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -29,15 +24,15 @@ public class ChecklistFragment extends Fragment {
     private View myFragmentView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_checklist, container, false);
 
         listview = (ListView) rootView.findViewById(R.id.fraglist);
         adapter = new ChecklistAdapter(getActivity().getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(category));
         listview.setAdapter(adapter);
-    RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.activity_checklist_fragment, container, false);
+        RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.activity_checklist_fragment, container, false);
 
         return rootView;
 
@@ -45,7 +40,7 @@ public class ChecklistFragment extends Fragment {
     }
 
 
-   // R.id.btnSaveCheckList.addClickListener()
+    // R.id.btnSaveCheckList.addClickListener()
 
     public void saveAnswers() {
 
@@ -111,14 +106,14 @@ public class ChecklistFragment extends Fragment {
         return true;
     }
 
-public void button(){
+    public void button(){
 
         Button myButton = new Button(getActivity());
 
 
 
         myButton.setText("Push Me");
-     //   LinearLayout layout = (LinearLayout) ll.findViewById(R.id.btnSaveCheckList);
+        //   LinearLayout layout = (LinearLayout) ll.findViewById(R.id.btnSaveCheckList);
         //layout.addView(myButton);
     }
 

@@ -119,8 +119,7 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
 
         //Move to Checklist Activity
         else if (v.getId() == R.id.btnChecklist){
-            //Intent intent = new Intent(this, ChecklistFragmentActivity.class);
-            Intent intent = new Intent(this, FeedbackActivity.class);
+            Intent intent = new Intent(this, ChecklistFragmentActivity.class);
             intent.putExtra("textValue",themeValue);
             startActivity(intent);
         }
