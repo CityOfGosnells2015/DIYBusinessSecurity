@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FeedbackActivity extends ActionBarActivity {
@@ -49,16 +51,16 @@ public class FeedbackActivity extends ActionBarActivity {
         GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
 
-        //Get extras
-        int score = getIntent().getIntExtra("score",0);
+        //Get Users last score
+        int[] score = getUserScore();
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         list = (ListView) findViewById(R.id.listView);
 
         //Display Score
-        txtScore.setText(String.valueOf(score)+"%");
+        txtScore.setText("Your Total Score: " +  score[1] + " out of " + score[0]);
 
-        // Load previous checklist from file
+       /* // Load previous checklist from file
         fileStore = new FileStore();
         try {
             logChecklist = fileStore.loadLogFile("Log_Checklist.dat", FeedbackActivity.this);
@@ -66,7 +68,7 @@ public class FeedbackActivity extends ActionBarActivity {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        } */
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_list_item_1, logChecklist);
         list.setAdapter(adapter);
@@ -138,5 +140,55 @@ public class FeedbackActivity extends ActionBarActivity {
     public void goToMenuActivity(View v){
         Intent intent = new Intent(FeedbackActivity.this, MenuActivity.class);
         startActivity(intent);
+    }
+
+    /*
+        Get a users score based on their answers for the checklist
+
+        Score calculated in the feedback activity as user can enter the feedback
+        activity and receive the score straight from their last checklist
+        without having to repeat the checklist
+     */
+
+    /**
+     * Returns a users score to their most recent checklist
+     * (Stored in the global variable) and returns the total number
+     * of used questions
+     *
+     *
+     */
+    public int[] getUserScore(){
+
+        int[] score = {0,0};
+        ArrayList<UserAnswer> answers;
+
+        // Gets checklist from global Variables
+        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
+        theOneChecklist = globalChecklist.getTheOneChecklist();
+
+        // Gets list of users answers from the global variables
+        answers =  theOneChecklist.getUserAnswer();
+
+        /*
+            Loops through each answer
+
+            Increments total if answer is answer isCurrent && isn't not applicable
+            Increments correct if user has answered yes
+         */
+        for(UserAnswer answer: answers){
+
+            if(answer.isCurrent() && (answer.getAnswer() != Answer.NA)){
+
+                //If use has answered yes
+                if(answer.getAnswer() == Answer.Y) score[1]++;
+
+                score[0]++;
+
+            }
+
+        }
+
+        return score;
+
     }
 }

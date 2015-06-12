@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Global Checklist
  *
- * Stores a Checklist that can be used by all activitys
+ * Stores a Checklist that can be used by all activity
  *
  * Created by 041401076 on 28/04/2015.
  * @author James McNeil
