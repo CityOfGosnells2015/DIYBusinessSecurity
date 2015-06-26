@@ -20,8 +20,7 @@ public class EditNumberActivity extends ActionBarActivity {
     private int elemPosition = -1;
     private FileManager fm = new FileManager();
     private ArrayList<Link> numbersList = new ArrayList();
-    private EditText txtName;
-    private EditText txtPhone;
+    private EditText txtName, txtWebPage, txtPhone;
     SharedPreferences prefs;
     int themeValue;
 
@@ -37,14 +36,12 @@ public class EditNumberActivity extends ActionBarActivity {
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set layout for activity
         setContentView(R.layout.activity_edit_number);
 
         txtName = (EditText)findViewById(R.id.txtName);
         txtPhone = (EditText)findViewById(R.id.txtPhone);
+        txtWebPage = (EditText)findViewById(R.id.txtWebPage);
 
         elemPosition = getIntent().getIntExtra("elemPosition",-1);
 
@@ -53,6 +50,8 @@ public class EditNumberActivity extends ActionBarActivity {
 
             txtName.setText(numbersList.get(elemPosition).getName());
             txtPhone.setText(numbersList.get(elemPosition).getPhone());
+            txtWebPage.setText(numbersList.get(elemPosition).getWebPage());
+
 
         }
     }
@@ -92,6 +91,7 @@ public class EditNumberActivity extends ActionBarActivity {
         //Updating arrayList
         numbersList.get(elemPosition).setName(txtName.getText().toString());
         numbersList.get(elemPosition).setPhone(txtPhone.getText().toString());
+        numbersList.get(elemPosition).setWebPage(txtWebPage.getText().toString());
 
         if(fm.deleteFile(this)){//Delete the file
             //Create a new file and add each element again
@@ -122,5 +122,12 @@ public class EditNumberActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), "Sorry, Try again!",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MyNumbersActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }

@@ -17,8 +17,7 @@ public class AddNumberActivity extends ActionBarActivity {
 
     private FileManager fileManager = new FileManager();
     private Link myNumber = new Link();
-    private EditText txtName;
-    private EditText txtPhone;
+    private EditText txtName,txtPhone,txtWebPage;
     SharedPreferences prefs;
     int themeValue;
 
@@ -33,14 +32,12 @@ public class AddNumberActivity extends ActionBarActivity {
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set layout for activity
         setContentView(R.layout.activity_add_number);
 
         txtName = (EditText)findViewById(R.id.txtName);
         txtPhone = (EditText)findViewById(R.id.txtPhone);
+        txtWebPage = (EditText)findViewById(R.id.txtWebPage);
     }
 
 
@@ -75,6 +72,7 @@ public class AddNumberActivity extends ActionBarActivity {
     public void saveMyNumber(View v){
         myNumber.setName(txtName.getText().toString());
         myNumber.setPhone(txtPhone.getText().toString());
+        myNumber.setWebPage(txtWebPage.getText().toString());
 
         if(fileManager.writeOnFile(myNumber,this, "MyNumbers.txt")){
             Intent intent = new Intent(this, MyNumbersActivity.class);
@@ -83,6 +81,13 @@ public class AddNumberActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), "Sorry, Try again!",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MyNumbersActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }
 

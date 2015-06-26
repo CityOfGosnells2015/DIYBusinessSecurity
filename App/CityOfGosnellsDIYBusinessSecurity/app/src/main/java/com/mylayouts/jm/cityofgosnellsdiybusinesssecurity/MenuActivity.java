@@ -30,10 +30,6 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         //Set layout for activity
         setContentView(R.layout.activity_menu);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         preferenceButton = (Button) findViewById(R.id.btnPreference);
         preferenceButton.setOnClickListener(this);
 
@@ -68,19 +64,12 @@ public class MenuActivity extends ActionBarActivity implements View.OnClickListe
         Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
-                intent.putExtra("textValue",themeValue);
-                startActivity(intent);
-                return true;
 
             case R.id.action_about:
                 intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);

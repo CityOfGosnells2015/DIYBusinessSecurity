@@ -5,14 +5,25 @@
     tools:context=".MenuActivity"
     android:gravity="center">
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:background="#0095ff"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:background="@drawable/orange_bar"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/topBar" />
+        android:textAlignment="center"
+        android:text="MENU"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp" />
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/blue_bar"
+        android:id="@+id/topBar"
+        android:layout_below="@+id/imageButton" />
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -28,14 +39,14 @@
             android:id="@+id/btnImportantNumbers"
             android:background="@drawable/ic_important"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnNotification"
             android:background="@drawable/ic_notifications"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 
     </LinearLayout>
@@ -54,14 +65,14 @@
             android:id="@+id/btnPreference"
             android:background="@drawable/ic_preferences"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnLink"
             android:background="@drawable/ic_links"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 
     </LinearLayout>
@@ -80,22 +91,22 @@
             android:id="@+id/btnChecklist"
             android:background="@drawable/ic_checklist"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnHelp"
             android:background="@drawable/ic_emergency"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 
     </LinearLayout>
 
     <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#0095ff"
+        android:background="@drawable/blue_bar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

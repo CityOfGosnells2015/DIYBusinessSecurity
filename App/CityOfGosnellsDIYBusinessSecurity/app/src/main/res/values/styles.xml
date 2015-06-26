@@ -6,6 +6,8 @@
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AppThemeLargeText">
@@ -15,9 +17,9 @@
 
     <!-- Action bar theme -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">@color/orange</item>
+        <item name="android:background">@drawable/gosnells_bar</item>
         <!-- Support library compatibility -->
-        <item name="background">@color/orange</item>
+        <item name="background">@drawable/gosnells_bar</item>
     </style>
 
     <style name="checklistTheme" parent="@android:style/Theme.Holo">

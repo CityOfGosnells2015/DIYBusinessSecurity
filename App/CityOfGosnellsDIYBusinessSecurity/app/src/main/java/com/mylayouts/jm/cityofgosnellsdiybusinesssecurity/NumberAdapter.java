@@ -39,6 +39,7 @@ public class NumberAdapter extends ArrayAdapter<Link> {
 
         TextView txtTitle = (TextView) view.findViewById(R.id.nameNumber);
         ImageView iconPhone = (ImageView) view.findViewById(R.id.phoneIcon);
+        ImageView iconLink = (ImageView) view.findViewById(R.id.linkIcon);
         ImageView iconEdit = (ImageView) view.findViewById(R.id.editIcon);
 
         //Set TextView
@@ -59,6 +60,24 @@ public class NumberAdapter extends ArrayAdapter<Link> {
                 } catch (Exception ex) {
                     Toast.makeText(getContext(),
                             "Call failed, please try again later.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //Set ImageView website
+        final String website = mData.get(position).getWebPage();
+        iconLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View mView) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                webIntent.setData(Uri.parse("http://" + website));
+
+                try {
+                    context.startActivity(webIntent);
+                } catch (Exception ex) {
+                    Toast.makeText(getContext(),
+                            "Link failed, please try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

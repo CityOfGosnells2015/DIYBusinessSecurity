@@ -5,14 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".PreferenceActivity">
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:background="#0095ff"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:background="@drawable/orange_arrow_bar"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/topBar" />
+        android:text="PREFERENCES"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:onClick="showMenu" />
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/blue_bar"
+        android:id="@+id/topBar"
+        android:layout_below="@+id/imageButton" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -102,10 +114,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#0095ff"
+        android:background="@drawable/blue_bar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

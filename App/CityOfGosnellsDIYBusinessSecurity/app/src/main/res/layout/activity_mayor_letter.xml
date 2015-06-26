@@ -3,15 +3,26 @@
     android:layout_height="match_parent"
     tools:context=".MayorLetter">
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:background="#0095ff"
-        android:weightSum="1"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:background="@drawable/orange_arrow_bar"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/topBar" />
+        android:text="LETTER FROM THE MAYOR"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:paddingLeft="40dp"
+        android:onClick="showMenu" />
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/blue_bar"
+        android:id="@+id/topBar"
+        android:layout_below="@+id/imageButton" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -34,9 +45,9 @@
     </ScrollView>
 
     <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#0095ff"
+        android:background="@drawable/blue_bar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

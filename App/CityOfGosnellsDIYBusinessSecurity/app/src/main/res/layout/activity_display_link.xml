@@ -9,7 +9,8 @@
         android:id="@+id/nameLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text value"/>
+        android:text="Text value"
+        android:layout_centerVertical="true" />
 
     <ImageView
         android:id="@+id/linkIcon"

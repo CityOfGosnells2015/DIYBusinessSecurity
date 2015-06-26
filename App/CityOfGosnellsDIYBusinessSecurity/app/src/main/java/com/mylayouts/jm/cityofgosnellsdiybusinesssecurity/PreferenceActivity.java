@@ -33,9 +33,6 @@ public class PreferenceActivity extends ActionBarActivity {
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set layout for activity
         setContentView(R.layout.activity_preference);
 
@@ -66,12 +63,6 @@ public class PreferenceActivity extends ActionBarActivity {
         Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
-                intent.putExtra("textValue",themeValue);
-                startActivity(intent);
-                return true;
-
             case R.id.action_about:
                 intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
@@ -99,6 +90,13 @@ public class PreferenceActivity extends ActionBarActivity {
 
     public void showLetter(View v){
         Intent intent = new Intent(this, MayorLetter.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
         intent.putExtra("textValue",themeValue);
         startActivity(intent);
     }

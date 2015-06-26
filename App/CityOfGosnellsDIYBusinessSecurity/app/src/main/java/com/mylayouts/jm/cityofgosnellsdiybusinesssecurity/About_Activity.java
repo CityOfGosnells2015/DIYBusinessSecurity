@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class About_Activity extends ActionBarActivity {
@@ -26,9 +27,6 @@ public class About_Activity extends ActionBarActivity {
 
         //Set layout for activity
         setContentView(R.layout.activity_about);
-
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -61,5 +59,12 @@ public class About_Activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }

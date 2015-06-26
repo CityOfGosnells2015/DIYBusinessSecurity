@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MayorLetter extends ActionBarActivity {
@@ -23,9 +24,6 @@ public class MayorLetter extends ActionBarActivity {
 
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
-
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Set layout for activity
         setContentView(R.layout.activity_mayor_letter);
@@ -45,21 +43,20 @@ public class MayorLetter extends ActionBarActivity {
         Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
-                intent.putExtra("textValue",themeValue);
-                startActivity(intent);
-                return true;
-
             case R.id.action_about:
                 intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TableLayout;
@@ -32,10 +33,7 @@ public class Help_Activity extends ActionBarActivity {
         themeValue = prefs.getInt("textSize",0);
 
         //Loading the correct theme application
-        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
-
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ChangeTheme.onActivityCreateSetTheme(this, themeValue);
 
         //Set layout for activity
         setContentView(R.layout.activity_help_);
@@ -61,12 +59,6 @@ public class Help_Activity extends ActionBarActivity {
         Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
-                intent.putExtra("textValue",themeValue);
-                startActivity(intent);
-                return true;
-
             case R.id.action_about:
                 intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
@@ -75,5 +67,12 @@ public class Help_Activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 }

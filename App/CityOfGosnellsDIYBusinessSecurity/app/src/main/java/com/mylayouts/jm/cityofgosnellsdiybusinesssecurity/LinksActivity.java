@@ -2,19 +2,12 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -36,9 +29,6 @@ public class LinksActivity extends ActionBarActivity {
 
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
-
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Set layout for activity
         setContentView(R.layout.activity_links);
@@ -65,27 +55,20 @@ public class LinksActivity extends ActionBarActivity {
         Intent intent;
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                intent = new Intent(this, MenuActivity.class);
-                intent.putExtra("textValue",themeValue);
-                startActivity(intent);
-                return true;
-
             case R.id.action_about:
                 intent = new Intent(this, About_Activity.class);
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void addMyLinks(View v){
-        Intent intent = new Intent(LinksActivity.this, AddLinkActivity.class);
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("textValue",themeValue);
         startActivity(intent);
     }
-
 }

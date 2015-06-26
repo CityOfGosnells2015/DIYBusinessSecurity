@@ -35,9 +35,6 @@ public class NotificationActivity extends ActionBarActivity {
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set layout for activity
         setContentView(R.layout.activity_notification);
 
@@ -100,6 +97,13 @@ public class NotificationActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMenu(View v){
+        Intent intent;
+        intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
     }
 
     public void onDailyNotification(View view) {
