@@ -3,14 +3,15 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <TextView
         android:id="@+id/TxtQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#009A57"
         android:text="Question" />
 
     <LinearLayout
@@ -19,26 +20,23 @@
 
         <Switch
             android:id="@+id/mySwitch"
-            android:paddingLeft="2px"
-            android:layout_marginRight="2px"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:thumb="@drawable/button_effect"
-            android:layout_weight="0.5"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp" />
 
         <Button
             android:id="@+id/myButton"
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:paddingLeft="2px"
-            android:layout_marginRight="2px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_na_effect"
             android:thumb="@drawable/button_na_effect"
             android:onClick="btnNAClick"
-            android:layout_weight="0.5"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
 </LinearLayout>

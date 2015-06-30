@@ -35,7 +35,7 @@
     <string name="title_activity_edit_link">EDIT LINKS</string>
     <string name="title_activity_checklist">ChecklistActivity</string>
     <string name="title_activity_feedback">FeedbackActivity</string>
-    <string name="title_activity_checklist_fragment">CHECKLIST</string>
+    <string name="title_activity_checklist_fragment"></string>
     <string name="title_activity_my_numbers"></string>
     <string name="title_activity_add_number"></string>
     <string name="title_activity_edit_number"></string>

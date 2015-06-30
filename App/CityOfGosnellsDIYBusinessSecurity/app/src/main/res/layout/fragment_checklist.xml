@@ -7,19 +7,9 @@
     <ListView
         android:id="@+id/fraglist"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         tools:listitem="@layout/activity_display_checklist"
-        android:layout_weight="1"
-        android:layout_above="@+id/btnSave"/>
-
-    <Button
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/btnSave"
-        android:onClick="saveAnswers"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="top"
+        android:divider="@drawable/dotted_line" />
 
 </FrameLayout>
