@@ -55,11 +55,17 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         viewPager.setAdapter(mAdapter);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        // Adding Tabs
+       /*
+            Adding Checklist Tabs to The tab bar
+        */
         for (String tab_name : theOneChecklist.listCategory()) {
             actionBar.addTab(actionBar.newTab().setText(tab_name)
                     .setTabListener(this));
         }
+        /*
+            Add the last tab (Save Tab)
+         */
+        actionBar.addTab(actionBar.newTab().setText("Save").setTabListener(this));
 
 
         /**
@@ -99,14 +105,6 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         viewPager.setCurrentItem(tab.getPosition());
 
 
-    }
-
-    public void saveAnswers(View v) {
-
-        GlobalChecklist globalChecklist = (GlobalChecklist) getApplication();
-        globalChecklist.setTheOneChecklist(theOneChecklist);
-        Intent intent = new Intent(this, FeedbackActivity.class);
-        startActivity(intent);
     }
 
 

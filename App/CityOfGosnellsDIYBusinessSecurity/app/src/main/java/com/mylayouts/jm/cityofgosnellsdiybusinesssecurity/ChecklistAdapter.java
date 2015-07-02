@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -49,9 +51,10 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
 
         TextView txtQuestion = (TextView) view.findViewById(R.id.TxtQuestion);
 
-        final LinearLayout oneGroup = (LinearLayout) view.findViewById(R.id.LinearLayout1);
+        final RelativeLayout oneGroup = (RelativeLayout) view.findViewById(R.id.LinearLayout1);
         final Button naButton = (Button) view.findViewById(R.id.myButton);
         final Switch selction = (Switch) view.findViewById(R.id.mySwitch);
+        final ImageView sideBar = (ImageView)  view.findViewById(R.id.side_bar);
 
         Button btnRadio;
         Switch ansSwitch;
@@ -70,17 +73,30 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
             na = false;
             oneGroup.setBackgroundColor(Color.WHITE);
             naButton.setBackgroundResource((R.drawable.ic_na));
+            sideBar.setBackgroundColor(Color.WHITE);
 
         }else if(userAnswer.getAnswer().equals(Answer.N)){
 
             selction.setChecked(false);
+            sideBar.setBackgroundColor(Color.WHITE);
 
         }else if(userAnswer.getAnswer().equals(Answer.NA)){
             btnRadio = (Button) view.findViewById(R.id.myButton);
             oneGroup.setBackgroundColor(Color.LTGRAY);
             na = true;
             naButton.setBackgroundResource((R.drawable.ic_na_green));
+            sideBar.setBackgroundColor(Color.LTGRAY);
         }
+
+        else if(userAnswer.getAnswer().equals(Answer.U)){
+
+            /*
+                SET BACK TO RED
+             */
+            sideBar.setBackgroundColor(Color.RED);
+
+        }
+
 
 
         naButton.setOnClickListener(new View.OnClickListener() {
@@ -92,12 +108,14 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                     naButton.setBackgroundResource((R.drawable.ic_na));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.N);
                     oneGroup.setBackgroundColor(Color.WHITE);
+                    sideBar.setBackgroundColor(Color.WHITE);
                 }
 
                 if (na == true) {
                     naButton.setBackgroundResource((R.drawable.ic_na_green));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.NA);
                     oneGroup.setBackgroundColor(Color.LTGRAY);
+                    sideBar.setBackgroundColor(Color.LTGRAY);
                     selction.setChecked(false);
                 }
             }
@@ -112,11 +130,13 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                     na = false;
                     naButton.setBackgroundResource((R.drawable.ic_na));
                     oneGroup.setBackgroundColor(Color.WHITE);
+                    sideBar.setBackgroundColor(Color.WHITE);
 
                 }
 
                 else if (selction.isChecked() == false){
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.N);
+                    sideBar.setBackgroundColor(Color.WHITE);
 
                 }
             }

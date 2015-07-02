@@ -33,9 +33,6 @@ public class FeedbackActivity extends ActionBarActivity {
         //Loading the correct theme application
         ChangeTheme.onActivityCreateSetTheme(this,themeValue);
 
-        //Set the back button at ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set layout for activity
         setContentView(R.layout.activity_feedback);
 
