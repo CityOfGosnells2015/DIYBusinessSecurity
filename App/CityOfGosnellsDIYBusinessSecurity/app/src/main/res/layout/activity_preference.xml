@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Letter from the mayor"
+            android:text="Letter From The Mayor"
             android:id="@+id/letterMayor"
             android:layout_marginLeft="10dp"
             android:onClick="showLetter"

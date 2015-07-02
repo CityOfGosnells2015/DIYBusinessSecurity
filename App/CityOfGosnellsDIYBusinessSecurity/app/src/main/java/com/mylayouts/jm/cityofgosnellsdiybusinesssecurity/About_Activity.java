@@ -54,8 +54,6 @@ public class About_Activity extends ActionBarActivity {
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);

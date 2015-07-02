@@ -54,8 +54,6 @@ public class BombThreatActivity extends ActionBarActivity {
                 intent.putExtra("textValue",themeValue);
                 startActivity(intent);
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -63,7 +61,7 @@ public class BombThreatActivity extends ActionBarActivity {
 
     public void showMenu(View v){
         Intent intent;
-        intent = new Intent(this, MenuActivity.class);
+        intent = new Intent(this, PreferenceActivity.class);
         intent.putExtra("textValue",themeValue);
         startActivity(intent);
     }

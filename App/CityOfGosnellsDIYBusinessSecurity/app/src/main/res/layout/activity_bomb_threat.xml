@@ -3,7 +3,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:background="@drawable/orange_arrow_bar"
@@ -11,9 +11,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:text="BOMB THREAT CHECKLIST"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="25dp"
-        android:paddingLeft="40dp"
         android:onClick="showMenu" />
 
     <LinearLayout android:layout_width="fill_parent"
@@ -23,47 +23,82 @@
         android:id="@+id/topBar"
         android:layout_below="@+id/imageButton" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/topBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
-
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
-        android:id="@+id/blockName"
-        android:layout_below="@+id/line1">
+        android:id="@+id/blockGeneral"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/topBar"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:"
-            android:id="@+id/textView3"
-            android:layout_marginLeft="10dp" />
+            android:text="General Questions"
+            android:id="@+id/textView1"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
-        <EditText
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_dottedline"
+            android:layout_below="@+id/textView1"
+            android:id="@+id/subline1"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:id="@+id/txtName"
-            android:background="#d9d2ce"
-            android:layout_weight="0.80"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp" />
+            android:text="What is it?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="When is the bomb going to explode?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="When will the substance be released?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where has it been placed?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="When did you put it there?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How will the bomb explode?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockName"
+        android:layout_below="@+id/blockGeneral"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/line2"
@@ -72,27 +107,92 @@
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
-        android:id="@+id/blockPhone"
+        android:id="@+id/blockCaller"
+        android:gravity="center_horizontal"
         android:layout_below="@+id/line2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone:"
-            android:id="@+id/textView4"
-            android:layout_marginLeft="10dp" />
+            android:text="Caller’s Voice"
+            android:id="@+id/textView2"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
-        <EditText
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_dottedline"
+            android:layout_below="@+id/textView2"
+            android:id="@+id/subline2"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtPhone"
-            android:background="#d9d2ce"
-            android:layout_weight="0.80"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp"
-            android:inputType="phone" />
+            android:text="Accent"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Any impediment?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voice (Loud, Normal or Soft)?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speech (Fast, Normal, Slow)?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diction (Clear, Normal, Muffled)?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manner (Calm, Normal, Emotional)?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did you recognise the caller?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If so, who do you think it is?"
+            android:gravity="left"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Was the caller familiar with the area?"
+            android:gravity="left"
+            android:layout_gravity="left" />
 
     </LinearLayout>
 
@@ -100,68 +200,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockPhone"
+        android:layout_below="@+id/blockGeneral"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/line3"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/blockWebsite"
-        android:layout_below="@+id/line3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WebSite:"
-            android:id="@+id/textView5"
-            android:layout_marginLeft="10dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtWebPage"
-            android:background="#d9d2ce"
-            android:layout_weight="0.80"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp"
-            android:inputType="textUri" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockWebsite"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line4"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
-
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/blockButtons"
-        android:layout_above="@+id/line6"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_save"
-            android:id="@+id/btnSave"
-            android:onClick="saveMyNumber"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp" />
-
-    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
