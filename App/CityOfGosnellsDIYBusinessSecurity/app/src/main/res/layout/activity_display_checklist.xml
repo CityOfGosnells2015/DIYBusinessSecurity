@@ -36,7 +36,7 @@
             android:thumb="@drawable/button_na_effect"
             android:onClick="btnNAClick"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="170dp"/>
     </LinearLayout>
 
 </LinearLayout>
