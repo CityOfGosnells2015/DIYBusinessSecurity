@@ -4,7 +4,7 @@
     tools:context=".MayorLetter">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:background="@drawable/orange_arrow_bar"
@@ -12,9 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:text="LETTER FROM THE MAYOR"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="25dp"
-        android:paddingLeft="40dp"
         android:onClick="showMenu" />
 
     <LinearLayout android:layout_width="fill_parent"
@@ -35,13 +35,36 @@
         android:layout_below="@+id/topBar"
         android:layout_above="@+id/borrowBar">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/letter_from_mayor"
-            android:id="@+id/textView"
-            android:padding="5dp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/letter_from_mayor"
+                android:id="@+id/textView"
+                android:padding="5dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/signiture"
+                android:id="@+id/mayor_sign" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/letter_from_mayor_foot"
+                android:id="@+id/letter_footer"
+                android:padding="5dp" />
+
+        </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout android:layout_width="fill_parent"

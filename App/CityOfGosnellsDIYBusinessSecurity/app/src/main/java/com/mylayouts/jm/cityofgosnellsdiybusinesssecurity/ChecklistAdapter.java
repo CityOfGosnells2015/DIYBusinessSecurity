@@ -70,6 +70,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         if(userAnswer.getAnswer().equals(Answer.Y)){
 
             selction.setChecked(true);
+            selction.setEnabled(true);
             na = false;
             oneGroup.setBackgroundColor(Color.WHITE);
             naButton.setBackgroundResource((R.drawable.ic_na));
@@ -78,6 +79,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
         }else if(userAnswer.getAnswer().equals(Answer.N)){
 
             selction.setChecked(false);
+            selction.setEnabled(true);
             sideBar.setBackgroundColor(Color.WHITE);
 
         }else if(userAnswer.getAnswer().equals(Answer.NA)){
@@ -86,6 +88,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
             na = true;
             naButton.setBackgroundResource((R.drawable.ic_na_green));
             sideBar.setBackgroundColor(Color.LTGRAY);
+            selction.setEnabled(false);
         }
 
         else if(userAnswer.getAnswer().equals(Answer.U)){
@@ -94,11 +97,14 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                 SET BACK TO RED
              */
             sideBar.setBackgroundColor(Color.RED);
-
+            selction.setChecked(false);
         }
 
 
 
+        /*
+            Listener for N/A button
+         */
         naButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -107,6 +113,8 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                 if (na == false) {
                     naButton.setBackgroundResource((R.drawable.ic_na));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(), Answer.N);
+                    selction.setEnabled(true);
+                    selction.setChecked(false);
                     oneGroup.setBackgroundColor(Color.WHITE);
                     sideBar.setBackgroundColor(Color.WHITE);
                 }
@@ -114,6 +122,7 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                 if (na == true) {
                     naButton.setBackgroundResource((R.drawable.ic_na_green));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.NA);
+                    selction.setEnabled(false);
                     oneGroup.setBackgroundColor(Color.LTGRAY);
                     sideBar.setBackgroundColor(Color.LTGRAY);
                     selction.setChecked(false);
