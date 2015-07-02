@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:theme="@style/AppTheme"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:paddingRight="5dp"
+    android:id="@+id/LinearLayout1">
 
-    <TextView
-        android:id="@+id/TxtQuestion"
-        android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Question" />
+        android:orientation="horizontal"
+        android:id="@+id/blockQuestion">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="#00ff0007"
+            android:id="@+id/side_bar" />
 
-        <Switch
-            android:id="@+id/mySwitch"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/button_effect"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp" />
+            android:orientation="vertical"
+            android:id="@+id/blockText">
 
-        <Button
-            android:id="@+id/myButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/button_na_effect"
-            android:thumb="@drawable/button_na_effect"
-            android:onClick="btnNAClick"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="170dp"/>
+            <TextView
+                android:id="@+id/TxtQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Question" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <Switch
+                    android:id="@+id/mySwitch"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/button_effect"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp" />
+
+                <Button
+                    android:id="@+id/myButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="170dp"
+                    android:background="@drawable/button_na_effect"
+                    android:thumb="@drawable/button_na_effect"
+                    android:onClick="btnNAClick"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
 
 
+</RelativeLayout>
 
