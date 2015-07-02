@@ -47,6 +47,7 @@
         </activity>
 
         <receiver android:name=".NotificationReceiver" />
+
         <activity
             android:name=".FeedbackActivity"
             android:label="@string/title_activity_feedback" >
@@ -79,6 +80,10 @@
         <activity
             android:name=".EditNumberActivity"
             android:label="@string/title_activity_edit_number" >
+        </activity>
+        <activity
+            android:name=".BombThreatActivity"
+            android:label="@string/title_activity_bomb_threat" >
         </activity>
     </application>
 

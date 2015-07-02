@@ -94,6 +94,12 @@ public class PreferenceActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void showBomb(View v){
+        Intent intent = new Intent(this, BombThreatActivity.class);
+        intent.putExtra("textValue",themeValue);
+        startActivity(intent);
+    }
+
     public void showMenu(View v){
         Intent intent;
         intent = new Intent(this, MenuActivity.class);

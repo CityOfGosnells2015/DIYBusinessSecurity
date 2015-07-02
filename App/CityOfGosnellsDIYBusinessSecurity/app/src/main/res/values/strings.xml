@@ -39,5 +39,6 @@
     <string name="title_activity_my_numbers"></string>
     <string name="title_activity_add_number"></string>
     <string name="title_activity_edit_number"></string>
+    <string name="title_activity_bomb_threat"></string>
 
 </resources>
