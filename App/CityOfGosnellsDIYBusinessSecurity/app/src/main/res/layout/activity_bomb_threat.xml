@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:nestedScrollingEnabled="false">
 
     <Button
         android:layout_width="fill_parent"
@@ -23,201 +24,670 @@
         android:id="@+id/topBar"
         android:layout_below="@+id/imageButton" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1"
-        android:id="@+id/blockGeneral"
-        android:gravity="center_horizontal"
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/topBar"
-        android:layout_marginTop="10dp">
+        android:layout_above="@+id/borrowBar">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="General Questions"
-            android:id="@+id/textView1"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:id="@+id/block1"
+            android:layout_below="@+id/topBar">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:background="@drawable/ic_dottedline"
-            android:layout_below="@+id/textView1"
-            android:id="@+id/subline1"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp" />
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockGeneral"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/block1"
+                android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="What is it?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="General Questions"
+                    android:id="@+id/textView1"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="When is the bomb going to explode?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView1"
+                    android:id="@+id/subline1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="When will the substance be released?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What is it?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Where has it been placed?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When is the bomb going to explode?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="When did you put it there?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When will the substance be released?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How will the bomb explode?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Where has it been placed?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When did you put it there?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockGeneral"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line2"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How will the bomb explode?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1"
-        android:id="@+id/blockCaller"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/line2">
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Caller’s Voice"
-            android:id="@+id/textView2"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textStyle="bold" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockGeneral"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:background="@drawable/ic_dottedline"
-            android:layout_below="@+id/textView2"
-            android:id="@+id/subline2"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp" />
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockCaller"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accent"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Caller’s Voice"
+                    android:id="@+id/textView2"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Any impediment?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView2"
+                    android:id="@+id/subline2"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voice (Loud, Normal or Soft)?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accent"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Speech (Fast, Normal, Slow)?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Any impediment?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diction (Clear, Normal, Muffled)?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voice (Loud, Normal or Soft)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Manner (Calm, Normal, Emotional)?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speech (Fast, Normal, Slow)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Did you recognise the caller?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diction (Clear, Normal, Muffled)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="If so, who do you think it is?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manner (Calm, Normal, Emotional)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Was the caller familiar with the area?"
-            android:gravity="left"
-            android:layout_gravity="left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Did you recognise the caller?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="If so, who do you think it is?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockGeneral"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line3"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Was the caller familiar with the area?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
 
+            </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_above="@+id/borrowBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line6"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockCaller"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockChemical"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chemical/Biological Threat"
+                    android:id="@+id/textView3"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView3"
+                    android:id="@+id/subline3"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What kind of substance is it?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How will the substance be released?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Is the substance a liquid, powder or gas?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockChemical"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line4"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockLanguage"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Threat Language"
+                    android:id="@+id/textView4"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView4"
+                    android:id="@+id/subline4"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Well Spoken (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Incoherent (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Irrational (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Taped (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Massage read by caller (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Abusive (Yes, No)?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockLanguage"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line5"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockBombThreat"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bomb Threat Questions"
+                    android:id="@+id/textView5"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView5"
+                    android:id="@+id/subline5"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What type of bomb is it?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What is in the bomb?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What will make the bomb explode?"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockBombThreat"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line6"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockBackground"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Background Noises"
+                    android:id="@+id/textView6"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView6"
+                    android:id="@+id/subline6"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Street Noises"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="House Noises"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aircraft"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voices"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Music"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Machinery"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Local Call"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STD Call"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockBackground"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line7"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockWording"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line7">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exact Wording of Threat"
+                    android:id="@+id/textView7"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView7"
+                    android:id="@+id/subline7"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sex of Caller (Male / Female)"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estimated Age of Caller:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_below="@+id/blockWording"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line8"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:id="@+id/blockCallTaken"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/line7">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Call Taken"
+                    android:id="@+id/textView8"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/ic_dottedline"
+                    android:layout_below="@+id/textView8"
+                    android:id="@+id/subline8"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration of Call:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number Called:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action Required:"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Call Reported Immediately to:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number:"
+                    android:gravity="left"
+                    android:layout_gravity="left" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/ic_dottedline"
+                android:layout_above="@+id/borrowBar"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/line11"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
