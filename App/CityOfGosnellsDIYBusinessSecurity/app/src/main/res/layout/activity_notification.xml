@@ -4,7 +4,7 @@
     tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.NotificationActivity">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:background="@drawable/orange_arrow_bar"
@@ -42,21 +42,30 @@
         android:id="@+id/blockDaily"
         android:layout_below="@+id/line1">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daily "
-            android:layout_marginLeft="10dp" />
+            android:layout_height="wrap_content">
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="On"
-            android:textOff="Off"
-            android:id="@+id/switchDailyButton"
-            android:onClick="onDailyNotification"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="180dp"/>
+            <TextView
+                android:id="@+id/txtDaily"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Daily "
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/switchDailyButton"/>
+
+            <Switch
+                android:id="@+id/switchDailyButton"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:textOn="On"
+                android:textOff="Off"
+                android:onClick="onDailyNotification"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -76,24 +85,32 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:id="@+id/blockWeekly"
-        android:layout_below="@+id/line2"
-        android:gravity="center_vertical|left">
+        android:layout_below="@+id/line2">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weekly "
-            android:layout_marginLeft="10dp" />
+            android:layout_height="wrap_content">
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="On"
-            android:textOff="Off"
-            android:id="@+id/switchWeeklyButton"
-            android:onClick="onWeeklyNotification"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="180dp"/>
+            <TextView
+                android:id="@+id/txtWeekly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Weekly "
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/switchWeeklyButton"/>
+
+            <Switch
+                android:id="@+id/switchWeeklyButton"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:textOn="On"
+                android:textOff="Off"
+                android:onClick="onWeeklyNotification"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -113,24 +130,32 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:id="@+id/blockMonthly"
-        android:layout_below="@+id/line3"
-        android:gravity="center_vertical|left">
+        android:layout_below="@+id/line3">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monthly "
-            android:layout_marginLeft="10dp" />
+            android:layout_height="wrap_content">
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="On"
-            android:textOff="Off"
-            android:id="@+id/switchMonthlyButton"
-            android:onClick="onMonthlyNotification"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="180dp"/>
+            <TextView
+                android:id="@+id/txtMonthly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Monthly "
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/switchMonthlyButton"/>
+
+            <Switch
+                android:id="@+id/switchMonthlyButton"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:textOn="On"
+                android:textOff="Off"
+                android:onClick="onMonthlyNotification"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
