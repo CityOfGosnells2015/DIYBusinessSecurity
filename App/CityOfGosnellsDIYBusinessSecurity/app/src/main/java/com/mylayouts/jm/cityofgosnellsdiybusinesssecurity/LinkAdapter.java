@@ -38,15 +38,10 @@ public class LinkAdapter extends ArrayAdapter<Link> {
         }
 
         TextView txtTitle = (TextView) view.findViewById(R.id.nameLink);
-        TextView txtURL = (TextView) view.findViewById(R.id.urlLink);
         ImageView iconLink = (ImageView) view.findViewById(R.id.linkIcon);
-        ImageView iconEdit = (ImageView) view.findViewById(R.id.editIcon);
 
         //Set TextView
         txtTitle.setText(mData.get(position).getName());
-
-        //Set URL text
-        txtURL.setText(mData.get(position).getWebPage());
 
         //Set ImageView website
         final String website = mData.get(position).getWebPage();
@@ -62,24 +57,6 @@ public class LinkAdapter extends ArrayAdapter<Link> {
                 } catch (Exception ex) {
                     Toast.makeText(getContext(),
                             "Link failed, please try again later.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        //Set ImageView edit
-        final int mPosition = position;
-        iconEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View mView) {
-                Intent intent = new Intent(context, EditLinkActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("elemPosition",mPosition);
-
-                try {
-                    context.startActivity(intent);
-                } catch (Exception ex) {
-                    Toast.makeText(getContext(),
-                            "Edit failed, please try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

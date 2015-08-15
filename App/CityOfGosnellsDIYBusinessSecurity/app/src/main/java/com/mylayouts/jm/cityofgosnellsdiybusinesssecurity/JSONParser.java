@@ -111,7 +111,7 @@ public class JSONParser {
         /*
             Variables
          */
-        ArrayList<Link> contactHash = new ArrayList<Link>();
+        ArrayList<Link> contactList = new ArrayList<Link>();
         JSONObject importNumbers = jsonFile.getJSONObject("ImportantPhoneNumbers");
         String keyValue;
         Iterator iterator = importNumbers.keys(); // Loads all the keys (Strings) from the JsonObject
@@ -123,17 +123,65 @@ public class JSONParser {
              */
             keyValue = iterator.next().toString();
 
-            contactHash.add(new Link(keyValue,importNumbers.getString(keyValue)));
+            contactList.add(new Link(keyValue,importNumbers.getString(keyValue)));
 
         }
 
         /*
-            Return hash map
+            Return List
          */
-        return  contactHash;
+        return  contactList;
 
 
     }
+
+
+    /**
+     * Reads the suppllied weblinks from the JSon Service
+     *
+     * @return ArrayList
+     * @throws JSONException
+     */
+    public ArrayList<Link> getWebLinks() throws JSONException {
+
+        /*
+            Variables
+         */
+        ArrayList<Link> webLinkList = new ArrayList<>();
+        JSONObject importNumbers = jsonFile.getJSONObject("Websites");
+        String keyValue;
+        Iterator iterator = importNumbers.keys(); // Loads all the keys (Strings) from the JsonObject
+        Link addLink;
+
+        while(iterator.hasNext()){
+
+            /*
+              Get Key and Corresponding
+             */
+            keyValue = iterator.next().toString();
+
+            /*
+                Add webpage and Name to link
+             */
+            addLink = new Link(keyValue);
+            addLink.setWebPage(importNumbers.getString(keyValue));
+
+            /*
+                Add to array
+             */
+            webLinkList.add(addLink);
+
+        }
+
+        /*
+            Return List
+         */
+        return  webLinkList;
+
+
+    }
+
+
 
     /**
      *

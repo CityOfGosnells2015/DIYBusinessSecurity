@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class LinksActivity extends ActionBarActivity {
 
-    ArrayList<Link> linksList = new ArrayList<Link>();
-    FileManager fileManager = new FileManager();
+    ArrayList<Link> linksList;
     SharedPreferences prefs;
     int themeValue;
 
@@ -28,12 +27,14 @@ public class LinksActivity extends ActionBarActivity {
         themeValue = prefs.getInt("textSize",0);
 
         //Loading the correct theme application
-        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
+        ChangeTheme.onActivityCreateSetTheme(this, themeValue);
 
         //Set layout for activity
         setContentView(R.layout.activity_links);
 
-        linksList = fileManager.readFile(LinksActivity.this, "MyImportantLinks.txt");
+        //Load links from the Global variables
+        GlobalChecklist globalChecklist = (GlobalChecklist) getApplication();
+        linksList = globalChecklist.getWebLinks();
 
         ListView listview = (ListView) findViewById(R.id.list1);
         LinkAdapter adapter = new LinkAdapter(getApplicationContext(), linksList);

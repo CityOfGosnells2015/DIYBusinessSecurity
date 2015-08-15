@@ -11,6 +11,9 @@ public class Link {
     private String phone;
     private String webPage;
 
+    /*
+        Constructors
+     */
     public Link() {
     }
 
@@ -19,6 +22,15 @@ public class Link {
         this.phone = phone;
     }
 
+    public Link(String name){
+        this.name = name;
+    }
+
+
+
+    /*
+        Get and Setters
+     */
     public String getName() {
         return name;
     }

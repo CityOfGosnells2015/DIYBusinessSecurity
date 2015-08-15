@@ -8,7 +8,11 @@ import java.util.HashMap;
 /**
  * Global Checklist
  *
- * Stores a Checklist that can be used by all activity
+ * Stores Global Variable to be used by multiple activites in the application
+ *
+ * theOneChecklist:  Checklist that can be used by all activity
+ * emergencyContacts: Stores phonenumbers.
+ * webLinks: Stores weblinks.
  *
  * Created by 041401076 on 28/04/2015.
  * @author James McNeil
@@ -17,7 +21,11 @@ public class GlobalChecklist extends Application {
 
     private Checklist theOneChecklist;
     private ArrayList<Link> emergencyContacts;
+    private ArrayList<Link> webLinks;
 
+    /*
+        Get and Set for Checklist
+     */
     public Checklist getTheOneChecklist(){
         return theOneChecklist;
     }
@@ -27,9 +35,24 @@ public class GlobalChecklist extends Application {
         this.theOneChecklist=theOneChecklist;
     }
 
+    /*
+        Get and set for Links
+     */
     public ArrayList<Link> getEmergencyContacts(){return emergencyContacts;}
 
     public void setEmergencyContacts(ArrayList<Link> emergencyContacts) {
         this.emergencyContacts = emergencyContacts;
+    }
+
+    /*
+        Get and set Weblinks
+     */
+
+    public ArrayList<Link> getWebLinks() {
+        return webLinks;
+    }
+
+    public void setWebLinks(ArrayList<Link> webLinks) {
+        this.webLinks = webLinks;
     }
 }

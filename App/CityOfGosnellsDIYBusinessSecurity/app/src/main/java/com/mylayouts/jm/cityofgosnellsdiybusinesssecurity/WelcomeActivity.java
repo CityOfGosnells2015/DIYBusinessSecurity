@@ -44,6 +44,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     ArrayList<Answer> userAnswers;
     Checklist theOneChecklist;
     GlobalChecklist globalChecklist;
+
     /*
     URL Of Checklist Data to be retrieved.
     */
@@ -238,6 +239,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 //Set Emergency contact
                 globalChecklist.setEmergencyContacts(jsonParser.getEmergencyContacts());
 
+                //Set weblinks
+                globalChecklist.setWebLinks(jsonParser.getWebLinks());
+
                 /*
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)
@@ -306,6 +310,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     }
 
     /**
+     *  No Network Propmt
+     *
+     *  Propmts User to connect to the intertnet if they are not
      *
      */
     protected void noNetworkErrorDialog() {
