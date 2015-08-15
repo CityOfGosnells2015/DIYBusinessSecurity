@@ -36,10 +36,32 @@
         android:layout_below="@+id/topBar"
         android:layout_above="@+id/borrowBar">
 
-        <TextView android:text="About Activity" android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This DIY Business Security App is a joint initiative between the City of Gosnells, WA Police and Central Institute of Technology.  The App provides practical advice on securing your business and protecting your staff and property."
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For more information about this App or any other Safe City Programs, please contact"
+                android:padding="5dp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Safe City Initiative\n9391 6022\nsafecity@gosnells.wa.gov.au\nwww.gosnells.wa.gov.au"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout android:layout_width="fill_parent"
