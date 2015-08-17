@@ -53,7 +53,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         mAdapter = new TabAdapter(getSupportFragmentManager(), theOneChecklist);
 
         viewPager.setAdapter(mAdapter);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
        /*
             Adding Checklist Tabs to The tab bar
@@ -77,7 +77,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+                //actionBar.setSelectedNavigationItem(position);
             }
 
             @Override
