@@ -50,7 +50,7 @@ public class LinkAdapter extends ArrayAdapter<Link> {
             public void onClick(View mView) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW);
                 webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                webIntent.setData(Uri.parse("http://" + website));
+                webIntent.setData(Uri.parse(website));
 
                 try {
                     context.startActivity(webIntent);

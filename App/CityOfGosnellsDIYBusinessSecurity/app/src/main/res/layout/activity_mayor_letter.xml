@@ -11,7 +11,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="THE MAYOR'S LETTER"
+        android:text="MAYOR LETTER"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="25dp"

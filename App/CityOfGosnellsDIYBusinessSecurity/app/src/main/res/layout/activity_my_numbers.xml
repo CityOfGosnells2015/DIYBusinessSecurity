@@ -11,7 +11,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="MY SECURITY NUMBERS"
+        android:text="SECURITY NUMBERS"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="25dp"
