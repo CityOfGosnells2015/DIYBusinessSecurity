@@ -84,10 +84,10 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
 
         }else if(userAnswer.getAnswer().equals(Answer.NA)){
             btnRadio = (Button) view.findViewById(R.id.myButton);
-            oneGroup.setBackgroundColor(Color.LTGRAY);
+            oneGroup.setBackgroundColor(Color.parseColor("#e5e5e5"));
             na = true;
             naButton.setBackgroundResource((R.drawable.ic_na_green));
-            sideBar.setBackgroundColor(Color.LTGRAY);
+            sideBar.setBackgroundColor(Color.parseColor("#e5e5e5"));
             selction.setEnabled(false);
         }
 
@@ -123,8 +123,8 @@ public class ChecklistAdapter extends ArrayAdapter<Question> {
                     naButton.setBackgroundResource((R.drawable.ic_na_green));
                     theOneChecklist.setAnswerByID(listQuestion.get(position).getUid(),Answer.NA);
                     selction.setEnabled(false);
-                    oneGroup.setBackgroundColor(Color.LTGRAY);
-                    sideBar.setBackgroundColor(Color.LTGRAY);
+                    oneGroup.setBackgroundColor(Color.parseColor("#e5e5e5"));
+                    sideBar.setBackgroundColor(Color.parseColor("#e5e5e5"));
                     selction.setChecked(false);
                 }
             }

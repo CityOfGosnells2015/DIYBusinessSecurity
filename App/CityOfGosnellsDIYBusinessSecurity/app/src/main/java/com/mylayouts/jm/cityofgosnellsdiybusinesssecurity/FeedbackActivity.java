@@ -73,7 +73,7 @@ public class FeedbackActivity extends ActionBarActivity {
         }
 
         // Sets the text
-        txtPercent.setText(String.format("%%%2.0f",percentage * 100));
+        txtPercent.setText(String.format("%2.0f%%",percentage * 100));
 
         //Display Score
         txtScore.setText(score[1] + " out of " + score[0]);
