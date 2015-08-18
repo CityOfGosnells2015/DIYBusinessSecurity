@@ -3,15 +3,26 @@
     android:layout_height="match_parent"
     tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.FeedbackActivity">
 
-
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:background="#0095ff"
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:background="@drawable/orange_arrow_bar"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/topBar" />
+        android:text="Feedback"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:onClick="goToMenuActivity" />
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/blue_bar"
+        android:id="@+id/topBar"
+        android:layout_below="@+id/imageButton" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -28,8 +39,45 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:id="@+id/blockTextSize"
+        android:id="@+id/blockList"
         android:layout_below="@+id/line1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Total Score is: "
+            android:id="@+id/textView"
+            android:layout_above="@+id/blockTextSize"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--!--SCORE--!--"
+            android:id="@+id/txtScore"
+            android:layout_below="@+id/blockTextSize"
+            android:layout_alignRight="@+id/lock_image"
+            android:layout_alignEnd="@+id/lock_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-Percent-"
+            android:id="@+id/percentage"
+            android:layout_alignBottom="@+id/lock_image"
+            android:layout_centerHorizontal="true"
+            android:textSize="40sp"
+            android:textColor="@color/white"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lock_image"
+            android:background="@drawable/lock_open"
+            android:src="@drawable/lock_open"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
     </LinearLayout>
 
@@ -45,60 +93,12 @@
         android:layout_marginBottom="10dp" />
 
     <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#0095ff"
+        android:background="@drawable/blue_bar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/borrowBar"
-        android:src="@drawable/lock_open" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to Menu"
-        android:id="@+id/btnMenu"
-        android:onClick="goToMenuActivity"
-        android:layout_above="@+id/line6"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lock_image"
-        android:background="@drawable/lock_open"
-        android:src="@drawable/lock_open"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Total Score is: "
-        android:id="@+id/textView"
-        android:layout_above="@+id/blockTextSize"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="--!--SCORE--!--"
-        android:id="@+id/txtScore"
-        android:layout_below="@+id/blockTextSize"
-        android:layout_alignRight="@+id/lock_image"
-        android:layout_alignEnd="@+id/lock_image" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-Percent-"
-        android:id="@+id/percentage"
-        android:layout_alignBottom="@+id/lock_image"
-        android:layout_centerHorizontal="true"
-        android:textSize="40sp"
-        android:textColor="@color/white"
-        />
-
+        android:id="@+id/borrowBar" />
 
 </RelativeLayout>

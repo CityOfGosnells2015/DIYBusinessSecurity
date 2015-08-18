@@ -39,16 +39,10 @@ public class FeedbackActivity extends ActionBarActivity {
         txtScore = (TextView) findViewById(R.id.txtScore);
         lockImage = (ImageView) findViewById(R.id.lock_image);
         txtPercent = (TextView) findViewById(R.id.percentage);
-        /*
-        //Set global object
-        GlobalChecklist globalChecklist= (GlobalChecklist) getApplication();
-        theOneChecklist = globalChecklist.getTheOneChecklist();
-        */
-
 
         //Get Users last score
         //Score[1] is the number of answers user has answered as Y
-        //Score si the total number of questions user has answered
+        //Score is the total number of questions user has answered
         int[] score = getUserScore();
 
         /*
@@ -81,48 +75,8 @@ public class FeedbackActivity extends ActionBarActivity {
         // Sets the text
         txtPercent.setText(String.format("%%%2.0f",percentage * 100));
 
-        /*
-        list = (ListView) findViewById(R.id.listView);
-        */
-
         //Display Score
         txtScore.setText(score[1] + " out of " + score[0]);
-
-       /* // Load previous checklist from file
-        fileStore = new FileStore();
-        try {
-            logChecklist = fileStore.loadLogFile("Log_Checklist.dat", FeedbackActivity.this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } */
-
-
-        /*
-
-        ArrayAdapter<String> adapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_list_item_1, logChecklist);
-        list.setAdapter(adapter);
-
-        // ListView Item Click Listener
-        list.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                String  itemValue    = (String) list.getItemAtPosition(position);
-                updateUserAnswerObject(itemValue+".dat");
-
-                Intent intent = new Intent(FeedbackActivity.this,ChecklistActivity.class);
-                startActivity(intent);
-
-            }
-        }); */
 
     }
 
@@ -157,17 +111,6 @@ public class FeedbackActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-   /* public void updateUserAnswerObject(String nameFile){
-
-        try {
-            theOneChecklist.setUserAnswer(fileStore.loadUserFile(nameFile,FeedbackActivity.this));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    } */
 
     public void goToMenuActivity(View v){
 
