@@ -69,6 +69,16 @@
             android:textSize="40sp"
             android:textColor="@color/white"/>
 
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/blockList2"
+        android:layout_below="@+id/blockList"
+        android:gravity="center_horizontal">
+
 
         <ImageView
             android:layout_width="wrap_content"
