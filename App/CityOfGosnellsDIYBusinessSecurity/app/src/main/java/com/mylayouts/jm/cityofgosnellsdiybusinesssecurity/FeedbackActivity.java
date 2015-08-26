@@ -1,5 +1,6 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 
 public class FeedbackActivity extends ActionBarActivity {
 
-    TextView txtScore;
     TextView txtPercent;
     Checklist theOneChecklist;
     SharedPreferences prefs;
@@ -36,7 +36,6 @@ public class FeedbackActivity extends ActionBarActivity {
         //Set layout for activity
         setContentView(R.layout.activity_feedback);
 
-        txtScore = (TextView) findViewById(R.id.txtScore);
         lockImage = (ImageView) findViewById(R.id.lock_image);
         txtPercent = (TextView) findViewById(R.id.percentage);
 
@@ -46,17 +45,8 @@ public class FeedbackActivity extends ActionBarActivity {
         int[] score = getUserScore();
 
         /*
-            For testing only
-
-        score[0] = 2;
-        score[1] = 1;
-        */
-
-
-        /*
             Set Lock closed image is users score is > 90
             Set to unlocked otherwise
-
             Set the Percentage in the image
          */
         percentage = (double)(score[1])/(double)(score[0]);
@@ -65,18 +55,17 @@ public class FeedbackActivity extends ActionBarActivity {
 
             //Set to locked image
             lockImage.setImageResource(R.drawable.lock_closed);
+            lockImage.getLayoutParams().width = ActionBar.LayoutParams.FILL_PARENT;
 
         }else{
 
             lockImage.setBackgroundResource(R.drawable.lock_open);
-
+            lockImage.getLayoutParams().width = ActionBar.LayoutParams.FILL_PARENT;
         }
 
         // Sets the text
         txtPercent.setText(String.format("%2.0f%%",percentage * 100));
 
-        //Display Score
-        txtScore.setText(score[1] + " out of " + score[0]);
 
     }
 
