@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:textAlignment="center"
-        android:text="MENU"
+        android:text="Menu"
         android:textColor="#FFFFFF"
         android:textSize="25dp" />
 
@@ -36,16 +36,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnImportantNumbers"
-            android:background="@drawable/ic_important"
+            android:id="@+id/btnChecklist"
+            android:background="@drawable/ic_checklist"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnNotification"
-            android:background="@drawable/ic_notifications"
+            android:id="@+id/btnImportantNumbers"
+            android:background="@drawable/ic_important"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 
@@ -62,16 +62,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnPreference"
-            android:background="@drawable/ic_preferences"
+            android:id="@+id/btnLink"
+            android:background="@drawable/ic_links"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnLink"
-            android:background="@drawable/ic_links"
+            android:id="@+id/btnHelp"
+            android:background="@drawable/ic_emergency"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 
@@ -88,16 +88,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnChecklist"
-            android:background="@drawable/ic_checklist"
+            android:id="@+id/btnPreference"
+            android:background="@drawable/ic_preferences"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnHelp"
-            android:background="@drawable/ic_emergency"
+            android:id="@+id/btnNotification"
+            android:background="@drawable/ic_notifications"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"/>
 

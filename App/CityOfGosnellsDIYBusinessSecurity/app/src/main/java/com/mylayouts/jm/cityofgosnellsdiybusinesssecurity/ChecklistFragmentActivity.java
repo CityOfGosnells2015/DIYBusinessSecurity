@@ -103,8 +103,6 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         // on tab selected
         // show respected fragment view
         viewPager.setCurrentItem(tab.getPosition());
-
-
     }
 
 
@@ -135,4 +133,5 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
         return super.onOptionsItemSelected(item);
     }
+
 }

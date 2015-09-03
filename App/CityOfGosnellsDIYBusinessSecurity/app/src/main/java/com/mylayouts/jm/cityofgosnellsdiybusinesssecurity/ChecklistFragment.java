@@ -1,5 +1,6 @@
 package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -57,4 +58,5 @@ public class ChecklistFragment extends Fragment {
     public void setTheOneChecklist(Checklist theOneChecklist) {
         this.theOneChecklist = theOneChecklist;
     }
+
 }
