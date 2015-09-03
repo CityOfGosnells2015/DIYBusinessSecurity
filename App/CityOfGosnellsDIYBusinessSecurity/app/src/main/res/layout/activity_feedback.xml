@@ -11,7 +11,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="Security Level"
+        android:text="Feedback"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="25dp"
@@ -20,9 +20,44 @@
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/blue_bar"
+        android:id="@+id/topBar"
+        android:layout_below="@+id/imageButton" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/ic_dottedline"
+        android:layout_below="@+id/topBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:id="@+id/line1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:weightSum="1"
         android:id="@+id/blockList"
-        android:layout_below="@+id/imageButton">
+        android:layout_below="@+id/line1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Total Score is: "
+            android:id="@+id/textView"
+            android:layout_above="@+id/blockTextSize"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--!--SCORE--!--"
+            android:id="@+id/txtScore"
+            android:layout_below="@+id/blockTextSize"
+            android:layout_alignRight="@+id/lock_image"
+            android:layout_alignEnd="@+id/lock_image" />
 
     </LinearLayout>
 
@@ -34,11 +69,13 @@
         android:layout_below="@+id/blockList"
         android:gravity="center_horizontal">
 
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lock_image"
-            android:background="@drawable/lock_closed"
+            android:background="@drawable/lock_open"
+            android:src="@drawable/lock_open"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -54,6 +91,17 @@
             android:textColor="@color/white"/>
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/ic_dottedline"
+        android:layout_above="@+id/borrowBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/line6"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
