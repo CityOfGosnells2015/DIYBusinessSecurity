@@ -242,6 +242,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 //Set weblinks
                 globalChecklist.setWebLinks(jsonParser.getWebLinks());
 
+                //Set Notification
+                globalChecklist.setNotifications(jsonParser.getNotifications());
+
                 /*
                     Splash Screen will always be visible for at least 3 seconds
                     sleep( time in milliseconds)

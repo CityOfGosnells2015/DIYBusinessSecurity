@@ -5,7 +5,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -131,6 +130,50 @@ public class JSONParser {
             Return List
          */
         return  contactList;
+
+
+    }
+
+    /*
+            Reads Notification to a hash map
+     */
+    public ArrayList<Notification> getNotifications() throws JSONException {
+
+        /*
+            Variables
+         */
+        ArrayList<Notification> notificationList = new ArrayList<Notification>();
+        JSONObject element;
+        Notification notify;
+        JSONArray notificationJSON = jsonFile.getJSONArray("Notifications");
+
+        /*
+            Loop for each JSON Object in JSON Array
+         */
+        for (int index = 0; index < notificationJSON.length(); index++) {
+
+            /*
+                Get object at index
+             */
+            element = notificationJSON.getJSONObject(index);
+
+
+            //Load into nitification object
+            notify = new Notification();
+            notify.setPeriod(element.getString("period"));
+            notify.setQuestion(element.getString("question"));
+
+
+            //Add to notifcation list
+            notificationList.add(notify);
+
+        }
+
+
+        /*
+            Return List
+         */
+        return  notificationList;
 
 
     }

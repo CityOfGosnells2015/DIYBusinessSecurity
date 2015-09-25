@@ -3,7 +3,6 @@ package com.mylayouts.jm.cityofgosnellsdiybusinesssecurity;
 import android.app.Application;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Global Checklist
@@ -22,6 +21,7 @@ public class GlobalChecklist extends Application {
     private Checklist theOneChecklist;
     private ArrayList<Link> emergencyContacts;
     private ArrayList<Link> webLinks;
+    private ArrayList<Notification> notifications;
 
     /*
         Get and Set for Checklist
@@ -42,6 +42,15 @@ public class GlobalChecklist extends Application {
 
     public void setEmergencyContacts(ArrayList<Link> emergencyContacts) {
         this.emergencyContacts = emergencyContacts;
+    }
+
+    /*
+        Get and set for Notifications
+     */
+    public ArrayList<Notification> getNotifications(){return notifications;}
+
+    public void setNotifications(ArrayList<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     /*
