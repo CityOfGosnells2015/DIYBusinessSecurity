@@ -6,22 +6,31 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Switch;
+
+import java.util.ArrayList;
 
 /**
  * Gustavo Dias
  * Class for manager all notifications methods
  */
-public class NotificationActivity extends ActionBarActivity {
+public class NotificationActivity extends ActionBarActivity implements OnMenuItemClickListener {
 
     SharedPreferences prefs;
     boolean weeklyNotification, dailyNotification, monthlyNotification;
-    Switch switchWeeklyButton,switchDailyButton, switchMonthlyButton;
+    Switch switchWeeklyButton;
+    Switch switchDailyButton;
+    Switch switchMonthlyButton;
+    ListView listViewDaily;
+    ListView listViewMonthly;
+    ListView listViewWeekly;
     int themeValue;
 
     @Override
@@ -33,24 +42,31 @@ public class NotificationActivity extends ActionBarActivity {
         themeValue = prefs.getInt("textSize",0);
 
         //Loading the correct theme application
-        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
+        ChangeTheme.onActivityCreateSetTheme(this, themeValue);
 
         //Set layout for activity
         setContentView(R.layout.activity_notification);
 
+        //Get objects from XML
+        switchDailyButton = (Switch) findViewById(R.id.switchDailyButton);
+        switchWeeklyButton = (Switch) findViewById(R.id.switchWeeklyButton);
+        switchMonthlyButton = (Switch) findViewById(R.id.switchMonthlyButton);
+        listViewDaily = (ListView) findViewById(R.id.listDaily);
+        listViewWeekly = (ListView) findViewById(R.id.listWeekly);
+        listViewMonthly = (ListView) findViewById(R.id.listMonthly);
+
         //Preference file
         prefs = getSharedPreferences("Preferences",MODE_PRIVATE);
 
+        //Loading preference values
         dailyNotification = prefs.getBoolean("dailyNotification", false);
         weeklyNotification = prefs.getBoolean("weeklyNotification", false);
         monthlyNotification = prefs.getBoolean("monthlyNotification", false);
 
-        switchDailyButton = (Switch) findViewById(R.id.switchDailyButton);
-        switchWeeklyButton = (Switch) findViewById(R.id.switchWeeklyButton);
-        switchMonthlyButton = (Switch) findViewById(R.id.switchMonthlyButton);
-
+        //Testing notification switches
         if(dailyNotification){
             switchDailyButton.setChecked(true);
+
         }else{
             switchDailyButton.setChecked(false);
         }
@@ -66,6 +82,23 @@ public class NotificationActivity extends ActionBarActivity {
         }else{
             switchMonthlyButton.setChecked(false);
         }
+
+        //Load notification from the Global variables
+        GlobalChecklist globalChecklist = (GlobalChecklist) getApplication();
+        ArrayList<Notification> notificationList = globalChecklist.getNotifications();
+
+        //Loading daily notification list
+        NotificationAdapter adapter = new NotificationAdapter(this, globalChecklist.getTheOneChecklist().getNotificationByPeriod("Daily",notificationList));
+        listViewDaily.setAdapter(adapter);
+
+        //Loading weekly notification list
+        adapter = new NotificationAdapter(this, globalChecklist.getTheOneChecklist().getNotificationByPeriod("Weekly",notificationList));
+        listViewWeekly.setAdapter(adapter);
+
+        //Loading monthly notification list
+        adapter = new NotificationAdapter(this, globalChecklist.getTheOneChecklist().getNotificationByPeriod("Monthly",notificationList));
+        listViewMonthly.setAdapter(adapter);
+
     }
 
     @Override
@@ -93,7 +126,6 @@ public class NotificationActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
 
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -106,15 +138,20 @@ public class NotificationActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+
     public void onDailyNotification(View view) {
         boolean on = ((Switch) view).isChecked();
 
         if (on) {
             prefs.edit().putBoolean("dailyNotification", true).commit();
             Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 1, intent, 0);
+            intent.putExtra("type", "daily");
+
+            PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+            //Set alarm manager
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
+            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent1);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
@@ -132,9 +169,13 @@ public class NotificationActivity extends ActionBarActivity {
         if (on) {
             prefs.edit().putBoolean("weeklyNotification", true).commit();
             Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
+            intent.putExtra("type","weekly");
+
             PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 2, intent, 0);
+
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 7, pendingIntent);
+            //am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 7, pendingIntent);
+            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
@@ -150,15 +191,19 @@ public class NotificationActivity extends ActionBarActivity {
         boolean on = ((Switch) view).isChecked();
 
         if (on) {
-            prefs.edit().putBoolean("switchMonthlyButton", true).commit();
+            prefs.edit().putBoolean("monthlyNotification", true).commit();
             Intent intent = new Intent(NotificationActivity.this, NotificationReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 3, intent, 0);
+            intent.putExtra("type","monthly");
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 3, intent, 0);
+
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 30, pendingIntent);
+            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
+            //am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 30, pendingIntent);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
-                prefs.edit().putBoolean("switchMonthlyButton", false).commit();
+                prefs.edit().putBoolean("monthlyNotification", false).commit();
                 String ns = Context.NOTIFICATION_SERVICE;
                 NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
                 nMgr.cancel(3);
@@ -166,5 +211,64 @@ public class NotificationActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * This method is invoke to set the listview daily visible
+     */
+    public void setDailyVisible(View view){
+        //Test if list is invisible
+        if(!listViewDaily.isShown()){
+            listViewDaily.setVisibility(View.VISIBLE);
+            listViewWeekly.setVisibility(View.GONE);
+            listViewMonthly.setVisibility(View.GONE);
+        }else{
+            listViewDaily.setVisibility(View.GONE);
+            listViewWeekly.setVisibility(View.GONE);
+            listViewMonthly.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * This method is invoke to set the listview weekly visible
+     */
+    public void setWeeklyVisible(View view){
+        //Test if list is invisible
+        if(!listViewWeekly.isShown()){
+            listViewDaily.setVisibility(View.GONE);
+            listViewWeekly.setVisibility(View.VISIBLE);
+            listViewMonthly.setVisibility(View.GONE);
+        }else{
+            listViewDaily.setVisibility(View.GONE);
+            listViewWeekly.setVisibility(View.GONE);
+            listViewMonthly.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * This method is invoke to set the listview monthly visible
+     */
+    public void setMonthlyVisible(View view){
+        //Test if list is invisible
+        if(!listViewMonthly.isShown()){
+            listViewDaily.setVisibility(View.GONE);
+            listViewWeekly.setVisibility(View.GONE);
+            listViewMonthly.setVisibility(View.VISIBLE);
+        }else{
+            listViewDaily.setVisibility(View.GONE);
+            listViewWeekly.setVisibility(View.GONE);
+            listViewMonthly.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * This method will be invoked when a menu item is clicked if the item itself did
+     * not already handle the event.
+     *
+     * @param item {@link MenuItem} that was clicked
+     * @return <code>true</code> if the event was handled, <code>false</code> otherwise.
+     */
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }
 

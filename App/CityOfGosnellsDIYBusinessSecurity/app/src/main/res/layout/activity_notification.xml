@@ -1,48 +1,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mylayouts.jm.cityofgosnellsdiybusinesssecurity.NotificationActivity">
 
     <Button
+        android:id="@+id/imageButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:background="@drawable/orange_arrow_bar"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:background="@drawable/orange_arrow_bar"
+        android:onClick="showMenu"
         android:text="NOTIFICATIONS"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="25dp"
-        android:onClick="showMenu" />
-
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/blue_bar"
-        android:id="@+id/topBar"
-        android:layout_below="@+id/imageButton" />
+        android:textSize="25dp" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/topBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false"
-        android:id="@+id/line1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
-
-    <LinearLayout android:layout_width="fill_parent"
+        android:id="@+id/topBar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
+        android:layout_below="@+id/imageButton"
+        android:background="@drawable/blue_bar"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
         android:id="@+id/blockDaily"
-        android:layout_below="@+id/line1">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBar"
+        android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/contextDaily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -50,44 +42,70 @@
                 android:id="@+id/txtDaily"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Daily "
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/switchDailyButton"/>
+                android:layout_marginLeft="10dp"
+                android:text="Daily"
+                android:layout_toLeftOf="@+id/viewDaily"
+                android:layout_toStartOf="@+id/viewDaily" />
 
             <Switch
                 android:id="@+id/switchDailyButton"
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
-                android:textOn="On"
-                android:textOff="Off"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/viewDaily"
+                android:layout_toStartOf="@+id/viewDaily"
                 android:onClick="onDailyNotification"
+                android:textOff="Off"
+                android:textOn="On" />
+
+            <ImageButton
+                android:id="@+id/viewDaily"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@mipmap/ic_view"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"/>
+                android:layout_centerVertical="true"
+                android:onClick="setDailyVisible"/>
+
+            <ListView
+                android:id="@+id/listDaily"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/switchDailyButton"
+                android:clickable="false"
+                android:divider="@drawable/dotted_line"
+                android:visibility="gone"
+                android:dividerHeight="1dp"
+                android:drawSelectorOnTop="false" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/line2"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockDaily"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/line2"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/blockDaily"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:background="@drawable/ic_dottedline" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
+    <LinearLayout
         android:id="@+id/blockWeekly"
-        android:layout_below="@+id/line2">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <RelativeLayout
+            android:id="@+id/contextWeekly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -95,100 +113,138 @@
                 android:id="@+id/txtWeekly"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Weekly "
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/switchWeeklyButton"/>
+                android:layout_marginLeft="10dp"
+                android:text="Weekly"
+                android:layout_toLeftOf="@+id/viewWeekly"
+                android:layout_toStartOf="@+id/viewWeekly" />
 
             <Switch
                 android:id="@+id/switchWeeklyButton"
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
-                android:textOn="On"
-                android:textOff="Off"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/viewWeekly"
+                android:layout_toStartOf="@+id/viewWeekly"
                 android:onClick="onWeeklyNotification"
+                android:textOff="Off"
+                android:textOn="On" />
+
+            <ImageButton
+                android:id="@+id/viewWeekly"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@mipmap/ic_view"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"/>
+                android:layout_centerVertical="true"
+                android:onClick="setWeeklyVisible"/>
+
+            <ListView
+                android:id="@+id/listWeekly"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/switchWeeklyButton"
+                android:clickable="false"
+                android:divider="@drawable/dotted_line"
+                android:visibility="gone"
+                android:dividerHeight="1dp"
+                android:drawSelectorOnTop="false" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/line3"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockWeekly"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/line3"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/blockWeekly"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:background="@drawable/ic_dottedline" />
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
+    <LinearLayout
         android:id="@+id/blockMonthly"
-        android:layout_below="@+id/line3">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line3"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contextMonthly">
 
             <TextView
                 android:id="@+id/txtMonthly"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Monthly "
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/switchMonthlyButton"/>
+                android:layout_marginLeft="10dp"
+                android:text="Monthly"
+                android:layout_toLeftOf="@+id/viewMonthly"
+                android:layout_toStartOf="@+id/viewMonthly" />
 
             <Switch
                 android:id="@+id/switchMonthlyButton"
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
-                android:textOn="On"
-                android:textOff="Off"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/viewMonthly"
+                android:layout_toStartOf="@+id/viewMonthly"
                 android:onClick="onMonthlyNotification"
+                android:textOff="Off"
+                android:textOn="On" />
+
+            <ImageButton
+                android:id="@+id/viewMonthly"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@mipmap/ic_view"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"/>
+                android:layout_centerVertical="true"
+                android:onClick="setMonthlyVisible"/>
+
+            <ListView
+                android:id="@+id/listMonthly"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/switchMonthlyButton"
+                android:clickable="false"
+                android:divider="@drawable/dotted_line"
+                android:visibility="gone"
+                android:dividerHeight="1dp"
+                android:drawSelectorOnTop="false" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/line4"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_below="@+id/blockMonthly"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/line4"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/blockMonthly"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:background="@drawable/ic_dottedline" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/ic_dottedline"
-        android:layout_above="@+id/borrowBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/line6"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
-
-    <LinearLayout
+        android:id="@+id/borrowBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/blue_bar"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/borrowBar" />
+        android:layout_alignParentRight="true"
+        android:background="@drawable/blue_bar"/>
 
 </RelativeLayout>

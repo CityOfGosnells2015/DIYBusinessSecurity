@@ -158,8 +158,9 @@ public class JSONParser {
             element = notificationJSON.getJSONObject(index);
 
 
-            //Load into nitification object
+            //Load into notification object
             notify = new Notification();
+            notify.setId(element.getString("id"));
             notify.setPeriod(element.getString("period"));
             notify.setQuestion(element.getString("question"));
 
@@ -168,7 +169,6 @@ public class JSONParser {
             notificationList.add(notify);
 
         }
-
 
         /*
             Return List

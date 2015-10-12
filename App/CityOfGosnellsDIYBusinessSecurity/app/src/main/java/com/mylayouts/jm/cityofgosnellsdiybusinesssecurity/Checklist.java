@@ -179,6 +179,24 @@ public class Checklist {
         }
         return null;
     }
+
+    /**
+     * Returns a list of Notification in a particular period
+     *
+     * @param period, listNotification
+     * @return notifications
+     * @author Gustavo Dias
+     */
+    public ArrayList<Notification> getNotificationByPeriod(String period, ArrayList<Notification> listNotification) {
+        ArrayList<Notification> notifications = new ArrayList<Notification>();
+
+        for (Notification notif : listNotification) {
+            if (notif.getPeriod().equalsIgnoreCase(period)) {
+                notifications.add(notif);
+            }
+        }
+        return notifications;
+    }
 }
 
 

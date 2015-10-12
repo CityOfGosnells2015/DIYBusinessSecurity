@@ -34,10 +34,10 @@ import java.util.ArrayList;
 
 /**
  * Welcome/Splash Screen
- *
+ * <p/>
  * James McNeil 30/03/2015
  */
-public class WelcomeActivity extends Activity implements View.OnClickListener{
+public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     Button firstTimeClick;
     SharedPreferences prefs;
@@ -57,13 +57,13 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_welcome);
 
         //Create checklist
-        globalChecklist= (GlobalChecklist) getApplication();
+        globalChecklist = (GlobalChecklist) getApplication();
 
         //Create Checklist
         theOneChecklist = new Checklist();
 
-        prefs =getSharedPreferences("AppInfo",MODE_PRIVATE);
-        prefs.edit().putBoolean("VersionChanged",false).commit();
+        prefs = getSharedPreferences("AppInfo", MODE_PRIVATE);
+        prefs.edit().putBoolean("VersionChanged", false).commit();
 
         //Initialise Button and add listener
         firstTimeClick = (Button) findViewById(R.id.btnFirstClick);
@@ -73,13 +73,13 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         if (isOnline()) {
             DownloadJSONTask task = new DownloadJSONTask();
             task.execute(new String[]{CHECKLIST_URL});
-        }else{
+        } else {
 
             /*
                 Promt user to connect to network or exit application
              */
             noNetworkErrorDialog();
-            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
+            Log.d("Not Online", "NOT CONNECTED TO THE INTERNET");
         }
 
 
@@ -95,24 +95,24 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
     }
 
     @Override
-    public void onRestart(){
+    public void onRestart() {
         super.onRestart();
 
         if (isOnline()) {
             DownloadJSONTask task = new DownloadJSONTask();
             task.execute(new String[]{CHECKLIST_URL});
-        }else{
+        } else {
 
             /*
                 Promt user to connect to network or exit application
              */
             noNetworkErrorDialog();
-            Log.d("Not Online","NOT CONNECTED TO THE INTERNET");
+            Log.d("Not Online", "NOT CONNECTED TO THE INTERNET");
         }
     }
 
@@ -132,19 +132,18 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     }
 
     /**
-     *
      * @param v
      */
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.btnFirstClick){
+        if (v.getId() == R.id.btnFirstClick) {
 
             //If app is being used for first time]
-            if (prefs.getBoolean("firstrun",true)){
+            if (prefs.getBoolean("firstrun", true)) {
 
                 //First Time Run Code Goes Here
-                prefs.edit().putBoolean("firstrun",false).commit(); // Sets firstrun to false
+                prefs.edit().putBoolean("firstrun", false).commit(); // Sets firstrun to false
 
 
                 //Go to Letter
@@ -152,8 +151,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 startActivity(intent);
 
 
-            }
-            else {
+            } else {
 
                 // != First time run code here
 
@@ -173,7 +171,6 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     private class DownloadJSONTask extends AsyncTask<String, Void, String> {
 
         /**
-         *
          * @param urls
          * @return
          */
@@ -253,7 +250,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             } catch (InterruptedException e) {
                 Log.e("Interrupted", "" + e.getMessage());
             } catch (JSONException e) {
-                Log.e("JSON Exception",e.getMessage());
+                Log.e("JSON Exception", e.getMessage());
             }
 
             /*
@@ -272,20 +269,19 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     }
 
     /**
-     *
      * Returns Array Of "Unanswered" answers
      *
      * @return
      * @author James McNeil
      */
-    private ArrayList<UserAnswer> createNewAnswerList(){
+    private ArrayList<UserAnswer> createNewAnswerList() {
 
         ArrayList<UserAnswer> userAnswers = new ArrayList<UserAnswer>();
         UserAnswer addedAnswer;
 
-        for(int index=0;index<theOneChecklist.getQuestList().size();index++){
+        for (int index = 0; index < theOneChecklist.getQuestList().size(); index++) {
 
-            addedAnswer = new UserAnswer(theOneChecklist.getQuestionByIndex(index).getUid(),Answer.U);
+            addedAnswer = new UserAnswer(theOneChecklist.getQuestionByIndex(index).getUid(), Answer.U);
             userAnswers.add(addedAnswer);
 
         }
@@ -296,27 +292,26 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
     /**
      * Checks for an internet Connection
-     *
+     * <p/>
      * (From Tutorials)
      *
      * @return Boolean
      */
-    protected boolean isOnline(){
+    protected boolean isOnline() {
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
-        if(netInfo != null && netInfo.isConnectedOrConnecting()){
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
             return true;
-        }else return false;
+        } else return false;
 
     }
 
     /**
-     *  No Network Propmt
-     *
-     *  Propmts User to connect to the intertnet if they are not
-     *
+     * No Network Propmt
+     * <p/>
+     * Propmts User to connect to the intertnet if they are not
      */
     protected void noNetworkErrorDialog() {
 
@@ -351,7 +346,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     }
 
 
-    private void createChecklist(){
+    private void createChecklist() {
 
         /*
             Load Users Answers from file
@@ -360,19 +355,19 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         FileStore fileStore = new FileStore();
 
         //Create File
-        File answerFile = new File(getApplicationContext().getFilesDir().getPath().toString() + "/" +FILE_NAME);
-        try{
+        File answerFile = new File(getApplicationContext().getFilesDir().getPath().toString() + "/" + FILE_NAME);
+        try {
 
             ArrayList<UserAnswer> userAnswers;
 
             //Version Change
-            if(prefs.getInt("VersionNumber",0) != theOneChecklist.getVersionNumber()){
+            if (prefs.getInt("VersionNumber", 0) != theOneChecklist.getVersionNumber()) {
 
-                prefs.edit().putBoolean("VersionChanged",true).commit();
+                prefs.edit().putBoolean("VersionChanged", true).commit();
 
             }
 
-            prefs.edit().putInt("VersionNumber",theOneChecklist.getVersionNumber()).commit();
+            prefs.edit().putInt("VersionNumber", theOneChecklist.getVersionNumber()).commit();
 
             /*
                 If no current user file exists
@@ -380,37 +375,37 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                 Creates new file and writes to file answers
                 that are initialised to 'U'
              */
-            if(!answerFile.exists()){
+            if (!answerFile.exists()) {
 
                 userAnswers = createNewAnswerList();
                 theOneChecklist.setUserAnswer(userAnswers);
-                fileStore.saveUserFile(userAnswers,FILE_NAME,this.getApplicationContext());
+                fileStore.saveUserFile(userAnswers, FILE_NAME, this.getApplicationContext());
 
 
-            }else{
+            } else {
 
                 //Load Users Answers file
-                userAnswers = fileStore.loadUserFile(FILE_NAME,this.getApplicationContext());
+                userAnswers = fileStore.loadUserFile(FILE_NAME, this.getApplicationContext());
 
-                if(prefs.getBoolean("VersionChanged",false)){
+                if (prefs.getBoolean("VersionChanged", false)) {
 
                     boolean isFound;
 
 
 					/*
-					    Finds all questions in The checklist loaded from the JSON and compares
+                        Finds all questions in The checklist loaded from the JSON and compares
 					    them to the users saved answers
 
 					    If there is a new question in the checklist a new answer will be added to
 					    the users answers and initialised to 'U' (Unanswered)
 					 */
-                    for(int index = 0;index<theOneChecklist.getQuestList().size();index++){
+                    for (int index = 0; index < theOneChecklist.getQuestList().size(); index++) {
 
                         isFound = true;
 
-                        for(int indexr = 0;indexr<userAnswers.size();indexr++){
+                        for (int indexr = 0; indexr < userAnswers.size(); indexr++) {
 
-                            if(userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())){
+                            if (userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())) {
                                 isFound = false;
                                 break;
                             }
@@ -420,9 +415,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                         /*
                             Add new user answer to users answers in the oneChecklist
                          */
-                        if(isFound){
+                        if (isFound) {
 
-                            theOneChecklist.getUserAnswer().add(new UserAnswer(theOneChecklist.getQuestList().get(index).getUid(),Answer.U));
+                            theOneChecklist.getUserAnswer().add(new UserAnswer(theOneChecklist.getQuestList().get(index).getUid(), Answer.U));
                         }
 
                     }
@@ -438,15 +433,15 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                         answers the 'current' field is toggled to false so is no
                         longer included within the users feedback
                      */
-                    for(int indexr = 0;indexr<userAnswers.size();indexr++){ //Loop each of users answers
+                    for (int indexr = 0; indexr < userAnswers.size(); indexr++) { //Loop each of users answers
 
                         isFound = false;
 
-                        for(int index = 0;index<theOneChecklist.getQuestList().size();index++){ //Loop for questions
+                        for (int index = 0; index < theOneChecklist.getQuestList().size(); index++) { //Loop for questions
 
-                            if (userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())){
+                            if (userAnswers.get(indexr).getUid().equals(theOneChecklist.getQuestList().get(index).getUid())) {
 
-                                isFound= true;
+                                isFound = true;
                                 break;
 
                             }
@@ -456,17 +451,14 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
                         /*
                             If the question id has not been found in the current questions
                          */
-                        if(!isFound){
+                        if (!isFound) {
 
                             userAnswers.get(indexr).setCurrent(false);
 
                         }
 
 
-
                     }
-
-
 
 
                 }
@@ -480,7 +472,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
             }
 
-        } catch(IOException ex){
+        } catch (IOException ex) {
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
