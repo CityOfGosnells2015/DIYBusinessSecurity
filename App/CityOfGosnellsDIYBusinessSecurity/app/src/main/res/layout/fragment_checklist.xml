@@ -5,28 +5,52 @@
     android:theme="@style/checklistTheme"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:gravity="center"
-        android:id="@+id/txtCatagory"
-        android:layout_above="@+id/topBar"
-        android:background="@drawable/orange_arrow_bar"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"/>
+        tools:context=".ChecklistFragment"
+        android:theme="@style/checklistTheme"
+        android:orientation="vertical"
+        android:layout_above="@+id/topBar">
 
-    <LinearLayout android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:gravity="center"
+            android:id="@+id/txtCatagory"
+            android:background="@drawable/orange_bar"
+            android:layout_alignParentTop="true"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:layout_toEndOf="@+id/homeButton"
+            android:layout_toRightOf="@+id/homeButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/homeButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/txtCatagory"
+            android:text="Home"
+            android:background="@color/blue" />
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/blue_bar"
         android:id="@+id/topBar"
         android:layout_below="@+id/txtCatagory"
-        android:layout_above="@+id/fraglist"/>
+        android:layout_above="@+id/fraglist">
+
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/fraglist"

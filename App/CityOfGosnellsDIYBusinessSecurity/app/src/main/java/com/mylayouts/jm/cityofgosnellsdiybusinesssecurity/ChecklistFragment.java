@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,6 +58,16 @@ public class ChecklistFragment extends Fragment {
 
     public void setTheOneChecklist(Checklist theOneChecklist) {
         this.theOneChecklist = theOneChecklist;
+    }
+
+    /*
+        Returns to the main menu
+     */
+    public void returnHome(View view){
+
+        Intent intent = new Intent(this.getActivity().getApplicationContext(),MenuActivity.class);
+        startActivity(intent);
+
     }
 
 }
