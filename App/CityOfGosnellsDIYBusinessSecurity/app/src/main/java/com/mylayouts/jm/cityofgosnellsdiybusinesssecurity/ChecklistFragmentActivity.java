@@ -225,10 +225,18 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         /*
             Changes the postion of the view pager by -1
          */
-        currentPosition--;
-        viewPager.setCurrentItem(currentPosition, true);
-        updateProgress();
 
+        if(currentPosition > 0) {
+
+            currentPosition--;
+            viewPager.setCurrentItem(currentPosition, true);
+            updateProgress();
+
+        } else {
+
+            ////When first page
+
+        }
 
     }
 
@@ -237,9 +245,18 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         /*
             Changes the position of the view pages by +1
          */
-        currentPosition++;
-        viewPager.setCurrentItem(currentPosition, true);
-        updateProgress();
+
+        if(currentPosition < theOneChecklist.listCategory().length){
+            currentPosition++;
+            viewPager.setCurrentItem(currentPosition, true);
+            updateProgress();
+        } else{
+
+            /// Last page
+
+        }
+
+
 
     }
 
