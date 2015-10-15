@@ -13,12 +13,12 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-    <Button
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_save"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_save" />
+        <Button
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_save"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_save" />
 
     </RelativeLayout>
 

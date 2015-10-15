@@ -92,7 +92,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
                  */
                 currentPosition = position; //updates current postions
                 updateProgress();
-
+                Toast.makeText(ChecklistFragmentActivity.this, "OnPageSelected", Toast.LENGTH_SHORT).show();
             }
 
             @Override

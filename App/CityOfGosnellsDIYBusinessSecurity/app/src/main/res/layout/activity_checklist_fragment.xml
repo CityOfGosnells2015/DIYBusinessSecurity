@@ -11,7 +11,8 @@
         tools:context=".ChecklistFragment"
         android:theme="@style/checklistTheme"
         android:orientation="vertical"
-        android:id="@+id/catBar">
+        android:id="@+id/catBar"
+        android:background="@color/orange">
 
         <TextView
             android:layout_width="match_parent"
