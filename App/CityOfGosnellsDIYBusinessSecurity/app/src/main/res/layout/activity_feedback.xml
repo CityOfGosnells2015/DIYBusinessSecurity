@@ -35,46 +35,19 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/blockList"
-        android:layout_below="@+id/line1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Total Score is: "
-            android:id="@+id/textView"
-            android:layout_above="@+id/blockTextSize"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="--!--SCORE--!--"
-            android:id="@+id/txtScore"
-            android:layout_below="@+id/blockTextSize"
-            android:layout_alignRight="@+id/lock_image"
-            android:layout_alignEnd="@+id/lock_image" />
-
-    </LinearLayout>
-
-    <RelativeLayout android:layout_width="fill_parent"
+    <RelativeLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
         android:id="@+id/blockList2"
-        android:layout_below="@+id/blockList"
+        android:layout_below="@+id/line1"
         android:gravity="center_horizontal">
 
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lock_image"
-            android:background="@drawable/lock_open"
             android:src="@drawable/lock_open"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />

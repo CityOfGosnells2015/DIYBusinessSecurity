@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 
 
 public class FeedbackActivity extends ActionBarActivity {
 
-    TextView txtScore;
     TextView txtPercent;
     Checklist theOneChecklist;
     SharedPreferences prefs;
@@ -31,12 +31,11 @@ public class FeedbackActivity extends ActionBarActivity {
         themeValue = prefs.getInt("textSize",0);
 
         //Loading the correct theme application
-        ChangeTheme.onActivityCreateSetTheme(this,themeValue);
+        ChangeTheme.onActivityCreateSetTheme(this, themeValue);
 
         //Set layout for activity
         setContentView(R.layout.activity_feedback);
 
-        txtScore = (TextView) findViewById(R.id.txtScore);
         lockImage = (ImageView) findViewById(R.id.lock_image);
         txtPercent = (TextView) findViewById(R.id.percentage);
 
@@ -66,17 +65,15 @@ public class FeedbackActivity extends ActionBarActivity {
             //Set to locked image
             lockImage.setImageResource(R.drawable.lock_closed);
 
+
         }else{
 
-            lockImage.setBackgroundResource(R.drawable.lock_open);
+            lockImage.setImageResource(R.drawable.lock_open);
 
         }
 
         // Sets the text
         txtPercent.setText(String.format("%2.0f%%",percentage * 100));
-
-        //Display Score
-        txtScore.setText(score[1] + " out of " + score[0]);
 
     }
 
