@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 /**
  *  Checklist Fragment
  *
@@ -23,10 +25,6 @@ public class ChecklistFragment extends Fragment {
     ListView listview;
     String category;
 
-    /*
-        Added
-     */
-    TextView txtCatagory;
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,
@@ -42,11 +40,7 @@ public class ChecklistFragment extends Fragment {
         adapter = new ChecklistAdapter(getActivity().getApplicationContext(), R.layout.activity_display_checklist, theOneChecklist.getQuestionsByCategory(category));
         listview.setAdapter(adapter);
 
-        /*
-            Sets the catagory
-         */
-        txtCatagory = (TextView) rootView.findViewById(R.id.txtCatagory);
-        txtCatagory.setText(category);
+
 
         return rootView;
     }
@@ -56,18 +50,10 @@ public class ChecklistFragment extends Fragment {
         this.category = category;
     }
 
+
     public void setTheOneChecklist(Checklist theOneChecklist) {
         this.theOneChecklist = theOneChecklist;
     }
 
-    /*
-        Returns to the main menu
-     */
-    public void returnHome(View view){
-
-        Intent intent = new Intent(this.getActivity().getApplicationContext(),MenuActivity.class);
-        startActivity(intent);
-
-    }
 
 }

@@ -18,6 +18,7 @@ public class TabAdapter extends FragmentPagerAdapter {
 
 
 
+
     @Override
     public Fragment getItem(int index){
 
@@ -34,6 +35,7 @@ public class TabAdapter extends FragmentPagerAdapter {
             checkFrag.setTheOneChecklist(theOneChecklist);
             return checkFrag;
         }
+
         /*
             Return a save Fragment as the last fragment in the chain
          */
@@ -43,6 +45,8 @@ public class TabAdapter extends FragmentPagerAdapter {
             return  saveFrag;
         }
     }
+
+
 
     @Override
     public int getCount() {
