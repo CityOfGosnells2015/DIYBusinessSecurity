@@ -5,29 +5,6 @@
     android:theme="@style/checklistTheme"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:gravity="center"
-        android:id="@+id/txtCatagory"
-        android:layout_above="@+id/topBar"
-        android:background="@drawable/orange_arrow_bar"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"/>
-
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/blue_bar"
-        android:id="@+id/topBar"
-        android:layout_below="@+id/txtCatagory"
-        android:layout_above="@+id/fraglist"/>
-
     <ListView
         android:id="@+id/fraglist"
         android:layout_width="match_parent"

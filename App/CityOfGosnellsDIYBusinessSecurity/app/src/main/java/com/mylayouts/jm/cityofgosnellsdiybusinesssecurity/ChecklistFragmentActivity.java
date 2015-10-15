@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -29,9 +30,16 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     private ActionBar actionBar;
     private Checklist theOneChecklist;
     private TabAdapter mAdapter;
+    int currentPosition;
 
     SharedPreferences prefs;
     int themeValue;
+
+    /*
+        Added After changes to layout
+     */
+    TextView txtProgress;
+    TextView txtCatagory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +83,13 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
             @Override
             public void onPageSelected(int position) {
-                // on changing the page
-                // make respected tab selected
-                //actionBar.setSelectedNavigationItem(position);
+
+                /*
+                    Updates Progess
+                 */
+                currentPosition = position; //updates current postions
+                updateProgress();
+
             }
 
             @Override
@@ -88,6 +100,19 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+
+        /*
+            Set current positon to 0
+         */
+        currentPosition = 0;
+
+
+        /*
+            First page
+         */
+        txtProgress = (TextView) findViewById(R.id.txtProgress);
+        txtCatagory = (TextView) findViewById(R.id.txtCatagory);
+        updateProgress();
 
 
     }
@@ -133,5 +158,75 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    /*
+        Returns to the main menu
+    */
+    public void returnHome(View view){
+
+        /*
+           Save answers to file
+        */
+        FileStore fileStore = new FileStore();
+        try {
+            fileStore.saveUserFile(theOneChecklist.getUserAnswer(), getString(R.string.file_name),this.getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Intent intent = new Intent(this,MenuActivity.class);
+        startActivity(intent);
+
+    }
+
+
+    /*
+        Updates the progress and catagory
+     */
+    public void updateProgress(){
+
+        /*
+            Changes the Catagory from the list of cats
+         */
+        if(currentPosition < theOneChecklist.listCategory().length)
+            txtCatagory.setText(theOneChecklist.listCategory()[viewPager.getCurrentItem()]);
+        else
+            txtCatagory.setText("Save");
+        txtProgress.setText("Page: " + (currentPosition + 1));
+
+    }
+
+
+
+    /*
+        Previous Postion
+     */
+    public void previousClick(View view){
+
+        /*
+            Changes the postion of the view pager by -1
+         */
+        currentPosition--;
+        viewPager.setCurrentItem(currentPosition, true);
+        updateProgress();
+
+
+    }
+
+    public void nextClick(View view){
+
+        /*
+            Changes the position of the view pages by +1
+         */
+        currentPosition++;
+        viewPager.setCurrentItem(currentPosition, true);
+        updateProgress();
+
+    }
+
+
+
 
 }
