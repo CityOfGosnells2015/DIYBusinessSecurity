@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +39,9 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     /*
         Added After changes to layout
      */
-    TextView txtProgress;
     TextView txtCatagory;
+    ProgressBar progressBar;
+    Button homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         //Loading preferences
         prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
         themeValue = prefs.getInt("textSize", 0);
+
 
         setContentView(R.layout.activity_checklist_fragment);
 
@@ -110,10 +113,22 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
         /*
             First page
          */
-        txtProgress = (TextView) findViewById(R.id.txtProgress);
         txtCatagory = (TextView) findViewById(R.id.txtCatagory);
+
+        /*
+            Progress Bar
+         */
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setMax(theOneChecklist.listCategory().length + 1);
+
         updateProgress();
 
+        homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                returnHome();
+            }
+        });
 
     }
 
@@ -163,7 +178,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     /*
         Returns to the main menu
     */
-    public void returnHome(View view){
+    public void returnHome(){
 
         /*
            Save answers to file
@@ -182,6 +197,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     }
 
 
+
     /*
         Updates the progress and catagory
      */
@@ -194,9 +210,10 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             txtCatagory.setText(theOneChecklist.listCategory()[viewPager.getCurrentItem()]);
         else
             txtCatagory.setText("Save");
-        txtProgress.setText("Page: " + (currentPosition + 1));
+        progressBar.setProgress(currentPosition+1);
 
     }
+
 
 
 
