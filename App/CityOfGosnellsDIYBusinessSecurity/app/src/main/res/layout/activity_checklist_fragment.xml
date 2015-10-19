@@ -6,7 +6,8 @@
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:context=".ChecklistFragment"
         android:theme="@style/checklistTheme"
@@ -51,9 +52,9 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
+            android:background="@mipmap/prevpage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prev"
             android:id="@+id/buttonPrev"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -64,7 +65,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:background="@mipmap/nextpage"
             android:id="@+id/buttonNext"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"

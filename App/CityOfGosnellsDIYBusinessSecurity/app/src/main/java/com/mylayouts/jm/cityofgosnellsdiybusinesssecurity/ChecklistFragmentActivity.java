@@ -4,8 +4,6 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -13,15 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class ChecklistFragmentActivity  extends FragmentActivity implements
@@ -42,6 +35,8 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     TextView txtCatagory;
     ProgressBar progressBar;
     Button homeButton;
+    Button prevButton;
+    Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +87,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
                  */
                 currentPosition = position; //updates current postions
                 updateProgress();
-                Toast.makeText(ChecklistFragmentActivity.this, "OnPageSelected", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -114,6 +109,8 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             First page
          */
         txtCatagory = (TextView) findViewById(R.id.txtCatagory);
+        nextButton = (Button) findViewById(R.id.buttonNext);
+        prevButton = (Button) findViewById(R.id.buttonPrev);
 
         /*
             Progress Bar
@@ -212,6 +209,19 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             txtCatagory.setText("Save");
         progressBar.setProgress(currentPosition+1);
 
+        //Checking which page is for able or disable previous and next buttons
+        if(currentPosition == 0){
+            //First page - disable previous button
+            prevButton.setVisibility(View.INVISIBLE);
+        }else if (currentPosition == theOneChecklist.listCategory().length){
+            //Last page - disable next button
+            nextButton.setVisibility(View.INVISIBLE);
+        }else {
+            //Any other page - able both button
+            prevButton.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
@@ -234,7 +244,7 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
 
         } else {
 
-            ////When first page
+            //When first page
 
         }
 
@@ -250,8 +260,8 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
             currentPosition++;
             viewPager.setCurrentItem(currentPosition, true);
             updateProgress();
-        } else{
 
+        } else{
             /// Last page
 
         }

@@ -43,8 +43,6 @@ public class SaveFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_save, container, false);
 
-
-        Toast.makeText(this.getActivity(), "Oncreate", Toast.LENGTH_SHORT).show();
         /*
             Initialise Save button
          */
@@ -57,19 +55,11 @@ public class SaveFragment extends Fragment {
         GlobalChecklist globalChecklist = (GlobalChecklist) getActivity().getApplication();
         theOneChecklist = globalChecklist.getTheOneChecklist();
 
-        //Toggle if the button is enabled
-        updateButtonEnable();
-
-
-
         /*
             If Save is Clicked
          */
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
-
                     /*
                         Save answers to file
                      */
@@ -98,16 +88,9 @@ public class SaveFragment extends Fragment {
         return v;
     }
 
-
-    /*
-        Tests if the user has answered every question
-        Enables and disables the save button
+    /**
+     * Check if all the questions is answered or not
      */
-    public void updateButtonEnable(){
-        saveButton.setEnabled(allQuestionsAnswered());
-    }
-
-
     public boolean allQuestionsAnswered(){
 
         ArrayList<Question> questions = theOneChecklist.getQuestList();

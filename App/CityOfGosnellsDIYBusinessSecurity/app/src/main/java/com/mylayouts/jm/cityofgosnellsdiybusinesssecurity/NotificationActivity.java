@@ -16,6 +16,7 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Switch;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Gustavo Dias
@@ -149,9 +150,13 @@ public class NotificationActivity extends ActionBarActivity implements OnMenuIte
 
             PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent, 0);
 
-            //Set alarm manager
+            //Setting the alarm - time and frequency
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 17);
+            calendar.set(Calendar.MINUTE, 00);
+            calendar.set(Calendar.SECOND, 00);
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent1);
+            am.setRepeating(am.RTC_WAKEUP, calendar.getTimeInMillis(), am.INTERVAL_DAY, pendingIntent1);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
@@ -173,9 +178,13 @@ public class NotificationActivity extends ActionBarActivity implements OnMenuIte
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 2, intent, 0);
 
+            //Setting the alarm - time and frequency
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 17);
+            calendar.set(Calendar.MINUTE, 00);
+            calendar.set(Calendar.SECOND, 00);
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            //am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 7, pendingIntent);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
+            am.setRepeating(am.RTC_WAKEUP, calendar.getTimeInMillis(), am.INTERVAL_DAY * 7, pendingIntent);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
@@ -197,9 +206,13 @@ public class NotificationActivity extends ActionBarActivity implements OnMenuIte
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 3, intent, 0);
 
+            //Setting the alarm - time and frequency
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 17);
+            calendar.set(Calendar.MINUTE, 00);
+            calendar.set(Calendar.SECOND, 00);
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY, pendingIntent);
-            //am.setRepeating(am.RTC_WAKEUP, System.currentTimeMillis(), am.INTERVAL_DAY * 30, pendingIntent);
+            am.setRepeating(am.RTC_WAKEUP, calendar.getTimeInMillis(), am.INTERVAL_DAY * 30, pendingIntent);
 
         } else {
             if (Context.NOTIFICATION_SERVICE!=null) {
