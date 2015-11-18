@@ -45,36 +45,24 @@ public class FeedbackActivity extends ActionBarActivity {
         int[] score = getUserScore();
 
         /*
-            For testing only
-
-        score[0] = 2;
-        score[1] = 1;
-        */
-
-
-        /*
-            Set Lock closed image is users score is > 90
+            Set Lock closed image is users score is = 100
             Set to unlocked otherwise
 
             Set the Percentage in the image
          */
         percentage = (double)(score[1])/(double)(score[0]);
 
-        if (percentage >= 0.9){
-
+        if (percentage == 1){
             //Set to locked image
             lockImage.setImageResource(R.drawable.lock_closed);
-
 
         }else{
 
             lockImage.setImageResource(R.drawable.lock_open);
-
         }
 
         // Sets the text
         txtPercent.setText(String.format("%2.0f%%",percentage * 100));
-
     }
 
 

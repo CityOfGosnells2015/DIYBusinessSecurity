@@ -271,6 +271,6 @@ public class ChecklistFragmentActivity  extends FragmentActivity implements
     }
 
 
-
-
+    public void returnHome(View view) {
+    }
 }

@@ -59,6 +59,24 @@
                 android:padding="5dp"
                 android:gravity="center_horizontal"
                 android:textAlignment="center" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Created by students of the Diploma of Software Development at Central Institute of Technology"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Project Contributors\n
+Nichola Kerr - Lecturer (Project Manager)\n
+Gustavo T.Dias - Senior Developer\n
+James McNeil - Senior Developer\n
+Thomas Kramer - Developer"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
